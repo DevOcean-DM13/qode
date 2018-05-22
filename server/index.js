@@ -14,6 +14,7 @@ app.use(json());
 app.use(cors());
 
 massive(process.env.DB_CONNECTION_STRING).then(db => {
+  // console.log(db);
   app.set("db", db);
 });
 
