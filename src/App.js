@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import LoginPage from "./components/queries/GetUserQuery";
+import Signup from "./components/Signup/Signup";
 //IMPORT ASSETS AND CSS
 import "./App.css";
 
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="App">
         <LoginPage />
         <Switch>
+          <Route path="/signup" render={() => <Signup />} />
           <Route
             path="/"
             render={() => (this.props.user ? <Dashboard /> : <Landing />)}
