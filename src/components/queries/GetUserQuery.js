@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 
 export const VERIFY_USER = gql`
   query {
-    VerifyUser(user_name: "mightJoe", user_password: "hashpassword") {
+    verifyUser(user_name: "mightJoe", user_password: "hashpassword") {
       user_id
     }
   }
