@@ -11,6 +11,6 @@ export default styled.button`
   &:hover {
     background-color: tomato;
   }
-  width: 8vh;
-  height: 4vh;
+  width: ${props => (props.nav ? "8vh" : "16vh")};
+  height: ${props => (props.nav ? "4vh" : "8vh")};
 `;
