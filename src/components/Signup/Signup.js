@@ -7,17 +7,17 @@ const SignUpForm = styled.div`
   width: 68vw;
   box-sizing: border-box;
   margin-left: 32vw;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 `;
 
-const 
 class Signup extends Component {
   render() {
     return (
       <div>
         <SignUpSideBar />
-        <SignUpForm>
-
-        </SignUpForm>
+        <SignUpForm />
       </div>
     );
   }
