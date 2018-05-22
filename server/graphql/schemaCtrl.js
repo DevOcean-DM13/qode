@@ -64,6 +64,7 @@ function verifyUser({ user_name, user_email, user_password }, req) {
     .get("db")
     .get_users()
     .then(response => {
+      console.log(response);
       const filtered = response.filter(e => {
         return e.user_email === user_email || e.user_name === user_name;
       });
