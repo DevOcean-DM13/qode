@@ -27,7 +27,7 @@ const AccordionContainer = styled.div`
 
   &div {
     border-bottom: 3px solid;
-    border-color: purple;
+    gitborder-color: purple;
     transition: border-color 0.5s ease-in;
   }
 `;
