@@ -6,7 +6,7 @@ import Button from "../MP-Components/Button.js";
 import ButtonWrapper from "../MP-Components/ButtonWrapper.js";
 //  STYLED COMPONENTS
 const LandingBody = styled.div`
-  height: 200vh
+  height: 200vh;
   width: 100%;
   display: flex;
   flex-direction: column;
