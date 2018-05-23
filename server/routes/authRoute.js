@@ -15,7 +15,7 @@ router.use(function timeLog(req, res, next) {
 router.post("/signup", createUser);
 
 // get a user(login)
-router.get("/login", verifyUser);
+router.post("/login", verifyUser);
 
 // delete a user
 router.delete("/delete_account", verifyUser, deleteUser);
