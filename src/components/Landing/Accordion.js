@@ -23,7 +23,7 @@ const AccordionContainer = styled.div`
   margin: 5vh auto;
   border-radius: 5px;
   background-color: #fff;
-  box-shadow: -2px 1px 2px 2px #212121;
+  box-shadow: -1px 2px 2px 1px #e2dfdf;
 
   &div {
     border-bottom: 3px solid;
@@ -33,7 +33,6 @@ const AccordionContainer = styled.div`
 `;
 
 const AccordionLabel = styled.div`
-  font-family: "Josefin Slab", serif;
   text-transform: uppercase;
   cursor: pointer;
   line-height: 25px;
@@ -61,7 +60,6 @@ const AccordionTitle = styled.h1`
   color: white;
   text-align: center;
   text-transform: uppercase;
-  font-family: "Josefin Slab", serif;
   font-size: 66px;
   margin-top: 10vh;
   letter-spacing: 10px;
