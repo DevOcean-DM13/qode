@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+//IMPORTED COMPONENTS
+import LessonAccordion from "./Accordion";
+
 // IMPORTED STYLED COMPONENTS
 import Button from "../MP-Components/Button.js";
 import ButtonWrapper from "../MP-Components/ButtonWrapper.js";
+
 //  STYLED COMPONENTS
 const LandingBody = styled.div`
   height: 200vh;
@@ -195,21 +199,7 @@ class Landing extends Component {
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
-              <AccordionButton className="accordion">
-                HTML
-                <AccordionPanel className="panel">
-                  <AccordionText />
-                </AccordionPanel>
-              </AccordionButton>
-              <AccordionButton>CSS</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <LessonAccordion />
             </Curriculum>
             <PictureSlide />
           </BottomPageContent>
