@@ -13,7 +13,8 @@ const createButton = WrappedComponent => {
           marginRight: "25px",
           marginBottom: "18px",
           fontSize: ".75em",
-          border: "solid 1px #dce8ef"
+          border: "solid 1px #dce8ef",
+          color: "#595c63"
         }
       };
     }

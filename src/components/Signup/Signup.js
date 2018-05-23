@@ -7,8 +7,8 @@ import {
 } from "../hoc/SignButtons/AllSignButtons";
 
 const SignUpForm = styled.div`
-  height: 1000px;
-  width: 65vw;
+  height: auto;
+  width: 63.8vw;
   box-sizing: border-box;
   margin-left: 35vw;
   display: flex;
@@ -17,6 +17,7 @@ const SignUpForm = styled.div`
   /* justify-content: space-between; */
   /* position: relative; */
   overflow-y: hidden;
+  margin-bottom: 150px;
 `;
 
 // Coding Background
@@ -55,11 +56,37 @@ const PurposeQuestionButtons = styled.div`
   display: flex;
 `;
 
+// Goals
+
+const QodingGoal = styled.div`
+  height: auto;
+  width: 100%;
+  padding-left: 9vw;
+  padding-right: 50px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+`;
+const GoalText = styled.textarea`
+  width: 45.45vw;
+  height: 20vh;
+  border: solid 1px #dce8ef;
+  outline: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  &.texty:hover {
+    box-shadow: 0.5px 0.5px 3px #dee9f9;
+    transition: 0.2s;
+  }
+`;
+
 // Inputs
+
 const InputCard = styled.div`
   width: 27vw;
   height: auto;
-  border: solid 1px black;
+  border: solid 1px #dce8ef;
+  border-radius: 6px;
   box-sizing: border-box;
   padding-left: 2vw;
   padding-bottom: 2vw;
@@ -88,17 +115,15 @@ const InputTitle = styled.p`
   box-sizing: border-box;
 `;
 
-// Goals
-
 // Register Bar
 
 const Register = styled.div`
   height: 60px;
-  width: 65vw;
+  width: 63.8vw;
   position: fixed;
   bottom: 0px;
   background: white;
-  border-top: solid 2px #dce8ef;
+  border-top: solid 1px #dce8ef;
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -111,7 +136,7 @@ const RegisterButton = styled.button`
   outline: none;
   font-size: 0.75em;
   border: solid 1px #dce8ef;
-  margin-right: 30px;
+  margin-right: 10px;
 
   &.backButt:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
@@ -141,6 +166,9 @@ class Signup extends Component {
   constructor() {
     super();
     this.state = {
+      emailInput: "",
+      userInput: "",
+      passInput: "",
       displayModal: false
     };
     // this.onLoginClick = this.onLoginClick.bind(this);
@@ -167,6 +195,10 @@ class Signup extends Component {
             <Question>What are you here to do?</Question>
             <PurposeButtons />
           </QodingPurpose>
+          <QodingGoal>
+            <Question>What are your goals?</Question>
+            <GoalText className="texty" />
+          </QodingGoal>
           <InputContainer>
             <InputCard>
               <Question>Register Your Account</Question>
