@@ -1,11 +1,15 @@
+//Import Dependencies
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 //IMPORT COMPONENTS
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
+<<<<<<< HEAD
+=======
 import LoginPage from "./components/queries/GetUserQuery";
 import Login from "./components/mutations/AddUserMutation";
+>>>>>>> master
 import Signup from "./components/Signup/Signup";
 
 //IMPORT ASSETS AND CSS
@@ -15,8 +19,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoginPage render={data => console.log(data)} />
-        {/* <Login /> */}
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route
