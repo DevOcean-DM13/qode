@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 //IMPORTED COMPONENTS
 import LessonAccordion from "./Accordion";
+import LoginForm from "./LoginForm";
 
 // IMPORTED STYLED COMPONENTS
 import Button from "../MP-Components/Button.js";
 import ButtonWrapper from "../MP-Components/ButtonWrapper.js";
+
+//IMPORTED ASSETS
 
 //  STYLED COMPONENTS
 const LandingBody = styled.div`
@@ -73,9 +77,12 @@ const Blurb = styled.h2`
 const Idk = styled.div`
   height: 33%;
   width: 100%;
+<<<<<<< HEAD
+=======
   display: flex;
   align-items: center;
   justify-content: center;
+>>>>>>> master
 `;
 const LandingProblem = styled.div`
   width: 50%;
@@ -101,6 +108,8 @@ const Curriculum = styled.div`
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
+<<<<<<< HEAD
+=======
 `;
 
 // AUXILLARY STYLED COMPONENTS
@@ -123,33 +132,8 @@ const AccordionPanel = styled.div`
   background: white;
   display: none;
   overflow: hidden;
+>>>>>>> master
 `;
-const AccordionText = styled.p``;
-
-// COMPONENTS
-export class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // username: " ",
-      // email: " ",
-      // password: " "
-    };
-  }
-
-  render() {
-    return (
-      <form id="login">
-        <p>username</p>
-        <input />
-        <p>email</p>
-        <input />
-        <p>password</p>
-        <input />
-      </form>
-    );
-  }
-}
 
 class Landing extends Component {
   constructor(props) {

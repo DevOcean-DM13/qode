@@ -83,6 +83,7 @@ function createUser(req, res, next) {
 function verifyUser(req, res, next) {
   const { userName, email, password } = req.body;
   console.log("finding user....");
+  console.log(req.body);
   req.app
     .get("db")
     .get_users()
