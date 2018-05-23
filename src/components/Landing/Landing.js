@@ -39,7 +39,6 @@ const NavBar = styled.div`
 const TopPage = styled.div`
   height: 100vh;
   width: 100%;
-  background: salmon;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,6 +77,12 @@ const Blurb = styled.h2`
 const Idk = styled.div`
   height: 33%;
   width: 100%;
+<<<<<<< HEAD
+=======
+  display: flex;
+  align-items: center;
+  justify-content: center;
+>>>>>>> master
 `;
 const LandingProblem = styled.div`
   width: 50%;
@@ -87,7 +92,7 @@ const LandingProblem = styled.div`
 const BottomPage = styled.div`
   height: 100vh;
   width: 100%;
-  ${"" /* background: lightblue; */} display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 `;
@@ -103,6 +108,31 @@ const Curriculum = styled.div`
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
+<<<<<<< HEAD
+=======
+`;
+
+// AUXILLARY STYLED COMPONENTS
+const AccordionButton = styled.button`
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  &:hover {
+    background: tomato;
+  }
+`;
+const AccordionPanel = styled.div`
+  padding: 0 18px;
+  background: white;
+  display: none;
+  overflow: hidden;
+>>>>>>> master
 `;
 
 class Landing extends Component {
@@ -138,7 +168,9 @@ class Landing extends Component {
                 Don't know where to start on the path of coding? Allow us to be
                 your floatie.
               </Blurb>
-              <Idk />
+              <Idk>
+                <Button>Sign Up Now</Button>
+              </Idk>
             </TextContent>
             <LandingProblem />
           </TopPageContent>

@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import createButton from "./SignButtons";
 import styled from "styled-components";
 
+const Button = styled.button`
+  &.backButt:hover {
+    box-shadow: 0.5px 0.5px 3px #dee9f9;
+    transition: 0.2s;
+  }
+`;
+const ButtonContainer = styled.div`
+  width: auto;
+  height: auto;
+`;
+
 class Background extends Component {
   constructor() {
     super();
@@ -18,9 +29,13 @@ class Background extends Component {
   }
   render() {
     const backMapped = this.state.backgroundName.map((e, i) => {
-      return <button style={this.props.styleProps}>{e}</button>;
+      return (
+        <Button className="backButt" style={this.props.styleProps}>
+          {e}
+        </Button>
+      );
     });
-    return <div>{backMapped}</div>;
+    return <ButtonContainer>{backMapped}</ButtonContainer>;
   }
 }
 
@@ -35,9 +50,13 @@ class Purpose extends Component {
   }
   render() {
     const purpMapped = this.state.purposeName.map((e, i) => {
-      return <button style={this.props.styleProps}>{e}</button>;
+      return (
+        <Button className="backButt" style={this.props.styleProps}>
+          {e}
+        </Button>
+      );
     });
-    return <div>{purpMapped}</div>;
+    return <ButtonContainer>{purpMapped}</ButtonContainer>;
   }
 }
 
