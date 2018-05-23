@@ -5,11 +5,8 @@ import { Route, Switch } from "react-router-dom";
 //IMPORT COMPONENTS
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-<<<<<<< HEAD
-=======
-import LoginPage from "./components/queries/GetUserQuery";
-import Login from "./components/mutations/AddUserMutation";
->>>>>>> master
+// import LoginPage from "./components/queries/GetUserQuery";
+// import Login from "./components/mutations/AddUserMutation";
 import Signup from "./components/Signup/Signup";
 
 //IMPORT ASSETS AND CSS
