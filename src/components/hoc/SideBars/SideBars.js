@@ -7,10 +7,12 @@ const createSideBar = WrappedComponent => {
       this.state = {
         styleProps: {
           height: "100vh",
-          width: "32vw",
+          width: "35vw",
           left: "0",
-          background: "#47e0ff",
-          position: "fixed"
+          background: "#C9DEF2",
+          position: "fixed",
+          padding: "100px 70px 380px 70px",
+          boxSizing: "border-box"
         }
       };
     }
