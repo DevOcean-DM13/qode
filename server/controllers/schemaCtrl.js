@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+
 class User {
   constructor({
     user_id,
