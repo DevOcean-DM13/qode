@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default styled.button`
-  background-color: #C0C0C0
+  background-color: #80C6CC
   border: none;
   outline: none;
   color: white;
@@ -15,5 +15,4 @@ export default styled.button`
   }
   width: ${props => (props.nav ? "8vh" : "16vh")};
   height: ${props => (props.nav ? "4vh" : "8vh")};
-  ${"" /* font-family: "Noto Sans", sans-serif; */};
 `;
