@@ -7,14 +7,14 @@ import {
 } from "../hoc/SignButtons/AllSignButtons";
 
 const SignUpForm = styled.div`
-  height: auto;
+  height: 1000px;
   width: 65vw;
   box-sizing: border-box;
   margin-left: 35vw;
   display: flex;
   flex-direction: column;
   padding-top: 100px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* position: relative; */
 `;
 
@@ -55,6 +55,14 @@ const PurposeQuestionButtons = styled.div`
 `;
 
 // Inputs
+const InputCard = styled.div`
+  width: 27vw;
+  height: auto;
+  border: solid 1px black;
+  box-sizing: border-box;
+  padding-left: 2vw;
+  padding-bottom: 2vw;
+`;
 const InputContainer = styled.div`
   height: auto;
   width: 100%;
@@ -76,6 +84,16 @@ const Input = styled.input`
 const InputTitle = styled.p`
   font-size: 0.7em;
 `;
+const Register = styled.div`
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  background: white;
+  border-top: solid 1px #dce8ef;
+  box-sizing: border-box;
+`;
+const RegisterButton = styled.button``;
 
 // Login
 
@@ -130,17 +148,20 @@ class Signup extends Component {
             </PurposeQuestionButtons>
           </QodingPurpose>
           <InputContainer>
-            <Question>Register Your Account</Question>
-            <InputTitle>Email</InputTitle>
-            <Input placeholder="Email" />
-            <InputTitle>Username</InputTitle>
-            <Input placeholder="Username" />
-            <InputTitle>Password</InputTitle>
-            <Input placeholder="Password" />
+            <InputCard>
+              <Question>Register Your Account</Question>
+              <InputTitle>Email</InputTitle>
+              <Input placeholder="Email" />
+              <InputTitle>Username</InputTitle>
+              <Input placeholder="Username" />
+              <InputTitle>Password</InputTitle>
+              <Input placeholder="Password" />
+            </InputCard>
           </InputContainer>
           {/* <LoginModal className={this.state.displayModal ? "open" : "hidden"}>
             <button onClick={this.onLoginClick}>close modal</button>
           </LoginModal> */}
+          <Register />
         </SignUpForm>
       </div>
     );
