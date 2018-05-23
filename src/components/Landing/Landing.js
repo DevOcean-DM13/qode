@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+//IMPORTED COMPONENTS
+import LessonAccordion from "./Accordion";
+
 // IMPORTED STYLED COMPONENTS
 import Button from "../MP-Components/Button.js";
 import ButtonWrapper from "../MP-Components/ButtonWrapper.js";
+
 //  STYLED COMPONENTS
 const LandingBody = styled.div`
   height: 200vh;
@@ -100,6 +104,7 @@ const Curriculum = styled.div`
   width: 50%;
   height: 100%;
   background: black;
+  /* position: absolute; */
 `;
 const PictureSlide = styled.div`
   width: 50%;
@@ -152,7 +157,7 @@ class Landing extends Component {
               </Introduction>
               <Blurb>
                 Don't know where to start on the path of coding? Allow us to be
-                your floatie.{" "}
+                your floatie.
               </Blurb>
               <Idk />
             </TextContent>
@@ -162,21 +167,7 @@ class Landing extends Component {
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
-              <AccordionButton className="accordion">
-                HTM
-                <AccordionPanel className="panel">
-                  <AccordionText />
-                </AccordionPanel>
-              </AccordionButton>
-              <AccordionButton>CSS</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
-              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <LessonAccordion />
             </Curriculum>
             <PictureSlide />
           </BottomPageContent>
