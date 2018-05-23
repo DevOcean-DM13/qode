@@ -10,7 +10,6 @@ const LandingBody = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-family: font-family: 'Noto Sans', sans-serif;
 `;
 const NavBar = styled.div`
   width: 100%;
@@ -48,14 +47,16 @@ const TextContent = styled.div`
   background-color: lime;
   display: flex;
   flex-direction: column;
+  ${"" /* font-family: "Noto Sans", sans-serif;
+  font-weight: 400; */};
 `;
 const Introduction = styled.h1`
   font-family: "Noto Sans", sans-serif;
+  font-weight: 400;
   font-size: 46px;
   color: black;
   line-height: 59.8px;
   text-align: center;
-  letter-spacing: 0.1em;
   height: 33%;
   width: 100%;
   background: skyblue;
@@ -66,7 +67,6 @@ const Blurb = styled.h2`
   color: black;
   line-height: 59.8px;
   text-align: center;
-  letter-spacing: 0.1em;
   font-weight: 400;
   height: 33%;
   width: 100%;
@@ -106,6 +106,30 @@ const PictureSlide = styled.div`
   height: 100%;
   background: yellow;
 `;
+
+// AUXILLARY STYLED COMPONENTS
+const AccordionButton = styled.button`
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  &:hover {
+    background: tomato;
+  }
+`;
+const AccordionPanel = styled.div`
+  padding: 0 18px;
+  background: white;
+  display: none;
+  overflow: hidden;
+`;
+const AccordionText = styled.p``;
+
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -137,7 +161,23 @@ class Landing extends Component {
         </TopPage>
         <BottomPage>
           <BottomPageContent>
-            <Curriculum />
+            <Curriculum>
+              <AccordionButton className="accordion">
+                HTM
+                <AccordionPanel className="panel">
+                  <AccordionText />
+                </AccordionPanel>
+              </AccordionButton>
+              <AccordionButton>CSS</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+              <AccordionButton>THIS IS ALL FILLER</AccordionButton>
+            </Curriculum>
             <PictureSlide />
           </BottomPageContent>
         </BottomPage>
