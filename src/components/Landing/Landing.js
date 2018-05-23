@@ -44,8 +44,7 @@ const TopPageContent = styled.div`
 const TextContent = styled.div`
   width: 50%;
   height: 100%;
-  background-color: lime;
-  display: flex;
+  ${"" /* background-color: lime; */} display: flex;
   flex-direction: column;
   ${"" /* font-family: "Noto Sans", sans-serif;
   font-weight: 400; */};
@@ -59,7 +58,7 @@ const Introduction = styled.h1`
   text-align: center;
   height: 33%;
   width: 100%;
-  background: skyblue;
+  ${"" /* background: skyblue; */};
 `;
 const Blurb = styled.h2`
   font-family: "Noto Sans", sans-serif;
@@ -70,24 +69,23 @@ const Blurb = styled.h2`
   font-weight: 400;
   height: 33%;
   width: 100%;
-  background: olive;
+  ${"" /* background: olive; */};
 `;
 const Idk = styled.div`
   height: 33%;
   width: 100%;
-  background: white;
+  ${"" /* background: white; */};
 `;
 const LandingProblem = styled.div`
   width: 50%;
   height: 100%;
-  background: red;
+  ${"" /* background: red; */};
 `;
 /* BOTTOM HALF OF THE LANDING */
 const BottomPage = styled.div`
   height: 100vh;
   width: 100%;
-  background: lightblue;
-  display: flex;
+  ${"" /* background: lightblue; */} display: flex;
   align-items: center;
   justify-content: center;
 `;
@@ -99,12 +97,12 @@ const BottomPageContent = styled.div`
 const Curriculum = styled.div`
   width: 50%;
   height: 100%;
-  background: black;
+  ${"" /* background: black; */};
 `;
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
-  background: yellow;
+  ${"" /* background: yellow; */};
 `;
 
 // AUXILLARY STYLED COMPONENTS
@@ -130,17 +128,51 @@ const AccordionPanel = styled.div`
 `;
 const AccordionText = styled.p``;
 
+// COMPONENTS
+export class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // username: " ",
+      // email: " ",
+      // password: " "
+    };
+  }
+
+  render() {
+    return (
+      <form id="login">
+        <p>username</p>
+        <input />
+        <p>email</p>
+        <input />
+        <p>password</p>
+        <input />
+      </form>
+    );
+  }
+}
+
 class Landing extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      opened: false
+    };
+    this.clickLogin = this.clickLogin.bind(this);
+  }
+  clickLogin(e) {
+    this.setState({ opened: !this.state.opened });
+    console.log(`hit`);
   }
   render() {
     return (
       <LandingBody>
         <NavBar>
           <ButtonWrapper>
-            <Button nav>Login</Button>
+            <Button onClick={e => this.clickLogin(e)} nav>
+              Login
+            </Button>
             <Button nav>Register</Button>
           </ButtonWrapper>
         </NavBar>
@@ -152,18 +184,19 @@ class Landing extends Component {
               </Introduction>
               <Blurb>
                 Don't know where to start on the path of coding? Allow us to be
-                your floatie.{" "}
+                your floatie.
               </Blurb>
               <Idk />
             </TextContent>
             <LandingProblem />
           </TopPageContent>
         </TopPage>
+        {this.state.opened && <LoginForm />}
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
               <AccordionButton className="accordion">
-                HTM
+                HTML
                 <AccordionPanel className="panel">
                   <AccordionText />
                 </AccordionPanel>
