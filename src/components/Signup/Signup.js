@@ -16,12 +16,13 @@ const SignUpForm = styled.div`
   padding-top: 100px;
   /* justify-content: space-between; */
   /* position: relative; */
+  overflow-y: hidden;
 `;
 
 // Coding Background
 
 const QodingBackground = styled.div`
-  height: 169.56px;
+  height: auto;
   width: 100%;
   /* padding-top: 60.44px; */
   padding-left: 9vw;
@@ -41,7 +42,7 @@ const BackgroundQuestionButtons = styled.div`
 // Coding Purpose
 
 const QodingPurpose = styled.div`
-  height: 120px;
+  height: auto;
   width: 100%;
   padding-left: 9vw;
   padding-right: 50px;
@@ -80,20 +81,43 @@ const Input = styled.input`
   border: solid 1px #dce8ef;
   margin-bottom: 20px;
   padding-left: 10px;
+  box-sizing: border-box;
 `;
 const InputTitle = styled.p`
   font-size: 0.7em;
+  box-sizing: border-box;
 `;
+
+// Goals
+
+// Register Bar
+
 const Register = styled.div`
   height: 60px;
-  width: 100%;
+  width: 65vw;
   position: fixed;
   bottom: 0px;
   background: white;
-  border-top: solid 1px #dce8ef;
+  border-top: solid 2px #dce8ef;
+  display: flex;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-end;
 `;
-const RegisterButton = styled.button``;
+const RegisterButton = styled.button`
+  height: 35px;
+  width: 180px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.75em;
+  border: solid 1px #dce8ef;
+  margin-right: 30px;
+
+  &.backButt:hover {
+    box-shadow: 0.5px 0.5px 3px #dee9f9;
+    transition: 0.5s;
+  }
+`;
 
 // Login
 
@@ -137,15 +161,11 @@ class Signup extends Component {
               What is your coding background?
               {/* <button onClick={this.onLoginClick}>Open modal</button> */}
             </Question>
-            <BackgroundQuestionButtons>
-              <BackgroundButtons className="backHover" />
-            </BackgroundQuestionButtons>
+            <BackgroundButtons className="backHover" />
           </QodingBackground>
           <QodingPurpose>
             <Question>What are you here to do?</Question>
-            <PurposeQuestionButtons>
-              <PurposeButtons />
-            </PurposeQuestionButtons>
+            <PurposeButtons />
           </QodingPurpose>
           <InputContainer>
             <InputCard>
@@ -161,7 +181,9 @@ class Signup extends Component {
           {/* <LoginModal className={this.state.displayModal ? "open" : "hidden"}>
             <button onClick={this.onLoginClick}>close modal</button>
           </LoginModal> */}
-          <Register />
+          <Register>
+            <RegisterButton className="backButt"> Register </RegisterButton>
+          </Register>
         </SignUpForm>
       </div>
     );

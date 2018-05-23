@@ -18,11 +18,7 @@ const createButton = WrappedComponent => {
       };
     }
     render() {
-      return (
-        <div>
-          <WrappedComponent {...this.state} />
-        </div>
-      );
+      return <WrappedComponent {...this.state} />;
     }
   }
   return SignButton;
