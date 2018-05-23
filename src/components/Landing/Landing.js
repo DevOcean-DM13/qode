@@ -35,7 +35,6 @@ const NavBar = styled.div`
 const TopPage = styled.div`
   height: 100vh;
   width: 100%;
-  background: salmon;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,10 +47,8 @@ const TopPageContent = styled.div`
 const TextContent = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background-color: lime; */} display: flex;
+  display: flex;
   flex-direction: column;
-  ${"" /* font-family: "Noto Sans", sans-serif;
-  font-weight: 400; */};
 `;
 const Introduction = styled.h1`
   font-family: "Noto Sans", sans-serif;
@@ -62,7 +59,6 @@ const Introduction = styled.h1`
   text-align: center;
   height: 33%;
   width: 100%;
-  ${"" /* background: skyblue; */};
 `;
 const Blurb = styled.h2`
   font-family: "Noto Sans", sans-serif;
@@ -73,23 +69,23 @@ const Blurb = styled.h2`
   font-weight: 400;
   height: 33%;
   width: 100%;
-  ${"" /* background: olive; */};
 `;
 const Idk = styled.div`
   height: 33%;
   width: 100%;
-  ${"" /* background: white; */};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const LandingProblem = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background: red; */};
 `;
 /* BOTTOM HALF OF THE LANDING */
 const BottomPage = styled.div`
   height: 100vh;
   width: 100%;
-  ${"" /* background: lightblue; */} display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 `;
@@ -101,12 +97,10 @@ const BottomPageContent = styled.div`
 const Curriculum = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background: black; */};
 `;
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background: yellow; */};
 `;
 
 // AUXILLARY STYLED COMPONENTS
@@ -190,7 +184,9 @@ class Landing extends Component {
                 Don't know where to start on the path of coding? Allow us to be
                 your floatie.
               </Blurb>
-              <Idk />
+              <Idk>
+                <Button>Sign Up Now</Button>
+              </Idk>
             </TextContent>
             <LandingProblem />
           </TopPageContent>
