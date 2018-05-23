@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 //IMPORTED COMPONENTS
 import LessonAccordion from "./Accordion";
+import LoginForm from "./LoginForm";
 
 // IMPORTED STYLED COMPONENTS
 import Button from "../MP-Components/Button.js";
 import ButtonWrapper from "../MP-Components/ButtonWrapper.js";
+
+//IMPORTED ASSETS
 
 //  STYLED COMPONENTS
 const LandingBody = styled.div`
@@ -48,10 +52,8 @@ const TopPageContent = styled.div`
 const TextContent = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background-color: lime; */} display: flex;
+  display: flex;
   flex-direction: column;
-  ${"" /* font-family: "Noto Sans", sans-serif;
-  font-weight: 400; */};
 `;
 const Introduction = styled.h1`
   font-family: "Noto Sans", sans-serif;
@@ -62,7 +64,6 @@ const Introduction = styled.h1`
   text-align: center;
   height: 33%;
   width: 100%;
-  ${"" /* background: skyblue; */};
 `;
 const Blurb = styled.h2`
   font-family: "Noto Sans", sans-serif;
@@ -73,17 +74,14 @@ const Blurb = styled.h2`
   font-weight: 400;
   height: 33%;
   width: 100%;
-  ${"" /* background: olive; */};
 `;
 const Idk = styled.div`
   height: 33%;
   width: 100%;
-  ${"" /* background: white; */};
 `;
 const LandingProblem = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background: red; */};
 `;
 /* BOTTOM HALF OF THE LANDING */
 const BottomPage = styled.div`
@@ -101,61 +99,11 @@ const BottomPageContent = styled.div`
 const Curriculum = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background: black; */};
 `;
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
-  ${"" /* background: yellow; */};
 `;
-
-// AUXILLARY STYLED COMPONENTS
-const AccordionButton = styled.button`
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  &:hover {
-    background: tomato;
-  }
-`;
-const AccordionPanel = styled.div`
-  padding: 0 18px;
-  background: white;
-  display: none;
-  overflow: hidden;
-`;
-const AccordionText = styled.p``;
-
-// COMPONENTS
-export class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // username: " ",
-      // email: " ",
-      // password: " "
-    };
-  }
-
-  render() {
-    return (
-      <form id="login">
-        <p>username</p>
-        <input />
-        <p>email</p>
-        <input />
-        <p>password</p>
-        <input />
-      </form>
-    );
-  }
-}
 
 class Landing extends Component {
   constructor(props) {
