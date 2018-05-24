@@ -8,10 +8,10 @@ const {
   getUser,
   logout
 } = require(`${__dirname}/../controllers/authCtrl`);
-// router.use(function timeLog(req, res, next) {
-//   console.log(`Time: ${new Date()}`);
-//   next();
-// });
+router.use(function timeLog(req, res, next) {
+  console.log(`Time: ${new Date()}`);
+  next();
+});
 router.get("/user", getUser);
 router.post("/signup", createUser);
 router.post("/login", verifyUser);

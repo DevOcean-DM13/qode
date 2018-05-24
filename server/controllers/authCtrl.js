@@ -12,8 +12,6 @@ function createUser(req, res, next) {
     goals
   } = req.body;
   const startDate = new Date();
-
-  console.log(req.session);
   req.app
     .get("db")
     .add_user([
@@ -26,14 +24,16 @@ function createUser(req, res, next) {
       goals
     ])
     .then(user => {
+      console.log(user);
       req.session.user = _.omit(user[0], ["user_password"]);
       //201
-      return res.status(200).send(_.omit(user[0], ["user_password"]));
+      console.log("hit here");
+      return res.status(201).send(_.omit(user[0], ["user_password"]));
     })
     .catch(err => {
-      console.log(err.detail || err);
+      // console.log(err);
       return res
-        .status(403)
+        .status(500)
         .send({ message: err.detail.slice(err.detail.indexOf("=") + 1) });
     });
 }
@@ -48,20 +48,35 @@ function verifyUser(req, res, next) {
       const filtered = users.filter(e => {
         return e.user_email === email || e.user_name === userName;
       });
+      console.log(req.route.path);
       if (!filtered[0]) {
         return res.status(401).send("Email or username does not exist");
       } else {
-        req.session.user = _.omit(filtered[0], ["user_password"]);
-        return filtered[0];
+        if (
+          !req.session.user.user_name ||
+          req.route.path == "/delete_account"
+        ) {
+          req.session.user = _.omit(filtered[0], ["user_password"]);
+          return filtered[0];
+        }
+        // else if (req.route.path == "/delete_account") {
+        //   return filtered[0];
+        // }
+        else {
+          return res.status(200).send({ message: "Already logged in" });
+        }
       }
     })
     .then(credentials => {
       if (bcrypt.compareSync(password, credentials.user_password)) {
-        console.log("password confirmed...");
-        res.status(200).send(req.session.user);
-        res.locals.verifiedUser = req.session.user;
-        //store user on local state.
-        next();
+        if (req.method !== "DELETE") {
+          console.log("password confirmed...");
+          res.status(200).send(req.session.user);
+        } else {
+          res.locals.verifiedUser = req.session.user;
+          //store user on local state.
+          next();
+        }
       } else {
         return res.status(401).send({ message: "Incorrect password" });
       }
@@ -72,25 +87,27 @@ function verifyUser(req, res, next) {
 }
 function deleteUser(req, res, next) {
   console.log("deleting user...");
-  console.log(res.locals.verifiedUser);
 
   req.app
     .get("db")
     .delete_user(res.locals.verifiedUser.user_name)
     .then(response => {
       //does status code matter? 204
-      return res.status(200).send({ message: "user deleted" });
+      req.session.destroy();
+      res.status(200).send({ message: "session ended" });
     })
     .catch(err => {
       console.log(err);
-      console.log("found an error joe");
     });
 }
 function getUser(req, res) {
   if (!req.session.user.user_name) {
-    return res
-      .status(401)
-      .send({ message: "Unauthorized. Please login or register" });
+    return (
+      res
+        //401
+        .status(200)
+        .send({ message: "Unauthorized. Please login or register" })
+    );
   } else {
     return res.status(200).send(req.session.user);
   }
