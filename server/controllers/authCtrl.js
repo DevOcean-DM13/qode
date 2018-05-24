@@ -104,8 +104,8 @@ function getUser(req, res) {
   if (!req.session.user.user_name) {
     return (
       res
-        //401
-        .status(200)
+        //200 => 401
+        .status(401)
         .send({ message: "Unauthorized. Please login or register" })
     );
   } else {
