@@ -13,8 +13,14 @@ import LessonOneTest from "./components/Lesson/AllLessonPages";
 import "./App.css";
 
 class App extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.user != this.props.user) {
+      console.log(`hellooooo`);
+      this.render();
+    }
+  }
   render() {
-    console.log(this.props);
+    console.log(`look here`, this.props);
     return (
       <div className="App">
         <Switch>

@@ -9,6 +9,7 @@ const initialState = {
 
 const REGISTER_USER = "REGISTER_USER";
 const GET_USER = "GET_USER";
+const GET_USER_OBJ = "GET_USER_OBJ";
 const LOGOUT_USER = "LOGOUT_USER";
 const UPDATE_BACKGROUND = "UPDATE_BACKGROUND";
 const UPDATE_PURPOSE = "UPDATE_PURPOSE";
@@ -53,6 +54,19 @@ export function login(userName, password) {
   };
 }
 
+export function getUser() {
+  return {
+    type: GET_USER_OBJ,
+    payload: axios
+      .get(`/api/auth/user`)
+      .then(user => {
+        console.log(user);
+        return user;
+      })
+      .catch(err => err)
+  };
+}
+
 export function updateBackground(coding_background) {
   return {
     type: UPDATE_BACKGROUND,
@@ -73,6 +87,7 @@ export default function userReducer(state = initialState, action) {
     case `${REGISTER_USER}_PENDING`:
       return { ...state, loading: true };
     case `${GET_USER}_FULFILLED`:
+    case `${GET_USER_OBJ}_FULFILLED`:
       console.log(`HEREHEREHERE`, action.payload);
       return { ...state, user: action.payload };
     case `${REGISTER_USER}_FULFILLED`:
