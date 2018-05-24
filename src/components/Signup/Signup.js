@@ -35,6 +35,9 @@ const QodingBackground = styled.div`
 `;
 const Question = styled.p`
   margin-top: 23px;
+  &.space {
+    margin-bottom: 40px;
+  }
 `;
 const BackgroundQuestionButtons = styled.div`
   height: 88px;
@@ -76,6 +79,8 @@ const GoalText = styled.textarea`
   outline: none;
   border-radius: 6px;
   box-sizing: border-box;
+  padding: 10px 10px 10px 15px;
+  font-size: 0.75em;
 
   &.texty:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
@@ -103,19 +108,28 @@ const InputContainer = styled.div`
   flex-direction: column;
   box-sizing: border-box;
 `;
+const InputBox = styled.div`
+  height: 20px;
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #dce8ef;
+`;
 const Input = styled.input`
   height: 20px;
   width: 20vw;
   outline: none;
   border-radius: 5px;
-  border: solid 1px #dce8ef;
-  margin-bottom: 20px;
+  border: none;
   padding-left: 10px;
   box-sizing: border-box;
 `;
 const InputTitle = styled.p`
-  font-size: 0.7em;
+  font-size: 0.9em;
   box-sizing: border-box;
+  padding-left: 10px;
 `;
 
 // Register Bar
@@ -180,6 +194,7 @@ class Signup extends Component {
           <QodingGoal>
             <Question>What are your goals?</Question>
             <GoalText
+              placeholder="ex. &quot;I want to be able to code a website for my personal business&quot;"
               name="goals"
               value={this.state.goals}
               onChange={e => this.userInput(e)}
@@ -188,28 +203,34 @@ class Signup extends Component {
           </QodingGoal>
           <InputContainer>
             <InputCard>
-              <Question>Register Your Account</Question>
+              <Question className="space">Create Your Account</Question>
               <InputTitle>Email</InputTitle>
-              <Input
-                onChange={e => this.userInput(e)}
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-              />
+              <InputBox>
+                <Input
+                  onChange={e => this.userInput(e)}
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                />
+              </InputBox>
               <InputTitle>Username</InputTitle>
-              <Input
-                onChange={e => this.userInput(e)}
-                name="userName"
-                placeholder="Username"
-                value={this.state.userName}
-              />
+              <InputBox>
+                <Input
+                  onChange={e => this.userInput(e)}
+                  name="userName"
+                  placeholder="Username"
+                  value={this.state.userName}
+                />
+              </InputBox>
               <InputTitle>Password</InputTitle>
-              <Input
-                onChange={e => this.userInput(e)}
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-              />
+              <InputBox>
+                <Input
+                  onChange={e => this.userInput(e)}
+                  name="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                />
+              </InputBox>
             </InputCard>
           </InputContainer>
 
@@ -235,8 +256,7 @@ class Signup extends Component {
               }}
               className="backButt"
             >
-              {" "}
-              Register{" "}
+              Register
             </RegisterButton>
           </Register>
         </SignUpForm>
