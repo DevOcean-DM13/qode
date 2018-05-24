@@ -1,15 +1,15 @@
+// import Dependencies
 import React from "react";
 import ReactDOM from "react-dom";
-
 import { BrowserRouter as Router } from "react-router-dom";
-import ApolloClient from "apollo-boost";
 import { Provider } from "react-redux";
+
+//Import Components
+import App from "./App";
 import store from "./ducks/store";
 
+//Import Assets
 import "./index.css";
-import App from "./App";
-
-const client = new ApolloClient({ uri: "http://localhost:4891/graphql" });
 
 ReactDOM.render(
   <Provider store={store}>

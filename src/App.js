@@ -1,6 +1,7 @@
 //Import Dependencies
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 //IMPORT COMPONENTS
 import Landing from "./components/Landing/Landing";
@@ -12,6 +13,7 @@ import "./App.css";
 
 class App extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <Switch>
@@ -26,4 +28,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
+};
+export default connect(mapStateToProps, {})(App);

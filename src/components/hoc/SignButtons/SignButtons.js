@@ -13,16 +13,13 @@ const createButton = WrappedComponent => {
           marginRight: "25px",
           marginBottom: "18px",
           fontSize: ".75em",
-          border: "solid 1px #dce8ef"
+          border: "solid 1px #dce8ef",
+          color: "#595c63"
         }
       };
     }
     render() {
-      return (
-        <div>
-          <WrappedComponent {...this.state} />
-        </div>
-      );
+      return <WrappedComponent {...this.state} />;
     }
   }
   return SignButton;

@@ -4,9 +4,13 @@ import styled from "styled-components";
 
 const Button = styled.button`
   &.backButt:hover {
-    background: pink;
-    transition: 0.5s;
+    box-shadow: 0.5px 0.5px 3px #dee9f9;
+    transition: 0.2s;
   }
+`;
+const ButtonContainer = styled.div`
+  width: auto;
+  height: auto;
 `;
 
 class Background extends Component {
@@ -31,7 +35,7 @@ class Background extends Component {
         </Button>
       );
     });
-    return <div>{backMapped}</div>;
+    return <ButtonContainer>{backMapped}</ButtonContainer>;
   }
 }
 
@@ -52,7 +56,7 @@ class Purpose extends Component {
         </Button>
       );
     });
-    return <div>{purpMapped}</div>;
+    return <ButtonContainer>{purpMapped}</ButtonContainer>;
   }
 }
 

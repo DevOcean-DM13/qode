@@ -22,13 +22,13 @@ export function registerUser(username, email, password) {
   };
 }
 
-export function login(username, email, password) {
+export function login(userName, password) {
   return {
     type: GET_USER,
     payload: axios
-      .post(`url?username=${username}&email=${email}&password=${password}`)
+      .post(`/api/auth/login`, { userName, password })
       .then(user => {
-        console.log(user);
+        console.log(user.data);
         return user.data;
       })
       .catch(err => console.log(err))
@@ -36,12 +36,17 @@ export function login(username, email, password) {
 }
 
 export default function userReducer(state = initialState, action) {
-  console.log(action.type, action.payload);
+  console.log(action);
   switch (action.type) {
     case `${REGISTER_USER}_PENDING`:
       return { ...state, loading: true };
+    case `${GET_USER}_FULFILLED`:
+      console.log(`HEREHEREHERE`, action.payload);
+      return { ...state, user: action.payload };
+
     case `${REGISTER_USER}_FULFILLED`:
-      return { ...state, loading: false, user: action.payload.data };
+      // console.log(`this item stored`, action.payload);
+      return { ...state, loading: false, user: action.payload };
     default:
       return { state };
   }

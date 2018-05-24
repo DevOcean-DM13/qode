@@ -12,7 +12,7 @@ const store = createStore(
     lessonReducer,
     quizReducer
   }),
-  applyMiddleware(promiseMiddleware)
+  applyMiddleware(promiseMiddleware())
 );
 
 export default store;
