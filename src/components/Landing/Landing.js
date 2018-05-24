@@ -77,12 +77,9 @@ const Blurb = styled.h2`
 const Idk = styled.div`
   height: 33%;
   width: 100%;
-<<<<<<< HEAD
-=======
   display: flex;
   align-items: center;
   justify-content: center;
->>>>>>> master
 `;
 const LandingProblem = styled.div`
   width: 50%;
@@ -108,8 +105,6 @@ const Curriculum = styled.div`
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
-<<<<<<< HEAD
-=======
 `;
 
 // AUXILLARY STYLED COMPONENTS
@@ -132,7 +127,6 @@ const AccordionPanel = styled.div`
   background: white;
   display: none;
   overflow: hidden;
->>>>>>> master
 `;
 
 class Landing extends Component {
