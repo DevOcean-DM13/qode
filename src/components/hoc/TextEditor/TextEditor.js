@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import brace from "brace";
 import AceEditor from "react-ace";
 import "brace/mode/html";
-import "brace/theme/monokai";
+import "brace/theme/ambiance";
 
 import styled from "styled-components";
 
@@ -13,10 +13,18 @@ const EditorAndDisplay = styled.div`
 `;
 
 const DisplayWindow = styled.div`
-  height: 500px;
-  width: 500px;
-  border: 1px solid black;
+  height: 50.6vh;
+  width: 42.5vh;
+  border: 1px solid lightgray;
   display: block;
+  background: white;
+`;
+const TextEditorContainer = styled.body`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 60vh;
 `;
 
 export default class TextEditor extends Component {
@@ -44,7 +52,7 @@ export default class TextEditor extends Component {
   }
   render() {
     return (
-      <div>
+      <TextEditorContainer>
         <EditorAndDisplay>
           <AceEditor
             mode="html"
@@ -68,8 +76,10 @@ export default class TextEditor extends Component {
             <DisplayWindow />
           )}
         </EditorAndDisplay>
-        <button onClick={e => this.showHTML(e)}>Run code</button>
-      </div>
+        <div>
+          <button onClick={e => this.showHTML(e)}>Run code</button>
+        </div>
+      </TextEditorContainer>
     );
   }
 }
