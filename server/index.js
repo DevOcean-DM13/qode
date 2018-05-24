@@ -23,7 +23,7 @@ app.use(
     saveUninitialized: false, //only have a session if it was interacted with. Saves on storage.
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 // min
+      maxAge: 1000 * 60 * 30 // 30min
     }
   })
 );
@@ -33,9 +33,10 @@ app.use(function(req, res, next) {
   if (!req.session.user) {
     req.session.user = {};
     req.session.views = {};
-    next();
+    //this next was giving me the issues
+    // next();
   }
-  //count the views
+  // count the views
   var pathname = parseurl(req).pathname;
   req.session.views[pathname] = (req.session.views[pathname] || 0) + 1;
   next();
@@ -43,9 +44,9 @@ app.use(function(req, res, next) {
 
 app.use("/api/auth", authRoute);
 
-// app.use((req, res, next) => {
-//   res.status(404).send({ message: "PaGe NoT FOUnd:(" });
-// });
+app.use((req, res, next) => {
+  res.status(404).send({ message: "PaGe NoT FOUnd:(" });
+});
 
 app.listen(port, () => {
   console.log(`API listening on port ${port}`);
