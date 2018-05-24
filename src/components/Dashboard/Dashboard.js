@@ -6,7 +6,7 @@ class Dashboard extends Component {
     this.state = {};
   }
   render() {
-    return <div>Dash</div>;
+    return <div />;
   }
 }
 
