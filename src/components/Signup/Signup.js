@@ -5,6 +5,7 @@ import {
   BackgroundButtons,
   PurposeButtons
 } from "../hoc/SignButtons/AllSignButtons";
+import { connect } from "react-redux";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -67,7 +68,7 @@ const QodingGoal = styled.div`
   box-sizing: border-box;
 `;
 const GoalText = styled.textarea`
-  width: 45.45vw;
+  width: 46vw;
   height: 20vh;
   border: solid 1px #dce8ef;
   outline: none;
@@ -166,9 +167,6 @@ class Signup extends Component {
   constructor() {
     super();
     this.state = {
-      emailInput: "",
-      userInput: "",
-      passInput: "",
       displayModal: false
     };
     // this.onLoginClick = this.onLoginClick.bind(this);
@@ -222,4 +220,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default connect(Signup);

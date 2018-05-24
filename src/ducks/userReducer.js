@@ -9,7 +9,13 @@ const REGISTER_USER = "REGISTER_USER";
 const GET_USER = "GET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
 
-export function registerUser(username, email, password) {
+export function registerUser(
+  username,
+  email,
+  password,
+  coding_background,
+  purpose
+) {
   return {
     type: REGISTER_USER,
     payload: axios

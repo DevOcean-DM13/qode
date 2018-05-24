@@ -13,6 +13,6 @@ VALUES
 (5, $1, true, false )
 RETURNING * 
 )
-INSERT INTO users (user_name, user_password, user_email, start_date)
-VALUES ($1, $2, $3, $4)
+INSERT INTO users (user_name, user_password, user_email, start_date, coding_background, purpose)
+VALUES ($1, $2, $3, $4, $5, $6)
 RETURNING *
