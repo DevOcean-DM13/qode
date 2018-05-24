@@ -58,12 +58,9 @@ function verifyUser(req, res, next) {
         ) {
           req.session.user = _.omit(filtered[0], ["user_password"]);
           return filtered[0];
-        }
-        // else if (req.route.path == "/delete_account") {
-        //   return filtered[0];
-        // }
-        else {
-          return res.status(200).send({ message: "Already logged in" });
+        } else {
+          return res.status(400).send({ message: "Already logged in" });
+          // return res.sendStatus(200);
         }
       }
     })
@@ -107,6 +104,7 @@ function getUser(req, res) {
         //200 => 401
         .status(401)
         .send({ message: "Unauthorized. Please login or register" })
+      // .sendStatus(401)
     );
   } else {
     return res.status(200).send(req.session.user);
