@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   user: {},
   loading: false,
-  background: "",
+  coding_background: "",
   purpose: ""
 };
 
@@ -18,17 +18,19 @@ export function registerUser(
   email,
   password,
   coding_background,
-  purpose
+  purpose,
+  goals
 ) {
   return {
     type: REGISTER_USER,
     payload: axios
-      .post(`/api/auth/register`, {
+      .post(`/api/auth/signup`, {
         userName,
         email,
         password,
         coding_background,
-        purpose
+        purpose,
+        goals
       })
       .then(user => {
         console.log(user.data);
@@ -51,10 +53,10 @@ export function login(userName, password) {
   };
 }
 
-export function updateBackground(background) {
+export function updateBackground(coding_background) {
   return {
     type: UPDATE_BACKGROUND,
-    payload: background
+    payload: coding_background
   };
 }
 
@@ -76,7 +78,7 @@ export default function userReducer(state = initialState, action) {
     case `${REGISTER_USER}_FULFILLED`:
       return { ...state, loading: false, user: action.payload };
     case `${UPDATE_BACKGROUND}`:
-      return { ...state, background: action.payload };
+      return { ...state, coding_background: action.payload };
     case `${UPDATE_PURPOSE}`:
       return { ...state, purpose: action.payload };
     default:

@@ -57,7 +57,7 @@ class Background extends Component {
 const mapStateToProps = state => {
   return {
     purpose: state.userReducer.purpose,
-    background: state.userReducer.background
+    coding_background: state.userReducer.coding_background
   };
 };
 
@@ -69,12 +69,14 @@ class Purpose extends Component {
   constructor() {
     super();
     this.state = {
-      button: "",
+      buttonChoice: "",
       purposeName: ["Have Fun", "Just Learn", "Career Interest"]
     };
   }
   purposeChoice = e => {
-    this.setState({ button: e.e });
+    this.setState({ buttonChoice: e.e }, () =>
+      this.props.updatePurpose(this.state.buttonChoice)
+    );
     console.log(`button Chosen:`, e.e);
   };
   render() {
@@ -95,6 +97,6 @@ class Purpose extends Component {
   }
 }
 
-export const PurposeButtons = connect(mapStateToProps, { updatePurpose })(
-  createButton(Purpose)
+export const PurposeButtons = createButton(
+  connect(mapStateToProps, { updatePurpose })(Purpose)
 );
