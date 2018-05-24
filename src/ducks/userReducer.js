@@ -9,13 +9,13 @@ const REGISTER_USER = "REGISTER_USER";
 const GET_USER = "GET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
 
-export function registerUser(username, email, password) {
+export function registerUser(userName, email, password) {
   return {
     type: REGISTER_USER,
     payload: axios
-      .post(`url here`, {})
+      .post(`/api/auth/register`, { userName, email, password })
       .then(user => {
-        console.log(user);
+        console.log(user.data);
         return user.data;
       })
       .catch(err => console.log(err))
@@ -43,9 +43,7 @@ export default function userReducer(state = initialState, action) {
     case `${GET_USER}_FULFILLED`:
       console.log(`HEREHEREHERE`, action.payload);
       return { ...state, user: action.payload };
-
     case `${REGISTER_USER}_FULFILLED`:
-      // console.log(`this item stored`, action.payload);
       return { ...state, loading: false, user: action.payload };
     default:
       return { state };
