@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { NavLink, withRouter } from "react-router-dom";
 
 //IMPORTED COMPONENTS
 import LessonAccordion from "./Accordion";
@@ -142,6 +143,8 @@ class Landing extends Component {
     console.log(`hit`);
   }
   render() {
+    console.log(this.props);
+
     return (
       <LandingBody>
         <NavBar>
@@ -149,7 +152,9 @@ class Landing extends Component {
             <Button onClick={e => this.clickLogin(e)} nav>
               Login
             </Button>
-            <Button nav>Register</Button>
+            <NavLink to="/signup">
+              <Button nav>Register</Button>
+            </NavLink>
           </ButtonWrapper>
         </NavBar>
         <TopPage>
@@ -163,7 +168,9 @@ class Landing extends Component {
                 your floatie.
               </Blurb>
               <Idk>
-                <Button>Sign Up Now</Button>
+                <NavLink to="/signup">
+                  <Button>Sign Up Now</Button>
+                </NavLink>
               </Idk>
             </TextContent>
             <LandingProblem />

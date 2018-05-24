@@ -7,6 +7,8 @@ import {
 } from "../hoc/SignButtons/AllSignButtons";
 import { connect } from "react-redux";
 
+import { registerUser } from "../../ducks/userReducer";
+
 const SignUpForm = styled.div`
   height: auto;
   width: 63.8vw;
@@ -145,38 +147,20 @@ const RegisterButton = styled.button`
   }
 `;
 
-// Login
-
-// const LoginModal = styled.div`
-//   position: absolute;
-//   height: 100%;
-//   width: 500px;
-//   background: pink;
-//   left: -450px;
-//   top: 53px;
-//   display: none;
-
-//   &.open {
-//     display: block;
-//   }
-//   &.hidden {
-//     display: none;
-//   }
-// `;
 class Signup extends Component {
   constructor() {
     super();
     this.state = {
-      displayModal: false
+      goals: "",
+      userName: "",
+      password: "",
+      email: ""
     };
-    // this.onLoginClick = this.onLoginClick.bind(this);
   }
-
-  // onLoginClick() {
-  //   console.log(this.state.displayModal);
-  //   this.setState({ displayModal: !this.state.displayModal });
-  // }
-
+  userInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.props);
+  };
   render() {
     return (
       <div>
@@ -187,7 +171,7 @@ class Signup extends Component {
               What is your coding background?
               {/* <button onClick={this.onLoginClick}>Open modal</button> */}
             </Question>
-            <BackgroundButtons className="backHover" />
+            <BackgroundButtons />
           </QodingBackground>
           <QodingPurpose>
             <Question>What are you here to do?</Question>
@@ -195,29 +179,80 @@ class Signup extends Component {
           </QodingPurpose>
           <QodingGoal>
             <Question>What are your goals?</Question>
-            <GoalText className="texty" />
+            <GoalText
+              name="goals"
+              value={this.state.goals}
+              onChange={e => this.userInput(e)}
+              className="texty"
+            />
           </QodingGoal>
           <InputContainer>
             <InputCard>
               <Question>Register Your Account</Question>
               <InputTitle>Email</InputTitle>
-              <Input placeholder="Email" />
+              <Input
+                onChange={e => this.userInput(e)}
+                name="email"
+                placeholder="Email"
+                value={this.state.email}
+              />
               <InputTitle>Username</InputTitle>
-              <Input placeholder="Username" />
+              <Input
+                onChange={e => this.userInput(e)}
+                name="userName"
+                placeholder="Username"
+                value={this.state.userName}
+              />
               <InputTitle>Password</InputTitle>
-              <Input placeholder="Password" />
+              <Input
+                onChange={e => this.userInput(e)}
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+              />
             </InputCard>
           </InputContainer>
-          {/* <LoginModal className={this.state.displayModal ? "open" : "hidden"}>
-            <button onClick={this.onLoginClick}>close modal</button>
-          </LoginModal> */}
+
           <Register>
-            <RegisterButton className="backButt"> Register </RegisterButton>
+            <RegisterButton
+              onClick={() => {
+                console.log(
+                  this.state.userName,
+                  this.state.email,
+                  this.state.password,
+                  this.props.coding_background,
+                  this.props.purpose,
+                  this.state.goals
+                );
+                this.props.registerUser(
+                  this.state.userName,
+                  this.state.email,
+                  this.state.password,
+                  this.props.coding_background,
+                  this.props.purpose,
+                  this.state.goals
+                );
+              }}
+              className="backButt"
+            >
+              {" "}
+              Register{" "}
+            </RegisterButton>
           </Register>
         </SignUpForm>
       </div>
     );
   }
 }
+<<<<<<< HEAD
+const mapStateToProps = state => {
+  return {
+    coding_background: state.userReducer.coding_background,
+    purpose: state.userReducer.purpose
+  };
+};
+export default connect(mapStateToProps, { registerUser })(Signup);
+=======
 
 export default Signup;
+>>>>>>> master
