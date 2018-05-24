@@ -37,11 +37,12 @@ class App extends Component {
           <Route
             path="/"
             render={() =>
+
               this.props.user && this.props.user.user_name ? (
                 <Dashboard />
               ) : (
                 <Landing />
-              )
+                    )
             }
           />
         </Switch>
