@@ -21,7 +21,9 @@ class App extends Component {
           <Route path="/signup" render={() => <Signup />} />
           <Route
             path="/"
-            render={() => (this.props.user ? <Dashboard /> : <Landing />)}
+            render={() =>
+              this.props.user ? <LessonOneTest /> : <LessonOneTest />
+            }
           />
         </Switch>
       </div>
