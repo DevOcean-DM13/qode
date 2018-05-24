@@ -126,6 +126,7 @@ class LoginForm extends Component {
           <InputBoxed>
             <InputContainer>
               <Input
+                autofocus
                 name="usernameEmail"
                 placeholder="Username or Email"
                 value={this.state.usernameEmail}
@@ -136,6 +137,7 @@ class LoginForm extends Component {
 
             <InputContainer>
               <Input
+                autofocus
                 name="password"
                 placeholder="Password"
                 value={this.state.password}
