@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { NavLink, withRouter } from "react-router-dom";
 
 //IMPORTED COMPONENTS
 import LessonAccordion from "./Accordion";
@@ -77,12 +78,9 @@ const Blurb = styled.h2`
 const Idk = styled.div`
   height: 33%;
   width: 100%;
-<<<<<<< HEAD
-=======
   display: flex;
   align-items: center;
   justify-content: center;
->>>>>>> master
 `;
 const LandingProblem = styled.div`
   width: 50%;
@@ -108,8 +106,6 @@ const Curriculum = styled.div`
 const PictureSlide = styled.div`
   width: 50%;
   height: 100%;
-<<<<<<< HEAD
-=======
 `;
 
 // AUXILLARY STYLED COMPONENTS
@@ -132,7 +128,6 @@ const AccordionPanel = styled.div`
   background: white;
   display: none;
   overflow: hidden;
->>>>>>> master
 `;
 
 class Landing extends Component {
@@ -148,6 +143,8 @@ class Landing extends Component {
     console.log(`hit`);
   }
   render() {
+    console.log(this.props);
+
     return (
       <LandingBody>
         <NavBar>
@@ -155,7 +152,9 @@ class Landing extends Component {
             <Button onClick={e => this.clickLogin(e)} nav>
               Login
             </Button>
-            <Button nav>Register</Button>
+            <NavLink to="/signup">
+              <Button nav>Register</Button>
+            </NavLink>
           </ButtonWrapper>
         </NavBar>
         <TopPage>
@@ -169,7 +168,9 @@ class Landing extends Component {
                 your floatie.
               </Blurb>
               <Idk>
-                <Button>Sign Up Now</Button>
+                <NavLink to="/signup">
+                  <Button>Sign Up Now</Button>
+                </NavLink>
               </Idk>
             </TextContent>
             <LandingProblem />

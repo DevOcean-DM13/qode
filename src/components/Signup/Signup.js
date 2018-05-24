@@ -5,6 +5,7 @@ import {
   BackgroundButtons,
   PurposeButtons
 } from "../hoc/SignButtons/AllSignButtons";
+import { connect } from "react-redux";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -67,7 +68,7 @@ const QodingGoal = styled.div`
   box-sizing: border-box;
 `;
 const GoalText = styled.textarea`
-  width: 45.45vw;
+  width: 46vw;
   height: 20vh;
   border: solid 1px #dce8ef;
   outline: none;
@@ -144,41 +145,17 @@ const RegisterButton = styled.button`
   }
 `;
 
-// Login
-
-// const LoginModal = styled.div`
-//   position: absolute;
-//   height: 100%;
-//   width: 500px;
-//   background: pink;
-//   left: -450px;
-//   top: 53px;
-//   display: none;
-
-//   &.open {
-//     display: block;
-//   }
-//   &.hidden {
-//     display: none;
-//   }
-// `;
 class Signup extends Component {
   constructor() {
     super();
     this.state = {
-      emailInput: "",
-      userInput: "",
-      passInput: "",
-      displayModal: false
+      goals: ""
     };
-    // this.onLoginClick = this.onLoginClick.bind(this);
   }
-
-  // onLoginClick() {
-  //   console.log(this.state.displayModal);
-  //   this.setState({ displayModal: !this.state.displayModal });
-  // }
-
+  setGoals = e => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state.goals);
+  };
   render() {
     return (
       <div>
@@ -189,7 +166,7 @@ class Signup extends Component {
               What is your coding background?
               {/* <button onClick={this.onLoginClick}>Open modal</button> */}
             </Question>
-            <BackgroundButtons className="backHover" />
+            <BackgroundButtons />
           </QodingBackground>
           <QodingPurpose>
             <Question>What are you here to do?</Question>
@@ -197,7 +174,12 @@ class Signup extends Component {
           </QodingPurpose>
           <QodingGoal>
             <Question>What are your goals?</Question>
-            <GoalText className="texty" />
+            <GoalText
+              name="goals"
+              value={this.state.goals}
+              onChange={e => this.setGoals(e)}
+              className="texty"
+            />
           </QodingGoal>
           <InputContainer>
             <InputCard>
@@ -210,9 +192,7 @@ class Signup extends Component {
               <Input placeholder="Password" />
             </InputCard>
           </InputContainer>
-          {/* <LoginModal className={this.state.displayModal ? "open" : "hidden"}>
-            <button onClick={this.onLoginClick}>close modal</button>
-          </LoginModal> */}
+
           <Register>
             <RegisterButton className="backButt"> Register </RegisterButton>
           </Register>
@@ -221,5 +201,5 @@ class Signup extends Component {
     );
   }
 }
-
-export default Signup;
+const mapStateToProps = state => state;
+export default connect(mapStateToProps, {})(Signup);

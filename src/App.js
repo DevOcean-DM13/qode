@@ -1,6 +1,6 @@
 //Import Dependencies
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 //IMPORT COMPONENTS
@@ -33,4 +33,4 @@ const mapStateToProps = state => {
     user: state.userReducer.user
   };
 };
-export default connect(mapStateToProps, {})(App);
+export default withRouter(connect(mapStateToProps, {})(App));

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import createButton from "./SignButtons";
 import styled from "styled-components";
+import { updateBackground, updatePurpose } from "../../../ducks/userReducer";
 
 const Button = styled.button`
   &.backButt:hover {
@@ -17,6 +19,7 @@ class Background extends Component {
   constructor() {
     super();
     this.state = {
+      buttonChosen: "",
       backgroundName: [
         "Developer",
         "Designer",
@@ -27,10 +30,22 @@ class Background extends Component {
       ]
     };
   }
+  backgroundChoice = e => {
+    this.setState({ buttonChosen: e }, () => {
+      this.props.updateBackground(this.state.buttonChosen);
+    });
+    console.log("button Chosen: ", e);
+  };
   render() {
+    console.log(this.props);
     const backMapped = this.state.backgroundName.map((e, i) => {
       return (
-        <Button className="backButt" style={this.props.styleProps}>
+        <Button
+          key={i}
+          onClick={() => this.backgroundChoice(e)}
+          className="backButt"
+          style={this.props.styleProps}
+        >
           {e}
         </Button>
       );
@@ -39,19 +54,39 @@ class Background extends Component {
   }
 }
 
-export const BackgroundButtons = createButton(Background);
+const mapStateToProps = state => {
+  return {
+    purpose: state.userReducer.purpose,
+    background: state.userReducer.background
+  };
+};
+
+export const BackgroundButtons = createButton(
+  connect(mapStateToProps, { updateBackground })(Background)
+);
 
 class Purpose extends Component {
   constructor() {
     super();
     this.state = {
+      button: "",
       purposeName: ["Have Fun", "Just Learn", "Career Interest"]
     };
   }
+  purposeChoice = e => {
+    this.setState({ button: e.e });
+    console.log(`button Chosen:`, e.e);
+  };
   render() {
     const purpMapped = this.state.purposeName.map((e, i) => {
       return (
-        <Button className="backButt" style={this.props.styleProps}>
+        <Button
+          key={i}
+          onClick={() => this.purposeChoice({ e })}
+          name={e}
+          className="backButt"
+          style={this.props.styleProps}
+        >
           {e}
         </Button>
       );
@@ -60,4 +95,6 @@ class Purpose extends Component {
   }
 }
 
-export const PurposeButtons = createButton(Purpose);
+export const PurposeButtons = connect(mapStateToProps, { updatePurpose })(
+  createButton(Purpose)
+);
