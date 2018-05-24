@@ -61,7 +61,7 @@ export function getUser() {
       .get(`/api/auth/user`)
       .then(user => {
         console.log(user);
-        return user;
+        return user.data;
       })
       .catch(err => err)
   };

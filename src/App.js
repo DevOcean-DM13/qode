@@ -11,13 +11,22 @@ import LessonOneTest from "./components/Lesson/AllLessonPages";
 
 //IMPORT ASSETS AND CSS
 import "./App.css";
+import { getUser } from "./ducks/userReducer";
 
 class App extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.user != this.props.user) {
-      console.log(`hellooooo`);
-      this.render();
-    }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (
+  //     prevProps.user &&
+  //     this.props.user &&
+  //     prevProps.user.user_name !== this.props.user.user_name
+  //   ) {
+  //     this.props.getUser();
+  //     console.log(`hellooooo`);
+  //   }
+  // }
+
+  componentDidMount() {
+    this.props.getUser();
   }
   render() {
     console.log(`look here`, this.props);
@@ -27,7 +36,13 @@ class App extends Component {
           <Route path="/signup" render={() => <Signup />} />
           <Route
             path="/"
-            render={() => (this.props.user ? <Dashboard /> : <Landing />)}
+            render={() =>
+              this.props.user && this.props.user.user_name ? (
+                <Dashboard />
+              ) : (
+                <Landing />
+              )
+            }
           />
         </Switch>
       </div>
@@ -40,4 +55,4 @@ const mapStateToProps = state => {
     user: state.userReducer.user
   };
 };
-export default withRouter(connect(mapStateToProps, {})(App));
+export default withRouter(connect(mapStateToProps, { getUser })(App));
