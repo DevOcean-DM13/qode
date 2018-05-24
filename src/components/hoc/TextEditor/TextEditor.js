@@ -24,7 +24,7 @@ const TextEditorContainer = styled.body`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 60vh;
+  height: 100vh;
 `;
 
 export default class TextEditor extends Component {
