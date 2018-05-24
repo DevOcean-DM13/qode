@@ -2,20 +2,22 @@ const bcrypt = require("bcrypt");
 const _ = require("lodash");
 
 function createUser(req, res, next) {
+  console.log("creating user...");
   const { userName, email, password } = req.body;
   const startDate = new Date();
 
   console.log(req.session);
-  return req.app
+  req.app
     .get("db")
     .add_user([userName, bcrypt.hashSync(password, 10), email, startDate])
     .then(user => {
       req.session.user = _.omit(user[0], ["user_password"]);
-      res.status(201).send(_.omit(user[0], ["user_password"]));
+      //201
+      return res.status(200).send(_.omit(user[0], ["user_password"]));
     })
     .catch(err => {
-      console.log(err);
-      res
+      console.log(err.detail || err);
+      return res
         .status(403)
         .send({ message: err.detail.slice(err.detail.indexOf("=") + 1) });
     });
@@ -32,19 +34,21 @@ function verifyUser(req, res, next) {
         return e.user_email === email || e.user_name === userName;
       });
       if (!filtered[0]) {
-        res.status(401).send("Email or username does not exist");
+        return res.status(401).send("Email or username does not exist");
       } else {
+        req.session.user = _.omit(filtered[0], ["user_password"]);
         return filtered[0];
       }
     })
     .then(credentials => {
       if (bcrypt.compareSync(password, credentials.user_password)) {
-        res.status(200).send(_.omit(credentials, ["user_password"]));
-        res.locals.verifiedUser = _.omit(credentials, ["user_password"]);
+        console.log("password confirmed...");
+        return res.status(200).send(req.session.user);
+        res.locals.verifiedUser = req.session.user;
         //store user on local state.
         next();
       } else {
-        res.status(401).send({ message: "Incorrect password" });
+        return res.status(401).send({ message: "Incorrect password" });
       }
     })
     .catch(err => {
@@ -59,9 +63,8 @@ function deleteUser(req, res, next) {
     .get("db")
     .delete_user(res.locals.verifiedUser.user_name)
     .then(response => {
-      console.log(response);
-      next();
-      // res.status(204).send({ message: "user deleted" });
+      //does status code matter? 204
+      return res.status(200).send({ message: "user deleted" });
     })
     .catch(err => {
       console.log(err);
@@ -70,16 +73,25 @@ function deleteUser(req, res, next) {
 }
 function getUser(req, res) {
   if (!req.session.user.user_name) {
-    res.status(401).send({ message: "Unauthorized. Please login or register" });
+    return res
+      .status(401)
+      .send({ message: "Unauthorized. Please login or register" });
   } else {
-    res.status(200).send(req.session.user);
+    return res.status(200).send(req.session.user);
   }
 }
 function logout(req, res) {
-  console.log("hit");
-  // req.session.destroy(() => {
-  //   res.redirect(process.env.HOME_URL);
-  // });
+  if (req.session.user.user_name) {
+    req.session.destroy();
+    //does status code matter???? 204
+    //204 wont send the response object
+    return res.status(200).send({ message: "session ended" });
+    console.log("session ended");
+  } else {
+    return res.status(403).send({
+      message: "User not logged in."
+    });
+  }
 }
 module.exports = {
   createUser,

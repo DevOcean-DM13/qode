@@ -23,7 +23,7 @@ app.use(
     saveUninitialized: false, //only have a session if it was interacted with. Saves on storage.
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 // 60 sec
+      maxAge: 1000 * 60 // min
     }
   })
 );
@@ -32,9 +32,6 @@ app.use(function(req, res, next) {
   //create a user object
   if (!req.session.user) {
     req.session.user = {};
-    next();
-  }
-  if (!req.session.views) {
     req.session.views = {};
     next();
   }
@@ -43,11 +40,12 @@ app.use(function(req, res, next) {
   req.session.views[pathname] = (req.session.views[pathname] || 0) + 1;
   next();
 });
+
 app.use("/api/auth", authRoute);
 
-app.use((req, res, next) => {
-  res.status(404).send({ message: "PaGe NoT FOUnd:(" });
-});
+// app.use((req, res, next) => {
+//   res.status(404).send({ message: "PaGe NoT FOUnd:(" });
+// });
 
 app.listen(port, () => {
   console.log(`API listening on port ${port}`);
