@@ -3,7 +3,14 @@ const _ = require("lodash");
 
 function createUser(req, res, next) {
   console.log("creating user...");
-  const { userName, email, password, codingBackground, purpose } = req.body;
+  const {
+    userName,
+    email,
+    password,
+    codingBackground,
+    purpose,
+    goals
+  } = req.body;
   const startDate = new Date();
 
   console.log(req.session);
@@ -15,7 +22,8 @@ function createUser(req, res, next) {
       email,
       startDate,
       codingBackground,
-      purpose
+      purpose,
+      goals
     ])
     .then(user => {
       req.session.user = _.omit(user[0], ["user_password"]);
