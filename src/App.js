@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Signup from "./components/Signup/Signup";
+import LessonOneTest from "./components/Lesson/AllLessonPages";
 
 //IMPORT ASSETS AND CSS
 import "./App.css";

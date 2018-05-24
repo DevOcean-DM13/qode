@@ -244,6 +244,7 @@ class Signup extends Component {
     );
   }
 }
+<<<<<<< HEAD
 const mapStateToProps = state => {
   return {
     coding_background: state.userReducer.coding_background,
@@ -251,3 +252,7 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, { registerUser })(Signup);
+=======
+
+export default Signup;
+>>>>>>> master
