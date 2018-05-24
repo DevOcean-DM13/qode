@@ -3,13 +3,20 @@ const _ = require("lodash");
 
 function createUser(req, res, next) {
   console.log("creating user...");
-  const { userName, email, password } = req.body;
+  const { userName, email, password, codingBackground, purpose } = req.body;
   const startDate = new Date();
 
   console.log(req.session);
   req.app
     .get("db")
-    .add_user([userName, bcrypt.hashSync(password, 10), email, startDate])
+    .add_user([
+      userName,
+      bcrypt.hashSync(password, 10),
+      email,
+      startDate,
+      codingBackground,
+      purpose
+    ])
     .then(user => {
       req.session.user = _.omit(user[0], ["user_password"]);
       //201
@@ -43,7 +50,7 @@ function verifyUser(req, res, next) {
     .then(credentials => {
       if (bcrypt.compareSync(password, credentials.user_password)) {
         console.log("password confirmed...");
-        return res.status(200).send(req.session.user);
+        res.status(200).send(req.session.user);
         res.locals.verifiedUser = req.session.user;
         //store user on local state.
         next();
