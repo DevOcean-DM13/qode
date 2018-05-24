@@ -17,7 +17,7 @@ export function registerUser(
   userName,
   email,
   password,
-  coding_background,
+  codingBackground,
   purpose,
   goals
 ) {
@@ -28,7 +28,7 @@ export function registerUser(
         userName,
         email,
         password,
-        coding_background,
+        codingBackground,
         purpose,
         goals
       })
