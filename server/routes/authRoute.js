@@ -20,13 +20,13 @@ router.use(function timeLog(req, res, next) {
     if (req.headers.referer.slice(-13) == randoObj.rando) {
       console.log(`here is key${req.sessionID}`, req.sessionStore);
       for (var prop in req.sessionStore.sessions) {
-        req.app
+        return req.app
           .get("db")
           .activate_account(
             JSON.parse(req.sessionStore.sessions[prop]).user.user_name
           )
           .then(response => {
-            res.sendStatus(200);
+            return res.sendStatus(200);
           })
           .catch(console.log);
       }
