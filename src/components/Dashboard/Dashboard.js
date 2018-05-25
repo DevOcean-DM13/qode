@@ -118,6 +118,12 @@ const GoalsBox = styled.div`
   box-sizing: border-box;
   padding: 0 7.6vw 0 7.6vw;
 `;
+const GoalsTitle = styled.div`
+  font-size: 0.8em;
+  color: white;
+  letter-spacing: 0.5px;
+  margin-bottom: 5vh;
+`;
 
 class Dashboard extends Component {
   constructor(props) {
@@ -149,7 +155,10 @@ class Dashboard extends Component {
                 <PurpBackText>{purpose}</PurpBackText>
               </PurpBackBox>
             </PurpBack>
-            <GoalsBox>{goals}</GoalsBox>
+            <GoalsBox>
+              <GoalsTitle>Goals:</GoalsTitle>
+              {goals}
+            </GoalsBox>
           </ProfileMid>
         </ProfileContainer>
       </ProfilePage>

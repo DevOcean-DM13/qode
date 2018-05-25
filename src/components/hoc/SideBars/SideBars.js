@@ -9,12 +9,12 @@ const createSideBar = WrappedComponent => {
           height: "100vh",
           width: "35vw",
           left: "0",
-          background: "#C9DEF2",
+          background: "#00a7e1",
           position: "fixed",
           padding: "100px 70px 380px 70px",
           boxSizing: "border-box",
           overflowY: "hidden",
-          fontFamily: "Noto Sans, sans-serif"
+          color: "white"
         }
       };
     }
