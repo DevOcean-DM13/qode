@@ -29,9 +29,9 @@ function createUser(req, res, next) {
       console.log(user);
       //puts user on req.session.user object
       req.session.user = _.omit(user[0], ["user_password"]);
-      // res.status(201).send(_.omit(user[0], ["user_password"]));
-      res.sendStatus(201);
-      next(); //proceed to next middleware
+      res.status(201).send(_.omit(user[0], ["user_password"]));
+      // res.sendStatus(201);
+      // next(); //proceed to next middlewarse
     })
     .catch(err => {
       console.log("here joe", err);
@@ -52,6 +52,7 @@ function verifyUser(req, res, next) {
     .get("db")
     .get_users()
     .then(users => {
+      console.log(users);
       //filter through the array of users that match either userName or email
       const filtered = users.filter(e => {
         return (
@@ -64,10 +65,13 @@ function verifyUser(req, res, next) {
       //If no user matches the email or userName send 401 Unauthorized
       console.log(filtered[0]);
       if (!filtered[0]) {
+        console.log("401 1");
         return res.status(401).send("Email or username does not exist");
-      } else if (!filtered[0].account_activated) {
-        return res.status(401).send({ error: "Please verify you email." });
-      } else {
+      }
+      // else if (!filtered[0].account_activated) {
+      //   return res.status(401).send({ error: "Please verify you email." });
+      // }
+      else {
         //USER'S USERNAME OR EMAIL HAS BEEN VERIFIED BY THIS POINT
 
         if (!req.session.user.user_name || req.method == "DELETE") {
@@ -84,12 +88,17 @@ function verifyUser(req, res, next) {
       }
     })
     .then(credentials => {
-      console.log(credentials);
+      console.log("cred: ", credentials);
       //compares provided password with hashed password in DB
-      if (bcrypt.compareSync(password, credentials.user_password)) {
+      if (
+        credentials &&
+        bcrypt.compareSync(password, credentials.user_password)
+      ) {
+        console.log(req.method);
         if (req.method !== "DELETE") {
           console.log("password confirmed...");
-          res.status(200).send(req.session.user);
+          console.log(req.session.user);
+          return res.status(200).send(req.session.user);
           //user fully authenticated.
         } else {
           res.locals.verifiedUser = req.session.user;
@@ -99,6 +108,7 @@ function verifyUser(req, res, next) {
         }
       } else {
         //Password got rejected
+        console.log("401 2");
         return res.status(401).send({ message: "Incorrect password" });
       }
     })
@@ -126,6 +136,7 @@ function getUser(req, res) {
   /*Grabs current user on sessions. No auth 
   required if session hasnt expired or been destroyed*/
   if (!req.session.user.user_name) {
+    console.log("getuser err");
     return res
       .status(401)
       .send({ message: "Unauthorized. Please login or register" });
