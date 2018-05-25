@@ -72,14 +72,6 @@ export default class LandingEditor extends Component {
               enableSnippets: true
             }}
           />
-<<<<<<< HEAD
-=======
-          {this.state.showHTML ? (
-            <DisplayWindow dangerouslySetInnerHTML={this.createWindow()} />
-          ) : (
-            <DisplayWindow />
-          )}
->>>>>>> master
         </EditorAndDisplay>
         <div>
           <Button onClick={e => this.showHTML(e)}>Run code</Button>
