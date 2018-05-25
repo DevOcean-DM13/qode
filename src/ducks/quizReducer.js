@@ -1,6 +1,6 @@
 // HTML AND CSS HAVE PRE AND POST QUIZZES FOR SECTIONS 1-4
 
-const GET_QUESTIONS = "GET_QUESTIONS";
+const GET_HTML_QUIZZES = "GET_HTML_QUIZZES";
 
 const initialState = {
   html: {
@@ -206,15 +206,18 @@ const initialState = {
   }
 };
 
-export function getQuestions() {
+export function getHtmlQuestions() {
   return {
-    type: GET_QUESTIONS
+    type: GET_HTML_QUIZZES
   };
 }
 
 export default function quizReducer(state = initialState, action) {
   switch (action.type) {
-    case `${GET_QUESTIONS}`:
+    case `${GET_HTML_QUIZZES}`:
+      return state.html;
+
+    default:
       return state;
   }
 }
