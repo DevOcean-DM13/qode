@@ -42,8 +42,10 @@ function createUser(req, res, next) {
     });
 }
 function verifyUser(req, res, next) {
-  const { userName, email, password } = req.body;
+  const { userName, password, email } = req.body;
   console.log("finding user....");
+
+  console.log(req.body);
   //gets all the users from DB
 
   req.app
@@ -52,9 +54,15 @@ function verifyUser(req, res, next) {
     .then(users => {
       //filter through the array of users that match either userName or email
       const filtered = users.filter(e => {
-        return e.user_email === email || e.user_name === userName;
+        return (
+          e.user_email === userName ||
+          e.user_name === userName ||
+          e.user_email === email
+        );
+        //userName is going to either be an email or username
       });
       //If no user matches the email or userName send 401 Unauthorized
+      console.log(filtered[0]);
       if (!filtered[0]) {
         return res.status(401).send("Email or username does not exist");
       } else {
@@ -74,6 +82,7 @@ function verifyUser(req, res, next) {
       }
     })
     .then(credentials => {
+      console.log(credentials);
       //compares provided password with hashed password in DB
       if (bcrypt.compareSync(password, credentials.user_password)) {
         if (req.method !== "DELETE") {

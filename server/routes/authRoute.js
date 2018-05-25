@@ -11,7 +11,13 @@ const {
 const { greetings } = require(`${__dirname}/../controllers/nodeMailerCtrl`);
 router.use(function timeLog(req, res, next) {
   console.log(`AUTH Time: ${new Date()}`);
-  // console.log(req.headers.referer.slice(-13));
+  if (req.headers && req.headers.referer) {
+    console.log(req.headers.referer.slice(-13));
+    console.log(req.session);
+    if (req.headers.referer.slice(-13) === req.session.rando) {
+      console.log("ACCOUNT ACTIVATED");
+    }
+  }
   next();
 });
 

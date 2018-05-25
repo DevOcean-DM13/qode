@@ -32,7 +32,9 @@ const greetings = (req, res, next) => {
         process.env.QODE_EMAIL
       } and let us know in the forward that you did not request the verification.`
     });
-    req.session.destroy();
+    // req.session.destroy();
+    req.session.rando = rando;
+    console.log(req.session.rando);
     //DESTROYING SESSION FORCES THE USER TO LOGIN ONCE THEY CLICK THE LINK IN EMAIL
   }
 };
