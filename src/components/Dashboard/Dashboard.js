@@ -7,26 +7,28 @@ import { ProfileSideBar } from "../hoc/SideBars/AllSideBars";
 const ProfilePage = styled.div`
   height: auto;
   width: 100%;
+  overflow-y: hidden;
 `;
 
 const ProfileContainer = styled.div`
   height: auto;
-  width: 65vw;
+  width: 63.8vw;
   box-sizing: border-box;
   margin-left: 35vw;
-  background: teal;
+  background: #3f5566;
 `;
 
 // Profile Top Portion
 const ProfileTop = styled.div`
   height: 40vh;
-  width: 65vw;
+  width: 63.8vw;
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   align-items: flex-end;
   padding-top: 7vh;
   padding-bottom: 2vh;
+  /* background: teal; */
 `;
 const ProfileBox = styled.div`
   height: 30vh;
@@ -56,6 +58,67 @@ const ProfileEmail = styled.div`
   color: white;
   letter-spacing: 0.5px;
 `;
+
+// Profile Middle Portion
+
+const ProfileMid = styled.div`
+  height: auto;
+  width: 63.8vw;
+  box-sizing: border-box;
+  /* background: pink; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* align-items: center; */
+`;
+const PurpBack = styled.div`
+  height: 20vh;
+  width: 55vw;
+  /* background: gray; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: solid 1px white;
+  border-top: solid 1px white;
+  margin-top: 4vh;
+`;
+const PurpBackBox = styled.div`
+  height: 20vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 7vh 0 8vh 0;
+`;
+const PurpBackDivider = styled.div`
+  height: 12vh;
+  width: 1px;
+  background: white;
+`;
+const PurpBackTitle = styled.div`
+  font-size: 0.8em;
+  color: white;
+  letter-spacing: 0.5px;
+`;
+const PurpBackText = styled.div`
+  font-size: 2.1em;
+  color: white;
+  letter-spacing: 1.1px;
+`;
+
+// Profile Mid Goals
+
+const GoalsBox = styled.div`
+  margin-top: 10vh;
+  height: auto;
+  width: 55vw;
+  background: pink;
+  box-sizing: border-box;
+  padding: 0 7.6vw 0 7.6vw;
+`;
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -74,6 +137,20 @@ class Dashboard extends Component {
               <ProfileEmail>{email}</ProfileEmail>
             </ProfileBox>
           </ProfileTop>
+          <ProfileMid>
+            <PurpBack>
+              <PurpBackBox>
+                <PurpBackTitle>Background:</PurpBackTitle>
+                <PurpBackText>{background}</PurpBackText>
+              </PurpBackBox>
+              <PurpBackDivider />
+              <PurpBackBox>
+                <PurpBackTitle>Purpose:</PurpBackTitle>
+                <PurpBackText>{purpose}</PurpBackText>
+              </PurpBackBox>
+            </PurpBack>
+            <GoalsBox>{goals}</GoalsBox>
+          </ProfileMid>
         </ProfileContainer>
       </ProfilePage>
     );
