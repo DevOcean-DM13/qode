@@ -34,15 +34,15 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
+          <Route path="/test" render={() => <LessonOneTest />} />
           <Route
             path="/"
             render={() =>
-
               this.props.user && this.props.user.user_name ? (
                 <Dashboard />
               ) : (
                 <Landing />
-                    )
+              )
             }
           />
         </Switch>

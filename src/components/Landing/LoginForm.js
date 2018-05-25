@@ -20,7 +20,7 @@ const LoginContainer = styled.form`
   border-radius: 3px;
   /* border: solid 1px black; */
   width: 25vw;
-  height: 60vh;
+  height: 422px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +80,7 @@ const Welcome = styled.div`
 `;
 const Login = styled.input`
   height: 35px;
-  width: 180px;
+  width: 14vw;
   border-radius: 6px;
   outline: none;
   font-size: 0.75em;
@@ -137,7 +137,6 @@ class LoginForm extends Component {
 
             <InputContainer>
               <Input
-                autofocus
                 name="password"
                 placeholder="Password"
                 value={this.state.password}
