@@ -101,10 +101,9 @@ export function gradeHtmlActivity3(userInput) {
 export default function lessonReducer(state = initialState, action) {
   switch (action.type) {
     case `${GRADE_HTML_ACTIVITY_1}`:
-      let userInput = action.payload.trim();
       if (
-        userInput.includes(state.html.activity1.open) &&
-        userInput.includes(state.html.activity1.close)
+        action.payload.trim().includes(state.html.activity1.open) &&
+        action.payload.trim().includes(state.html.activity1.close)
       ) {
         state.html.activity1.flag = true;
         return state.html.activity1.success;
@@ -113,10 +112,9 @@ export default function lessonReducer(state = initialState, action) {
       }
 
     case `${GRADE_HTML_ACTIVITY_2}`:
-      let userInput = action.payload.trim();
       if (
-        userInput.includes(state.html.activity2.open) &&
-        user.input.includes(state.html.activity2.close)
+        action.payload.trim().includes(state.html.activity2.open) &&
+        action.payload.trim().includes(state.html.activity2.close)
       ) {
         state.html.activity2.flag = true;
         return state.html.activity2.success;
@@ -125,16 +123,17 @@ export default function lessonReducer(state = initialState, action) {
       }
 
     case `${GRADE_HTML_ACTIVITY_3}`:
-      let userInput = action.payload.trim();
-      let userListItems = userInput.slice(4, userInput.length - 5);
+      let userListItems = action.payload
+        .trim()
+        .slice(4, action.payload.trim().length - 5);
 
       if (
-        userInput.includes(state.html.activity3.openUL) &&
-        userInput.includes(state.html.activity3.closeUL)
+        action.payload.trim().includes(state.html.activity3.openUL) &&
+        action.payload.trim().includes(state.html.activity3.closeUL)
       ) {
         if (
           userListItems.includes(state.html.activity3.openLI) &&
-          userInput.includes(state.html.activity3.closeLI)
+          action.payload.trim().includes(state.html.activity3.closeLI)
         ) {
           state.html.activity3.flag = true;
           return state.html.activity1.success;
