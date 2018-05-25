@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Beep = styled.div`
   /* display: flex;
@@ -14,6 +15,7 @@ const Welcome = styled.h1`
   font-weight: 700;
   letter-spacing: 0.5px;
   font-size: 2em;
+  margin-top: 19px;
 `;
 const Intro = styled.p`
   font-size: 0.9em;
@@ -89,7 +91,7 @@ class ProfileSide extends Component {
         <div>Courses</div>
         <CourseWrapper>
           <CourseTitle>HTML</CourseTitle>
-          <a>Pre-quiz</a>
+          <Link to="/test">Pre-quiz</Link>
           <a>Lesson/Activity</a>
           <a>Post-quiz</a>
         </CourseWrapper>
