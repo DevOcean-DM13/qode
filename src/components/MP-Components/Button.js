@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default styled.button`
-  background-color: #80C6CC
+  background-color: #80c6cc;
   border: none;
   outline: none;
   color: white;
@@ -13,7 +13,8 @@ export default styled.button`
   &:hover {
     background: tomato;
   }
+
   width: ${props => (props.nav ? "8vh" : "16vh")};
   height: ${props => (props.nav ? "4vh" : "8vh")};
-  ${'' /* font-size: ${props => (props.nav ? )} */}
+  ${"" /* font-size: ${props => (props.nav ? )} */};
 `;

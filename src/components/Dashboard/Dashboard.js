@@ -28,7 +28,6 @@ const ProfileTop = styled.div`
   align-items: flex-end;
   padding-top: 7vh;
   padding-bottom: 2vh;
-  /* background: teal; */
 `;
 const ProfileBox = styled.div`
   height: 30vh;
@@ -51,12 +50,16 @@ const ProfileName = styled.div`
   font-size: 2.1em;
   margin-bottom: 2px;
   color: white;
-  letter-spacing: 1.1px;
+  letter-spacing: 0.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
 `;
 const ProfileEmail = styled.div`
   font-size: 0.8em;
   color: white;
   letter-spacing: 0.5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 `;
 
 // Profile Middle Portion
@@ -101,11 +104,15 @@ const PurpBackTitle = styled.div`
   font-size: 0.8em;
   color: white;
   letter-spacing: 0.5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 `;
 const PurpBackText = styled.div`
   font-size: 2.1em;
   color: white;
   letter-spacing: 1.1px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
 `;
 
 // Profile Mid Goals

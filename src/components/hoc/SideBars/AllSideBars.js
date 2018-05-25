@@ -58,7 +58,7 @@ class EleAndTag extends Component {
   render() {
     return (
       <div style={this.props.styleProps}>
-        <FirstQuizTitle>Yabba Dabba Doooo</FirstQuizTitle>
+        <FirstQuizTitle>YABBAA DABBA DOOOO</FirstQuizTitle>
       </div>
     );
   }
