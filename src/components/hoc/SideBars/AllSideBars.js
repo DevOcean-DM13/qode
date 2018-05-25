@@ -38,6 +38,7 @@ class SignUp extends Component {
 
 export const SignUpSideBar = createSideBar(SignUp);
 
+// anotha one
 const FirstQuizTitle = styled.h1`
   font-family: "Noto Sans", sans-serif;
 `;
@@ -51,11 +52,3 @@ class EleAndTag extends Component {
   }
 }
 export const EleAndTagSideBar = createSideBar(EleAndTag);
-
-const ProfileSide = class ProfileSide extends Component {
-  render() {
-    return <div style={this.props.styleProps} />;
-  }
-};
-
-export const ProfileSideBar = createSideBar(ProfileSide);

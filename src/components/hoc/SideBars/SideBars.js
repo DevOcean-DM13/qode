@@ -13,16 +13,13 @@ const createSideBar = WrappedComponent => {
           position: "fixed",
           padding: "100px 70px 380px 70px",
           boxSizing: "border-box",
-          overflowY: "hidden"
+          overflowY: "hidden",
+          fontFamily: "Noto Sans, sans-serif"
         }
       };
     }
     render() {
-      return (
-        <div>
-          <WrappedComponent {...this.state} />
-        </div>
-      );
+      return <WrappedComponent {...this.state} />;
     }
   }
   return SideBar;
