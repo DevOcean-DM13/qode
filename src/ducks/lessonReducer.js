@@ -4,6 +4,7 @@ const GRADE_HTML_ACTIVITY_2 = "GRADE_HTML_ACTIVITY_2";
 const GRADE_HTML_ACTIVITY_3 = "GRADE_HTML_ACTIVITY_3";
 
 let initialState = {
+  currentLesson: 1,
   html: {
     lessons: {
       lesson1:
@@ -59,7 +60,7 @@ let initialState = {
 
 // LESSON FUNCTIONS //
 
-export function getHtmlLessons() {
+export function getHtmlLessons(html) {
   return { type: GET_HTML_LESSONS };
 }
 
@@ -112,49 +113,49 @@ export default function lessonReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_HTML_LESSONS}`:
       return state.html.lessons;
-    case `${GRADE_HTML_ACTIVITY_1}`:
-      if (
-        action.payload.trim().includes(state.html.activity1.open) &&
-        action.payload.trim().includes(state.html.activity1.close)
-      ) {
-        state.html.activity1.flag = true;
-        return state.html.activity1.success;
-      } else {
-        return state.html.activity1.fail;
-      }
+    // case `${GRADE_HTML_ACTIVITY_1}`:
+    //   if (
+    //     action.payload.trim().includes(state.html.activity1.open) &&
+    //     action.payload.trim().includes(state.html.activity1.close)
+    //   ) {
+    //     state.html.activity1.flag = true;
+    //     return state.html.activity1.success;
+    //   } else {
+    //     return state.html.activity1.fail;
+    //   }
 
-    case `${GRADE_HTML_ACTIVITY_2}`:
-      if (
-        action.payload.trim().includes(state.html.activity2.open) &&
-        action.payload.trim().includes(state.html.activity2.close)
-      ) {
-        state.html.activity2.flag = true;
-        return state.html.activity2.success;
-      } else {
-        return state.html.activity2.fail;
-      }
+    // case `${GRADE_HTML_ACTIVITY_2}`:
+    //   if (
+    //     action.payload.trim().includes(state.html.activity2.open) &&
+    //     action.payload.trim().includes(state.html.activity2.close)
+    //   ) {
+    //     state.html.activity2.flag = true;
+    //     return state.html.activity2.success;
+    //   } else {
+    //     return state.html.activity2.fail;
+    //   }
 
-    case `${GRADE_HTML_ACTIVITY_3}`:
-      let userListItems = action.payload
-        .trim()
-        .slice(4, action.payload.trim().length - 5);
+    // case `${GRADE_HTML_ACTIVITY_3}`:
+    //   let userListItems = action.payload
+    //     .trim()
+    //     .slice(4, action.payload.trim().length - 5);
 
-      if (
-        action.payload.trim().includes(state.html.activity3.openUL) &&
-        action.payload.trim().includes(state.html.activity3.closeUL)
-      ) {
-        if (
-          userListItems.includes(state.html.activity3.openLI) &&
-          action.payload.trim().includes(state.html.activity3.closeLI)
-        ) {
-          state.html.activity3.flag = true;
-          return state.html.activity1.success;
-        } else {
-          return state.html.activity3.fail;
-        }
-      } else {
-        return state.html.activity3.fail;
-      }
+    //   if (
+    //     action.payload.trim().includes(state.html.activity3.openUL) &&
+    //     action.payload.trim().includes(state.html.activity3.closeUL)
+    //   ) {
+    //     if (
+    //       userListItems.includes(state.html.activity3.openLI) &&
+    //       action.payload.trim().includes(state.html.activity3.closeLI)
+    //     ) {
+    //       state.html.activity3.flag = true;
+    //       return state.html.activity1.success;
+    //     } else {
+    //       return state.html.activity3.fail;
+    //     }
+    //   } else {
+    //     return state.html.activity3.fail;
+    //   }
 
     default:
       return state;

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { getHtmlLessons } from "../../../ducks/lessonReducer";
 
 const Beep = styled.div`
   /* display: flex;
@@ -55,7 +57,11 @@ const FirstQuizTitle = styled.h1`
 `;
 const TextBox = styled.div``;
 class EleAndTag extends Component {
+  componentDidMount() {
+    this.props.getHtmlLessons();
+  }
   render() {
+    console.log(this.props);
     return (
       <div style={this.props.styleProps}>
         <FirstQuizTitle>Yabba Dabba Doooo</FirstQuizTitle>
@@ -63,7 +69,16 @@ class EleAndTag extends Component {
     );
   }
 }
-export const EleAndTagSideBar = createSideBar(EleAndTag);
+
+const mapStateToProps = state => {
+  return {
+    ...state.lessonReducer
+  };
+};
+
+export const EleAndTagSideBar = createSideBar(
+  connect(mapStateToProps, { getHtmlLessons })(EleAndTag)
+);
 
 class ProfileSide extends Component {
   constructor() {

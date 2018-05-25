@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { EleAndTagSideBar } from "../hoc/SideBars/AllSideBars";
 import styled from "styled-components";
 
+import { getHtmlQuestions } from "../../ducks/quizReducer";
+import { connect } from "react-redux";
+
 const QuizComponent = styled.div`
   box-sizing: border-box;
   position: absolute;
@@ -19,6 +22,7 @@ const QuizComponent = styled.div`
     font-size: 3rem;
   }
 `;
+
 const AnswersContainer = styled.div`
   margin-top: 5vh;
   display: flex;
@@ -43,14 +47,16 @@ const AnswerBox = styled.div`
 class Quiz extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { question: 1, section: 1 };
   }
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <EleAndTagSideBar />
         <QuizComponent>
-          <h1>Quiz 1</h1>
+          <h1>{}</h1>
           <h2>Question 1</h2>
           <AnswersContainer>
             <AnswerBox>
@@ -66,4 +72,10 @@ class Quiz extends Component {
   }
 }
 
-export default Quiz;
+const mapStateToProps = state => {
+  return {
+    htmlQuizes: state.quizReducer.html
+  };
+};
+
+export default connect(mapStateToProps, { getHtmlQuestions })(Quiz);
