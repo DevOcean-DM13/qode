@@ -10,7 +10,7 @@ const LoginContainerBox = styled.div`
   top: 5vh;
   height: 100%;
   width: 30vw;
-  background: teal;
+  background: #00a7e1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@ const LoginContainer = styled.form`
   /* background: teal; */
   box-sizing: border-box;
   padding-bottom: 5vh;
-  box-shadow: 1px 1px 30px #555659;
+  box-shadow: 1px 1px 30px #0071aa;
 `;
 
 const SignUpTitle = styled.p`
@@ -36,6 +36,9 @@ const SignUpTitle = styled.p`
   color: white;
   margin-top: 10vh;
   margin-bottom: 6vh;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
 `;
 // Inputs
 
@@ -66,6 +69,9 @@ const Input = styled.input`
   padding-left: 10px;
   box-sizing: border-box;
   font-size: 0.9em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
 `;
 const Welcome = styled.div`
   margin-top: 20px;
@@ -73,7 +79,7 @@ const Welcome = styled.div`
   width: 70px;
   border-radius: 50%;
   background: white;
-  border: solid 9px teal;
+  border: solid 9px #00a7e1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,6 +93,9 @@ const Login = styled.input`
   border: solid 1px #dce8ef;
   color: white;
   background: #80c6cc;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 
   &.hover:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
