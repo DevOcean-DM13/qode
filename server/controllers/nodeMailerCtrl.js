@@ -33,12 +33,18 @@ const greetings = (req, res, next) => {
       } and let us know in the forward that you did not request the verification.`
     });
     // req.session.destroy();
-    req.session.rando = rando;
-    console.log(req.session.rando);
     //DESTROYING SESSION FORCES THE USER TO LOGIN ONCE THEY CLICK THE LINK IN EMAIL
   }
 };
 
+const getRando = (req, res) => {
+  return {
+    rando: rando,
+    user: req
+  };
+};
+
 module.exports = {
-  greetings
+  greetings,
+  getRando
 };
