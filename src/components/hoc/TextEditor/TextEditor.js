@@ -5,7 +5,9 @@ import AceEditor from "react-ace";
 import "brace/mode/html";
 import "brace/theme/ambiance";
 
+// IMPORTING IN A FEW STYLED COMPONENTS CAPS LOCK
 import styled from "styled-components";
+import Button from "../../MP-Components/Button.js";
 
 const EditorAndDisplay = styled.div`
   display: flex;
@@ -13,7 +15,7 @@ const EditorAndDisplay = styled.div`
 `;
 
 const DisplayWindow = styled.div`
-  height: 50.6vh;
+  height: 70.6vh;
   width: 42.5vh;
   border: 1px solid lightgray;
   display: block;
@@ -24,7 +26,7 @@ const TextEditorContainer = styled.body`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 60vh;
+  height: 100vh;
 `;
 
 export default class TextEditor extends Component {
@@ -68,6 +70,7 @@ export default class TextEditor extends Component {
               enableBasicAutoCompletion: true,
               enableSnippets: true
             }}
+            height="70vh;"
           />
 
           {this.state.showHTML ? (
@@ -77,7 +80,7 @@ export default class TextEditor extends Component {
           )}
         </EditorAndDisplay>
         <div>
-          <button onClick={e => this.showHTML(e)}>Run code</button>
+          <Button onClick={e => this.showHTML(e)}>Run code</Button>
         </div>
       </TextEditorContainer>
     );
