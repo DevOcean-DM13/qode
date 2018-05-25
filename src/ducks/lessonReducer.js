@@ -7,8 +7,7 @@ let initialState = {
   currentLesson: 1,
   html: {
     lessons: {
-      lesson1:
-        "HTML stands for Hyper Text Markup Language. It is the language used to display content on a webpage - like text, images, and links. The basic building block of HTML is an element",
+      lesson1: `HTML stands for Hyper Text Markup Language. It is the language used to display content on a webpage - like text, images, and links. The basic building block of HTML is an element`,
 
       lesson2:
         "Elements are wrapped in tags that tell the browser how to render the element. Examples of tags are headers (<h1>), paragraphs (<p>), images (<img>), and lists (<ul> / <li>). Elements have an opening and closing tag. They look similar, but the closing tag has a forward slash at the beginning. Here's an example of a header element: <h1>Hello World!</h1>",
