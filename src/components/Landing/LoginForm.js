@@ -20,7 +20,7 @@ const LoginContainer = styled.form`
   border-radius: 3px;
   /* border: solid 1px black; */
   width: 25vw;
-  height: 60vh;
+  height: 422px;
   display: flex;
   flex-direction: column;
   align-items: center;
