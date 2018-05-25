@@ -54,8 +54,18 @@ class EleAndTag extends Component {
 export const EleAndTagSideBar = createSideBar(EleAndTag);
 
 class ProfileSide extends Component {
+  constructor() {
+    super();
+    this.state = {
+      opened: false
+    };
+  }
   render() {
-    return <div style={this.props.styleProps} />;
+    return (
+      <div style={this.props.styleProps}>
+        <div>Courses</div>
+      </div>
+    );
   }
 }
 
