@@ -13,7 +13,6 @@ export default styled.button`
   &:hover {
     background: tomato;
   }
-
   width: ${props => (props.nav ? "8vh" : "16vh")};
   height: ${props => (props.nav ? "4vh" : "8vh")};
   ${"" /* font-size: ${props => (props.nav ? )} */};
