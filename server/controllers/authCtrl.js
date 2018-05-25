@@ -12,11 +12,13 @@ function createUser(req, res, next) {
     goals
   } = req.body;
   const startDate = new Date();
+  //track time the day that the user's account was created.
   req.app
     .get("db")
     .add_user([
       userName,
       bcrypt.hashSync(password, 10),
+      //synchronously hashes password
       email,
       startDate,
       codingBackground,
@@ -25,71 +27,83 @@ function createUser(req, res, next) {
     ])
     .then(user => {
       console.log(user);
+      //puts user on req.session.user object
       req.session.user = _.omit(user[0], ["user_password"]);
-      //201
-      console.log("hit here");
-      return res.status(201).send(_.omit(user[0], ["user_password"]));
+      // res.status(201).send(_.omit(user[0], ["user_password"]));
+      res.sendStatus(201);
+      next(); //proceed to next middleware
     })
     .catch(err => {
-      // console.log(err);
+      console.log("here joe", err);
       return res
         .status(500)
         .send({ message: err.detail.slice(err.detail.indexOf("=") + 1) });
+      //slices the error message so it's easier to read on client side
     });
 }
 function verifyUser(req, res, next) {
   const { userName, email, password } = req.body;
   console.log("finding user....");
-  console.log(req.body);
+  //gets all the users from DB
+
   req.app
     .get("db")
     .get_users()
     .then(users => {
+      //filter through the array of users that match either userName or email
       const filtered = users.filter(e => {
         return e.user_email === email || e.user_name === userName;
       });
-      console.log(req.route.path);
+      //If no user matches the email or userName send 401 Unauthorized
       if (!filtered[0]) {
         return res.status(401).send("Email or username does not exist");
       } else {
-        if (
-          !req.session.user.user_name ||
-          req.route.path == "/delete_account"
-        ) {
+        //USER'S USERNAME OR EMAIL HAS BEEN VERIFIED BY THIS POINT
+
+        if (!req.session.user.user_name || req.method == "DELETE") {
+          /*If the user object is empty OR if the HTTP method is DELETE,
+            put users info, except password, onto the req.session object
+            then pass EVERYTHING to be handled as promise.*/
+
           req.session.user = _.omit(filtered[0], ["user_password"]);
           return filtered[0];
         } else {
+          //Doesnt allow user to keep logging in.
           return res.status(400).send({ message: "Already logged in" });
-          // return res.sendStatus(200);
         }
       }
     })
     .then(credentials => {
+      //compares provided password with hashed password in DB
       if (bcrypt.compareSync(password, credentials.user_password)) {
         if (req.method !== "DELETE") {
           console.log("password confirmed...");
           res.status(200).send(req.session.user);
+          //user fully authenticated.
         } else {
           res.locals.verifiedUser = req.session.user;
-          //store user on local state.
+          /*res.locals allows data to be passed between middlewares
+          that happen to serve the request.*/
           next();
         }
       } else {
+        //Password got rejected
         return res.status(401).send({ message: "Incorrect password" });
       }
     })
     .catch(err => {
+      //good practice to ALWAYS log your errors.
       console.log(err);
     });
 }
 function deleteUser(req, res, next) {
   console.log("deleting user...");
-
+  //after user is verified, NOW it will allow you to delete the user.
   req.app
     .get("db")
     .delete_user(res.locals.verifiedUser.user_name)
-    .then(response => {
-      //does status code matter? 204
+    .then(afterwards => {
+      //deletes user from DB then destroys the session...No evidence left behind...
       req.session.destroy();
       res.status(200).send({ message: "session ended" });
     })
@@ -98,14 +112,12 @@ function deleteUser(req, res, next) {
     });
 }
 function getUser(req, res) {
+  /*Grabs current user on sessions. No auth 
+  required if session hasnt expired or been destroyed*/
   if (!req.session.user.user_name) {
-    return (
-      res
-        //200 => 401
-        .status(401)
-        .send({ message: "Unauthorized. Please login or register" })
-      // .sendStatus(401)
-    );
+    return res
+      .status(401)
+      .send({ message: "Unauthorized. Please login or register" });
   } else {
     return res.status(200).send(req.session.user);
   }
@@ -113,11 +125,10 @@ function getUser(req, res) {
 function logout(req, res) {
   if (req.session.user.user_name) {
     req.session.destroy();
-    //does status code matter???? 204
-    //204 wont send the response object
     return res.status(200).send({ message: "session ended" });
     console.log("session ended");
   } else {
+    //Forbidden request. Cannot destroy a session that doesnt exist.
     return res.status(403).send({
       message: "User not logged in."
     });

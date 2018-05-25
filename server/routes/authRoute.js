@@ -8,15 +8,23 @@ const {
   getUser,
   logout
 } = require(`${__dirname}/../controllers/authCtrl`);
+const { greetings } = require(`${__dirname}/../controllers/nodeMailerCtrl`);
 router.use(function timeLog(req, res, next) {
-  console.log(`Time: ${new Date()}`);
+  console.log(`AUTH Time: ${new Date()}`);
+  // console.log(req.headers.referer.slice(-13));
   next();
 });
 
+//Gets current req.session.user object...no auth required
 router.get("/user", getUser);
-router.post("/signup", createUser);
+//Creates user, then does 2-factor auth with nodemailer...
+//or it WILL do 2 factor auth... hahah lol. im trying guys...😂
+router.post("/signup", createUser, greetings);
+//Creates new req.session.user obj
 router.post("/login", verifyUser);
+//ends session
 router.get("/logout", logout);
+//deletes user, and any relatives, from database
 router.delete("/delete_account", verifyUser, deleteUser);
 
 module.exports = router;
