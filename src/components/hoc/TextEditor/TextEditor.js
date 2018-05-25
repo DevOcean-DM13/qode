@@ -11,12 +11,13 @@ import Button from "../../MP-Components/Button.js";
 
 const EditorAndDisplay = styled.div`
   display: flex;
+  width: 60vw;
   /* flex-direction: column; */
 `;
 
 const DisplayWindow = styled.div`
-  height: 70.6vh;
-  width: 42.5vh;
+  height: 70vh;
+  width: 35vw;
   border: 1px solid lightgray;
   display: block;
   background: white;
