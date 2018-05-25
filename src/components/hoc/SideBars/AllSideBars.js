@@ -76,6 +76,18 @@ class ProfileSide extends Component {
     return (
       <div style={this.props.styleProps}>
         <div>Courses</div>
+        <div>
+          <p>HTML</p>
+          <a>Pre-quiz</a>
+          <a>Lesson/Activity</a>
+          <a>Post-quiz</a>
+        </div>
+        <div>
+          <p>CSS</p>
+          <a>Pre-quiz</a>
+          <a>Lesson/Activity</a>
+          <a>Post-quiz</a>
+        </div>
       </div>
     );
   }

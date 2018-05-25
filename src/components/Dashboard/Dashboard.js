@@ -11,7 +11,7 @@ const ProfilePage = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  height: auto;
+  height: 1000px;
   width: 63.8vw;
   box-sizing: border-box;
   margin-left: 35vw;
