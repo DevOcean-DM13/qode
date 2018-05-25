@@ -65,6 +65,17 @@ class EleAndTag extends Component {
 }
 export const EleAndTagSideBar = createSideBar(EleAndTag);
 
+const CourseWrapper = styled.div`
+  height: 20vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CourseTitle = styled.p`
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 class ProfileSide extends Component {
   constructor() {
     super();
@@ -76,18 +87,18 @@ class ProfileSide extends Component {
     return (
       <div style={this.props.styleProps}>
         <div>Courses</div>
-        <div>
-          <p>HTML</p>
+        <CourseWrapper>
+          <CourseTitle>HTML</CourseTitle>
           <a>Pre-quiz</a>
           <a>Lesson/Activity</a>
           <a>Post-quiz</a>
-        </div>
-        <div>
-          <p>CSS</p>
+        </CourseWrapper>
+        <CourseWrapper>
+          <CourseTitle>CSS</CourseTitle>
           <a>Pre-quiz</a>
           <a>Lesson/Activity</a>
           <a>Post-quiz</a>
-        </div>
+        </CourseWrapper>
       </div>
     );
   }
