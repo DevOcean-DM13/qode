@@ -8,14 +8,31 @@ const {
   getUser,
   logout
 } = require(`${__dirname}/../controllers/authCtrl`);
-const { greetings } = require(`${__dirname}/../controllers/nodeMailerCtrl`);
+const {
+  greetings,
+  getRando
+} = require(`${__dirname}/../controllers/nodeMailerCtrl`);
 router.use(function timeLog(req, res, next) {
   console.log(`AUTH Time: ${new Date()}`);
+  var randoObj = getRando();
+
   if (req.headers && req.headers.referer) {
-    console.log(req.headers.referer.slice(-13));
-    console.log(req.session);
-    if (req.headers.referer.slice(-13) === req.session.rando) {
-      console.log("ACCOUNT ACTIVATED");
+    if (req.headers.referer.slice(-13) == randoObj.rando) {
+      console.log(`here is key${req.sessionID}`, req.sessionStore);
+      for (var prop in req.sessionStore.sessions) {
+        req.app
+          .get("db")
+          .activate_account(
+            JSON.parse(req.sessionStore.sessions[prop]).user.user_name
+          )
+          .then(response => {
+            res.sendStatus(200);
+          })
+          .catch(console.log);
+      }
+    } else {
+      console.log("Rando no match");
+      res.status(401).send({ error: "Verification session expired" });
     }
   }
   next();
