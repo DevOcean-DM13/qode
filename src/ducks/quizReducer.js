@@ -216,5 +216,8 @@ export default function quizReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_HTML_QUIZZES}`:
       return state.html;
+
+    default:
+      return state;
   }
 }
