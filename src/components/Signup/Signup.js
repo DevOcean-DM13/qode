@@ -35,9 +35,11 @@ const QodingBackground = styled.div`
 `;
 const Question = styled.p`
   margin-top: 23px;
+  margin-bottom: 20px;
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
   &.space {
+    margin-top: 34px;
     margin-bottom: 40px;
   }
 `;
@@ -141,6 +143,7 @@ const InputTitle = styled.p`
   font-size: 0.9em;
   box-sizing: border-box;
   padding-left: 10px;
+  margin-bottom: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   letter-spacing: 0.5px;

@@ -13,7 +13,6 @@ const createButton = WrappedComponent => {
           marginRight: "25px",
           marginBottom: "18px",
           fontSize: ".75em",
-          border: "solid 1px #a0dcff",
           color: "#434747",
           fontFamily: '"Roboto", sans-serif',
           fontWeight: "400",
