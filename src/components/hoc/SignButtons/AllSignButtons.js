@@ -5,14 +5,21 @@ import styled from "styled-components";
 import { updateBackground, updatePurpose } from "../../../ducks/userReducer";
 
 const Button = styled.button`
+  /* flex-basis:1; */
   &.backButt:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
     transition: 0.2s;
+  }
+  &.backButt.chosen {
+    background: #8bb8e3;
+    color: white !important;
   }
 `;
 const ButtonContainer = styled.div`
   width: auto;
   height: auto;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 class Background extends Component {
@@ -43,7 +50,9 @@ class Background extends Component {
         <Button
           key={i}
           onClick={() => this.backgroundChoice(e)}
-          className="backButt"
+          className={`backButt ${
+            this.state.buttonChosen === `${e}` ? "chosen" : "notChosen"
+          }`}
           style={this.props.styleProps}
         >
           {e}
@@ -86,7 +95,9 @@ class Purpose extends Component {
           key={i}
           onClick={() => this.purposeChoice({ e })}
           name={e}
-          className="backButt"
+          className={`backButt ${
+            this.state.buttonChoice === `${e}` ? "chosen" : "notChosen"
+          }`}
           style={this.props.styleProps}
         >
           {e}
