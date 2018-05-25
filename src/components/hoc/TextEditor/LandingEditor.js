@@ -30,7 +30,8 @@ export default class LandingEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput: "",
+      userInput:
+        "<h1>Hi from an h1 tag!</h1> <h2>Hi from an h2 tag!</h2> <p>Something is missing here! What is it?",
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
@@ -54,10 +55,12 @@ export default class LandingEditor extends Component {
       <TextEditorContainer>
         <EditorAndDisplay>
           <AceEditor
+            classname="HEREHHERHEHHERHEH"
             mode="html"
             theme="monokai"
             onChange={this.onChange}
             name="UNIQUE_ID_OF_DIV"
+            height="600px"
             highlightActiveLine={true}
             editorProps={{
               $blockScrolling: true
@@ -67,14 +70,7 @@ export default class LandingEditor extends Component {
               enableBasicAutoCompletion: true,
               enableSnippets: true
             }}
-            height="70vh;"
           />
-
-          {this.state.showHTML ? (
-            <DisplayWindow dangerouslySetInnerHTML={this.createWindow()} />
-          ) : (
-            <DisplayWindow />
-          )}
         </EditorAndDisplay>
         <div>
           <Button onClick={e => this.showHTML(e)}>Run code</Button>
