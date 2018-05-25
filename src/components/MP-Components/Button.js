@@ -6,12 +6,12 @@ export default styled.button`
   outline: none;
   color: white;
   text-align: center;
-  margin: 4px 2px;
+  margin: 10px 10px;
   border-radius: 25px;
   transition: 0.4s;
   &:active,
   &:hover {
-    background: tomato;
+    background: #ff7860;
   }
 
   width: ${props => (props.nav ? "8vh" : "16vh")};
