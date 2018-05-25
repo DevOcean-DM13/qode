@@ -18,6 +18,7 @@ const DisplayWindow = styled.div`
   height: 60.6vh;
   ${"" /* width: 42.5vh; */} border: 1px solid lightgray;
   display: block;
+  width: 0px;
 `;
 const TextEditorContainer = styled.body`
   display: flex;
@@ -71,6 +72,14 @@ export default class LandingEditor extends Component {
               enableSnippets: true
             }}
           />
+<<<<<<< HEAD
+=======
+          {this.state.showHTML ? (
+            <DisplayWindow dangerouslySetInnerHTML={this.createWindow()} />
+          ) : (
+            <DisplayWindow />
+          )}
+>>>>>>> master
         </EditorAndDisplay>
         <div>
           <Button onClick={e => this.showHTML(e)}>Run code</Button>
