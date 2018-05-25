@@ -65,6 +65,8 @@ function verifyUser(req, res, next) {
       console.log(filtered[0]);
       if (!filtered[0]) {
         return res.status(401).send("Email or username does not exist");
+      } else if (!filtered[0].account_activated) {
+        return res.status(401).send({ error: "Please verify you email." });
       } else {
         //USER'S USERNAME OR EMAIL HAS BEEN VERIFIED BY THIS POINT
 
