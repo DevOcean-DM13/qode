@@ -8,7 +8,6 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Signup from "./components/Signup/Signup";
 import LessonOneTest from "./components/Lesson/AllLessonPages";
-import Quiz from "./components/Quiz/Quiz";
 
 //IMPORT ASSETS AND CSS
 import "./App.css";
@@ -36,7 +35,6 @@ class App extends Component {
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/test" render={() => <LessonOneTest />} />
-          <Route path="/quiz" render={() => <Quiz />} />
           <Route
             path="/"
             render={() =>
