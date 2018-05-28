@@ -52,7 +52,6 @@ export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
 const FirstQuizTitle = styled.h1`
-  font-family: "Tajawal", sans-serif;
   font-weight: 700;
 `;
 const TextBox = styled.div``;
