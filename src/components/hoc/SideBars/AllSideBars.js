@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
-import { NavLink as Link } from "react-router-dom";
 
 const Beep = styled.div`
   /* display: flex;
