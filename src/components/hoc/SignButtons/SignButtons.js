@@ -13,8 +13,10 @@ const createButton = WrappedComponent => {
           marginRight: "25px",
           marginBottom: "18px",
           fontSize: ".75em",
-          border: "solid 1px #dce8ef",
-          color: "#595c63"
+          color: "#434747",
+          fontFamily: '"Roboto", sans-serif',
+          fontWeight: "400",
+          letterSpacing: ".5px"
         }
       };
     }

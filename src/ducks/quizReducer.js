@@ -5,6 +5,7 @@ const GET_HTML_QUIZZES = "GET_HTML_QUIZZES";
 const initialState = {
   html: {
     sectionOne: {
+      prompt: `Let's start with a quick quiz!`,
       pre: {
         one: {
           prompt:
@@ -12,7 +13,8 @@ const initialState = {
           answers: [
             "HTML, CSS, and Javascript",
             "Python, Perl, C#",
-            "Java, C++, Swift"
+            "Java, C++, Swift",
+            "Vue, Angular, React"
           ],
           correct: "HTML, CSS, and Javascript"
         },

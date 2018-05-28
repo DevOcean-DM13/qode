@@ -11,35 +11,31 @@ import Button from "../../MP-Components/Button.js";
 
 const EditorAndDisplay = styled.div`
   display: flex;
-  width: 60vw;
-  margin: 0 10vw;
-  /* padding: auto 5vw; */
-  flex-direction: row;
-  justify-content: space-between;
-  /* margin-bottom: 5vh; */
-  /* align-items: */
+  /* flex-direction: column; */
 `;
 
 const DisplayWindow = styled.div`
-  height: 70vh;
-  width: 29.5vw;
-  border: 1px solid lightgray;
+  height: 60.6vh;
+  ${"" /* width: 42.5vh; */} border: 1px solid lightgray;
   display: block;
-  background: white;
+  width: 0px;
+  z-index: -1;
 `;
 const TextEditorContainer = styled.body`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 88%;
 `;
 
-export default class TextEditor extends Component {
+export default class LandingEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput: "",
+      userInput: `<h1>Hi from an h1 tag!</h1>   
+        <h2>Hi from an h2 tag!</h2> 
+        <p>Something is missing here! What is it?`,
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
@@ -63,10 +59,12 @@ export default class TextEditor extends Component {
       <TextEditorContainer>
         <EditorAndDisplay>
           <AceEditor
+            classname="HEREHHERHEHHERHEH"
             mode="html"
             theme="monokai"
             onChange={this.onChange}
             name="UNIQUE_ID_OF_DIV"
+            height="600px"
             highlightActiveLine={true}
             editorProps={{
               $blockScrolling: true
@@ -76,24 +74,11 @@ export default class TextEditor extends Component {
               enableBasicAutoCompletion: true,
               enableSnippets: true
             }}
-            defaultValue={this.props.default}
-            height="70vh"
-            width="29.5vw"
           />
-
-          {this.state.showHTML ? (
-            <DisplayWindow dangerouslySetInnerHTML={this.createWindow()} />
-          ) : (
-            <DisplayWindow />
-          )}
         </EditorAndDisplay>
-
-        <Button
-          style={{ marginTop: "2vh", alignSelf: "center" }}
-          onClick={e => this.showHTML(e)}
-        >
-          Run code
-        </Button>
+        <div>
+          <Button onClick={e => this.showHTML(e)}>Run code</Button>
+        </div>
       </TextEditorContainer>
     );
   }

@@ -5,14 +5,20 @@ import styled from "styled-components";
 import { updateBackground, updatePurpose } from "../../../ducks/userReducer";
 
 const Button = styled.button`
+  border: solid 1px #a0dcff;
   /* flex-basis:1; */
+  background: transparent;
   &.backButt:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
     transition: 0.2s;
+    cursor: pointer;
   }
   &.backButt.chosen {
-    background: #8bb8e3;
+    /* background: #8bb8e3; */
+    /* background: #51cc82; */
+    background: #ff7860;
     color: white !important;
+    border: none;
   }
 `;
 const ButtonContainer = styled.div`

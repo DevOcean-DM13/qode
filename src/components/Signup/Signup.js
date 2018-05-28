@@ -6,7 +6,6 @@ import {
   PurposeButtons
 } from "../hoc/SignButtons/AllSignButtons";
 import { connect } from "react-redux";
-
 import { registerUser } from "../../ducks/userReducer";
 
 const SignUpForm = styled.div`
@@ -20,7 +19,8 @@ const SignUpForm = styled.div`
   /* justify-content: space-between; */
   /* position: relative; */
   overflow-y: hidden;
-  margin-bottom: 150px;
+  padding-bottom: 150px;
+  background: #f9f9f7;
 `;
 
 // Coding Background
@@ -35,7 +35,11 @@ const QodingBackground = styled.div`
 `;
 const Question = styled.p`
   margin-top: 23px;
+  margin-bottom: 20px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
   &.space {
+    margin-top: 34px;
     margin-bottom: 40px;
   }
 `;
@@ -75,12 +79,16 @@ const QodingGoal = styled.div`
 const GoalText = styled.textarea`
   width: 46vw;
   height: 20vh;
-  border: solid 1px #dce8ef;
+  border: solid 1px #a0dcff;
   outline: none;
   border-radius: 6px;
   box-sizing: border-box;
   padding: 10px 10px 10px 15px;
   font-size: 0.75em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  background: transparent;
 
   &.texty:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
@@ -93,7 +101,7 @@ const GoalText = styled.textarea`
 const InputCard = styled.div`
   width: 27vw;
   height: auto;
-  border: solid 1px #dce8ef;
+  border: solid 1px #a0dcff;
   border-radius: 6px;
   box-sizing: border-box;
   padding-left: 2vw;
@@ -115,7 +123,7 @@ const InputBox = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  border-bottom: solid 1px #dce8ef;
+  border-bottom: solid 1px #afbec6;
 `;
 const Input = styled.input`
   height: 20px;
@@ -125,11 +133,20 @@ const Input = styled.input`
   border: none;
   padding-left: 10px;
   box-sizing: border-box;
+  background: transparent;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #434747;
 `;
 const InputTitle = styled.p`
   font-size: 0.9em;
   box-sizing: border-box;
   padding-left: 10px;
+  margin-bottom: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 `;
 
 // Register Bar
@@ -140,11 +157,12 @@ const Register = styled.div`
   position: fixed;
   bottom: 0px;
   background: white;
-  border-top: solid 1px #dce8ef;
+  border-top: solid 1px #a0dcff;
   display: flex;
   box-sizing: border-box;
   align-items: center;
   justify-content: flex-end;
+  background: #f9f9f7;
 `;
 const RegisterButton = styled.button`
   height: 35px;
@@ -152,12 +170,16 @@ const RegisterButton = styled.button`
   border-radius: 6px;
   outline: none;
   font-size: 0.75em;
-  border: solid 1px #dce8ef;
+  border: solid 1px #a0dcff;
   margin-right: 10px;
 
   &.backButt:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
     transition: 0.5s;
+    cursor: pointer;
+    background: #ff7860;
+    color: white !important;
+    border: none;
   }
 `;
 

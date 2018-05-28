@@ -47,7 +47,7 @@ export function login(userName, password) {
     payload: axios
       .post(`/api/auth/login`, { userName, password })
       .then(user => {
-        console.log(user.data);
+        console.log(user);
         return user.data;
       })
       .catch(err => console.log(err))

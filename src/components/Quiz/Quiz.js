@@ -22,6 +22,7 @@ const QuizComponent = styled.div`
     font-size: 3rem;
   }
 `;
+
 const AnswersContainer = styled.div`
   margin-top: 5vh;
   display: flex;
@@ -46,14 +47,7 @@ const AnswerBox = styled.div`
 class Quiz extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      buttonChosen: "",
-      current: "One"
-    };
-  }
-  componentDidMount() {
-    console.log(this.props);
-    console.log(this.props.html.sectionOne.pre.one.answers);
+    this.state = { question: 1, section: 1 };
   }
 
   handleCorrect(event) {}
@@ -67,20 +61,22 @@ class Quiz extends Component {
   };
 
   render() {
-    const mapped = this.props.html.sectionOne.pre.one.answers.map((e, i) => {
-      return (
-        <AnswerBox onClick={event => this.handleClick(e)} key={i}>
-          {e}
-        </AnswerBox>
-      );
-    });
+    console.log(this.props);
+
     return (
       <div>
         <EleAndTagSideBar />
         <QuizComponent>
-          <h1>Quiz 1</h1>
-          <h2>{this.props.html.sectionOne.pre.one.prompt}</h2>
-          <AnswersContainer>{mapped}</AnswersContainer>
+          <h1>{}</h1>
+          <h2>Question 1</h2>
+          <AnswersContainer>
+            <AnswerBox>
+              <p>Answer</p>
+            </AnswerBox>
+            <AnswerBox>Ansa 2</AnswerBox>
+            <AnswerBox>Ansa 3</AnswerBox>
+            <AnswerBox>Ansa 4</AnswerBox>
+          </AnswersContainer>
         </QuizComponent>
       </div>
     );
@@ -88,7 +84,9 @@ class Quiz extends Component {
 }
 
 const mapStateToProps = state => {
-  return { ...state.quizReducer };
+  return {
+    htmlQuizes: state.quizReducer.html
+  };
 };
 
 export default connect(mapStateToProps, { getHtmlQuestions })(Quiz);
