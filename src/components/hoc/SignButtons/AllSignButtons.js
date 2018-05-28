@@ -11,6 +11,7 @@ const Button = styled.button`
   &.backButt:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
     transition: 0.2s;
+    cursor: pointer;
   }
   &.backButt.chosen {
     /* background: #8bb8e3; */
