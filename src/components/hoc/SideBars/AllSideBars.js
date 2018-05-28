@@ -84,7 +84,7 @@ const PrevButton = styled.div`
   bottom: 5vh;
   margin-left: 2vw;
 `;
-class EleAndTag extends Component {
+class Lesson extends Component {
   constructor() {
     super();
     this.state = {
@@ -107,17 +107,23 @@ class EleAndTag extends Component {
   render() {
     console.log(this.props);
     return (
-      <div style={this.props.styleProps}>
+      <LessonContent style={this.props.styleProps}>
         <FirstQuizTitle>Intro to HTML</FirstQuizTitle>
-        <p style={{ fontSize: "2rem" }}>{`${
-          this.props["lesson" + this.state.currentLesson]
-        }`}</p>
+        <p style={{ fontSize: "2rem" }}>
+          {`${this.props["lesson" + this.state.currentLesson]}`}
+        </p>
         <ForwardButton onClick={e => this.handleForward(e)}>></ForwardButton>
         <PrevButton onClick={e => this.handleBack(e)}>{`<`}</PrevButton>
-      </div>
+      </LessonContent>
     );
   }
 }
+
+const LessonContent = styled.div`
+  & p.test {
+    color: "white";
+  }
+`;
 
 const mapStateToProps = state => {
   return {
@@ -125,8 +131,8 @@ const mapStateToProps = state => {
   };
 };
 
-export const EleAndTagSideBar = createSideBar(
-  connect(mapStateToProps, { getHtmlLessons })(EleAndTag)
+export const LessonBar = createSideBar(
+  connect(mapStateToProps, { getHtmlLessons })(Lesson)
 );
 
 const CourseWrapper = styled.div`

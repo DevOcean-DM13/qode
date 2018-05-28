@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 // i dont think this is the right way of doing it but i'm trying it out <--michael
-import { EleAndTagSideBar } from "../hoc/SideBars/AllSideBars.js";
+import { LessonBar } from "../hoc/SideBars/AllSideBars.js";
 import TextEditor from "../hoc/TextEditor/TextEditor.js";
 
 const LessonsPages = styled.div`
@@ -18,9 +18,15 @@ export default class LessonOneTest extends Component {
   render() {
     return (
       <div>
-        <EleAndTagSideBar />
+        <LessonBar />
         <LessonsPages>
-          <TextEditor />
+          <TextEditor
+            default={`<html>
+  <body>
+    <p>Hello</p>
+  </body>
+</html>`}
+          />
         </LessonsPages>
       </div>
     );
