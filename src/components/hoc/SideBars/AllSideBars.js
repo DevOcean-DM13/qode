@@ -106,6 +106,7 @@ class Lesson extends Component {
   }
   render() {
     console.log(this.props);
+    // let pArr = lessons.page.paragraphs.map((e,i)=> )
     return (
       <LessonContent style={this.props.styleProps}>
         <FirstQuizTitle>Intro to HTML</FirstQuizTitle>
@@ -147,12 +148,6 @@ const CourseTitle = styled.p`
   margin-bottom: 20px;
 `;
 class ProfileSide extends Component {
-  constructor() {
-    super();
-    this.state = {
-      opened: false
-    };
-  }
   render() {
     return (
       <div style={this.props.styleProps}>
