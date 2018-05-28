@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
+<<<<<<< HEAD
+import { Link } from "react-router-dom";
+=======
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
+>>>>>>> master
 
 const Beep = styled.div`
   /* display: flex;
@@ -16,6 +20,7 @@ const Welcome = styled.h1`
   font-weight: 700;
   letter-spacing: 0.5px;
   font-size: 2em;
+  margin-top: 19px;
 `;
 const Intro = styled.p`
   font-size: 0.9em;
@@ -128,6 +133,17 @@ export const EleAndTagSideBar = createSideBar(
   connect(mapStateToProps, { getHtmlLessons })(EleAndTag)
 );
 
+const CourseWrapper = styled.div`
+  height: 20vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CourseTitle = styled.p`
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 class ProfileSide extends Component {
   constructor() {
     super();
@@ -139,18 +155,18 @@ class ProfileSide extends Component {
     return (
       <div style={this.props.styleProps}>
         <div>Courses</div>
-        <div>
-          <p>HTML</p>
+        <CourseWrapper>
+          <CourseTitle>HTML</CourseTitle>
+          <Link to="/test">Pre-quiz</Link>
+          <a>Lesson/Activity</a>
+          <a>Post-quiz</a>
+        </CourseWrapper>
+        <CourseWrapper>
+          <CourseTitle>CSS</CourseTitle>
           <a>Pre-quiz</a>
           <a>Lesson/Activity</a>
           <a>Post-quiz</a>
-        </div>
-        <div>
-          <p>CSS</p>
-          <a>Pre-quiz</a>
-          <a>Lesson/Activity</a>
-          <a>Post-quiz</a>
-        </div>
+        </CourseWrapper>
       </div>
     );
   }
