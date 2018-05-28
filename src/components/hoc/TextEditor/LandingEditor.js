@@ -33,8 +33,9 @@ export default class LandingEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput:
-        "<h1>Hi from an h1 tag!</h1> <h2>Hi from an h2 tag!</h2> <p>Something is missing here! What is it?",
+      userInput: `<h1>Hi from an h1 tag!</h1>   
+        <h2>Hi from an h2 tag!</h2> 
+        <p>Something is missing here! What is it?`,
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
