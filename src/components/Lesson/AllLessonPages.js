@@ -11,7 +11,7 @@ const LessonsPages = styled.div`
   right: 0;
   background: #122932;
   position: fixed;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
 `;
 
 export default class LessonOneTest extends Component {
