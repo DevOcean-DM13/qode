@@ -7,6 +7,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import LessonAccordion from "./Accordion";
 import LoginForm from "./LoginForm";
 import LandingEditor from "../hoc/TextEditor/LandingEditor.js";
+import SimpleSlider from "./LandingSlides.js";
 
 // IMPORTED STYLED COMPONENTS
 import Button from "../MP-Components/Button.js";
@@ -96,6 +97,7 @@ const BottomPage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #000501;
 `;
 const BottomPageContent = styled.div`
   height: 80%;
@@ -105,10 +107,9 @@ const BottomPageContent = styled.div`
 const Curriculum = styled.div`
   width: 50%;
   height: 100%;
-`;
-const PictureSlide = styled.div`
-  width: 50%;
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 class Landing extends Component {
@@ -165,7 +166,6 @@ class Landing extends Component {
             <Curriculum>
               <LessonAccordion />
             </Curriculum>
-            <PictureSlide />
           </BottomPageContent>
         </BottomPage>
       </LandingBody>
