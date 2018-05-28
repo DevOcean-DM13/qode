@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
-=======
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
->>>>>>> master
 
 const Beep = styled.div`
   /* display: flex;
@@ -57,7 +54,6 @@ export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
 const FirstQuizTitle = styled.h1`
-  font-family: "Tajawal", sans-serif;
   font-weight: 700;
 `;
 const TextBox = styled.div``;
