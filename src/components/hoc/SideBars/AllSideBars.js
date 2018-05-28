@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
+import { NavLink as Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
-import { NavLink as Link } from "react-router-dom";
 
 const Beep = styled.div`
   /* display: flex;
@@ -106,6 +106,7 @@ class EleAndTag extends Component {
   }
   render() {
     console.log(this.props);
+    // let pArr = lessons.page.paragraphs.map((e,i)=> )
     return (
       <div style={this.props.styleProps}>
         <FirstQuizTitle>Intro to HTML</FirstQuizTitle>

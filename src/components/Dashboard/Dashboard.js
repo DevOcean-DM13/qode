@@ -128,11 +128,13 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { sidebar } = this.state;
     const { background, goals, pic, purpose, username, email } = this.props;
     return (
       <ProfilePage>
-        {this.state.sidebar && (
-          <ProfileSideBar style={{ position: "absolute", left: 0 }} />
+        <ProfileSideBar />
+        {sidebar && (
+          <ProfileSideBar className="" style={{ position: "absolute" }} />
         )}
         {!this.state.sidebar ? (
           <ProfileContainer className="fullScreen">
