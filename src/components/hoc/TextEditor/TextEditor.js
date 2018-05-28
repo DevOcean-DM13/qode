@@ -12,12 +12,17 @@ import Button from "../../MP-Components/Button.js";
 const EditorAndDisplay = styled.div`
   display: flex;
   width: 60vw;
-  /* flex-direction: column; */
+  margin: 0 10vw;
+  /* padding: auto 5vw; */
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin-bottom: 5vh; */
+  /* align-items: */
 `;
 
 const DisplayWindow = styled.div`
   height: 70vh;
-  width: 35vw;
+  width: 29.5vw;
   border: 1px solid lightgray;
   display: block;
   background: white;
@@ -71,7 +76,9 @@ export default class TextEditor extends Component {
               enableBasicAutoCompletion: true,
               enableSnippets: true
             }}
-            height="70vh;"
+            defaultValue={this.props.default}
+            height="70vh"
+            width="29.5vw"
           />
 
           {this.state.showHTML ? (
@@ -80,9 +87,13 @@ export default class TextEditor extends Component {
             <DisplayWindow />
           )}
         </EditorAndDisplay>
-        <div>
-          <Button onClick={e => this.showHTML(e)}>Run code</Button>
-        </div>
+
+        <Button
+          style={{ marginTop: "2vh", alignSelf: "center" }}
+          onClick={e => this.showHTML(e)}
+        >
+          Run code
+        </Button>
       </TextEditorContainer>
     );
   }
