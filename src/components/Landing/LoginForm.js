@@ -50,6 +50,8 @@ const InputBoxed = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
+  padding-top: 13px;
+  padding-bottom: 17px;
 `;
 const InputContainer = styled.div`
   height: 40px;
@@ -135,12 +137,12 @@ class LoginForm extends Component {
           <InputBoxed>
             <InputContainer>
               <Input
-                autofocus
                 name="usernameEmail"
                 placeholder="Username or Email"
                 value={this.state.usernameEmail}
                 onChange={e => this.userLogin(e)}
                 required
+                autofocus
               />
             </InputContainer>
 
