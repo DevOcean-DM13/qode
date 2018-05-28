@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-=======
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
->>>>>>> master
+import { NavLink as Link } from "react-router-dom";
 
 const Beep = styled.div`
   /* display: flex;

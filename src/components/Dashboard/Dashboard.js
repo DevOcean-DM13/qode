@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import userReducer from "../../ducks/userReducer";
 import { ProfileSideBar } from "../hoc/SideBars/AllSideBars";
 
 const ProfilePage = styled.div`
@@ -11,127 +10,64 @@ const ProfilePage = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  height: 1000px;
-  width: 63.8vw;
+  height: auto;
+  width: 65vw;
   box-sizing: border-box;
   margin-left: 35vw;
-  background: #3f5566;
+  /* background: #3f5566; */
+  overflow-y: hidden;
 `;
-
-// Profile Top Portion
-const ProfileTop = styled.div`
-  height: 40vh;
-  width: 63.8vw;
-  display: flex;
+// Main Portion
+const ProfileMain = styled.div`
+  height: 70vh;
+  /* background: pink; */
+  width: auto;
   box-sizing: border-box;
-  justify-content: center;
-  align-items: flex-end;
-  padding-top: 7vh;
-  padding-bottom: 2vh;
+  padding-top: 20vh;
 `;
-const ProfileBox = styled.div`
-  height: 30vh;
-  width: 20vw;
+const ProfileInfo = styled.div`
+  height: auto;
+  width: 100%;
+  /* background: teal; */
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 3vw 0 3vw;
+  box-sizing: border-box;
 `;
 const ProfilePic = styled.img`
-  height: 100px;
-  width: 100px;
-  border: solid 6px white;
+  height: 180px;
+  width: 180px;
   border-radius: 50%;
-  margin-bottom: 20px;
-  box-shadow: 1px 1px 30px #555659;
+  box-shadow: 3px 3px 30px #83878c;
 `;
-const ProfileName = styled.div`
-  font-size: 2.1em;
-  margin-bottom: 2px;
-  color: white;
-  letter-spacing: 0.5px;
-  font-family: "Work Sans", sans-serif;
-  font-weight: 700;
-`;
-const ProfileEmail = styled.div`
-  font-size: 0.8em;
-  color: white;
-  letter-spacing: 0.5px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-`;
-
-// Profile Middle Portion
-
-const ProfileMid = styled.div`
+const PurBackContainer = styled.div`
   height: auto;
-  width: 63.8vw;
+  width: 20vw;
+  /* background: skyblue; */
   box-sizing: border-box;
-  /* background: pink; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* align-items: center; */
+  border-top: solid 2px #a0dcff;
+  border-bottom: solid 2px #a0dcff;
+  padding: 2vh 0 2vh 0;
 `;
-const PurpBack = styled.div`
-  height: 20vh;
-  width: 55vw;
-  /* background: gray; */
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-bottom: solid 1px white;
-  border-top: solid 1px white;
-  margin-top: 4vh;
-`;
-const PurpBackBox = styled.div`
-  height: 20vh;
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 7vh 0 8vh 0;
-`;
-const PurpBackDivider = styled.div`
-  height: 12vh;
-  width: 1px;
-  background: white;
-`;
-const PurpBackTitle = styled.div`
-  font-size: 0.8em;
-  color: white;
-  letter-spacing: 0.5px;
+const PurbackTitle = styled.p`
+  font-size: 0.7em;
+  margin-bottom: 0.5vh;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  letter-spacing: 0.5px;
 `;
-const PurpBackText = styled.div`
-  font-size: 2.1em;
-  color: white;
-  letter-spacing: 1.1px;
+const PurbackContent = styled.div`
+  font-size: 1.6em;
+  height: auto;
+  width: auto;
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
-`;
-
-// Profile Mid Goals
-
-const GoalsBox = styled.div`
-  margin-top: 10vh;
-  height: auto;
-  width: 55vw;
-  background: pink;
-  box-sizing: border-box;
-  padding: 0 7.6vw 0 7.6vw;
-`;
-const GoalsTitle = styled.div`
-  font-size: 0.8em;
-  color: white;
   letter-spacing: 0.5px;
-  margin-bottom: 5vh;
 `;
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -143,30 +79,19 @@ class Dashboard extends Component {
       <ProfilePage>
         <ProfileSideBar />
         <ProfileContainer>
-          <ProfileTop>
-            <ProfileBox>
+          <ProfileMain>
+            <ProfileInfo>
+              <PurBackContainer>
+                <PurbackTitle>Background:</PurbackTitle>
+                <PurbackContent>{background}</PurbackContent>
+              </PurBackContainer>
               <ProfilePic src={pic} />
-              <ProfileName>{username}</ProfileName>
-              <ProfileEmail>{email}</ProfileEmail>
-            </ProfileBox>
-          </ProfileTop>
-          <ProfileMid>
-            <PurpBack>
-              <PurpBackBox>
-                <PurpBackTitle>Background:</PurpBackTitle>
-                <PurpBackText>{background}</PurpBackText>
-              </PurpBackBox>
-              <PurpBackDivider />
-              <PurpBackBox>
-                <PurpBackTitle>Purpose:</PurpBackTitle>
-                <PurpBackText>{purpose}</PurpBackText>
-              </PurpBackBox>
-            </PurpBack>
-            <GoalsBox>
-              <GoalsTitle>Goals:</GoalsTitle>
-              {goals}
-            </GoalsBox>
-          </ProfileMid>
+              <PurBackContainer>
+                <PurbackTitle>Purpose:</PurbackTitle>
+                <PurbackContent>{purpose}</PurbackContent>
+              </PurBackContainer>
+            </ProfileInfo>
+          </ProfileMain>
         </ProfileContainer>
       </ProfilePage>
     );
