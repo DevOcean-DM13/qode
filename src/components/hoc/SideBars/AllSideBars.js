@@ -142,12 +142,6 @@ const CourseTitle = styled.p`
   margin-bottom: 20px;
 `;
 class ProfileSide extends Component {
-  constructor() {
-    super();
-    this.state = {
-      opened: false
-    };
-  }
   render() {
     return (
       <div style={this.props.styleProps}>
