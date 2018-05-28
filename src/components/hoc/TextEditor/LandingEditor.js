@@ -19,6 +19,7 @@ const DisplayWindow = styled.div`
   ${"" /* width: 42.5vh; */} border: 1px solid lightgray;
   display: block;
   width: 0px;
+  z-index: -1;
 `;
 const TextEditorContainer = styled.body`
   display: flex;

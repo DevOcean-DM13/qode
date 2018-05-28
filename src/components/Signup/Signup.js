@@ -176,6 +176,10 @@ const RegisterButton = styled.button`
   &.backButt:hover {
     box-shadow: 0.5px 0.5px 3px #dee9f9;
     transition: 0.5s;
+    cursor: pointer;
+    background: #ff7860;
+    color: white !important;
+    border: none;
   }
 `;
 
