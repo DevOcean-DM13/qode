@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
 
@@ -85,10 +85,11 @@ const PrevButton = styled.div`
   margin-left: 2vw;
 `;
 class Lesson extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      currentLesson: "1"
+      currentLesson: 1,
+      currentPage: 2
     };
   }
   handleForward = e => {
@@ -101,18 +102,27 @@ class Lesson extends Component {
     this.setState({ currentLesson: currentLessonAsNum - 1 });
   };
 
-  componentDidMount() {
-    this.props.getHtmlLessons();
-  }
+  componentDidMount() {}
+
   render() {
-    console.log(this.props);
+    console.log(`Lesson`, this.props);
     // let pArr = lessons.page.paragraphs.map((e,i)=> )
+    const { content } = this.props.page[1] || [];
+
     return (
       <LessonContent style={this.props.styleProps}>
-        <FirstQuizTitle>Intro to HTML</FirstQuizTitle>
-        <p style={{ fontSize: "2rem" }}>
+        <FirstQuizTitle>
+          {this.props.page.length &&
+            this.props.page[this.state.currentPage].lesson_title}
+          <h2>
+            {this.props.page.length &&
+              this.props.page[this.state.currentPage].subtitle}
+          </h2>
+          <h3 />
+        </FirstQuizTitle>
+        {/* <p style={{ fontSize: "2rem" }}>
           {`${this.props["lesson" + this.state.currentLesson]}`}
-        </p>
+        </p> */}
         <ForwardButton onClick={e => this.handleForward(e)}>></ForwardButton>
         <PrevButton onClick={e => this.handleBack(e)}>{`<`}</PrevButton>
       </LessonContent>
@@ -124,16 +134,23 @@ const LessonContent = styled.div`
   & p.test {
     color: "white";
   }
+
+  h1 {
+    font-weight: 700;
+  }
+  h2 {
+    font-weight: 400;
+  }
 `;
 
 const mapStateToProps = state => {
   return {
-    ...state.lessonReducer
+    page: state.lessReducer.lesson
   };
 };
 
 export const LessonBar = createSideBar(
-  connect(mapStateToProps, { getHtmlLessons })(Lesson)
+  withRouter(connect(mapStateToProps, {})(Lesson))
 );
 
 const CourseWrapper = styled.div`
