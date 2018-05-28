@@ -25,6 +25,7 @@ const TextEditorContainer = styled.body`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 88%;
 `;
 
 export default class LandingEditor extends Component {

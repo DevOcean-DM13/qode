@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { NavLink as Link } from "react-router-dom";
+=======
+import { Link } from "react-router-dom";
+>>>>>>> master
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
 
@@ -54,7 +58,6 @@ export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
 const FirstQuizTitle = styled.h1`
-  font-family: "Tajawal", sans-serif;
   font-weight: 700;
 `;
 const TextBox = styled.div``;
