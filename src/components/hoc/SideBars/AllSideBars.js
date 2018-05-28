@@ -106,6 +106,7 @@ class EleAndTag extends Component {
   }
   render() {
     console.log(this.props);
+    // let pArr = lessons.page.paragraphs.map((e,i)=> )
     return (
       <div style={this.props.styleProps}>
         <FirstQuizTitle>Intro to HTML</FirstQuizTitle>

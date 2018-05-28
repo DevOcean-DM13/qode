@@ -101,7 +101,7 @@ const BottomPage = styled.div`
 `;
 const BottomPageContent = styled.div`
   height: 80%;
-  width: 80%;
+  width: 85%;
   display: flex;
 `;
 const Curriculum = styled.div`
@@ -110,6 +110,10 @@ const Curriculum = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+const SlideShow = styled.div`
+  width: 50%;
+  height: 100%;
 `;
 
 class Landing extends Component {
@@ -166,6 +170,9 @@ class Landing extends Component {
             <Curriculum>
               <LessonAccordion />
             </Curriculum>
+            <SlideShow>
+              <SimpleSlider />
+            </SlideShow>
           </BottomPageContent>
         </BottomPage>
       </LandingBody>
