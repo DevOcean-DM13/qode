@@ -5,7 +5,7 @@ export default styled.div`
   height: 7vh;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   background: white;
   width: 100%;
   backface-visibility: hidden;

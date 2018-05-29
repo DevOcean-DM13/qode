@@ -44,12 +44,6 @@ const Question = styled.p`
     margin-bottom: 40px;
   }
 `;
-const BackgroundQuestionButtons = styled.div`
-  height: 88px;
-  box-sizing: border-box;
-  margin-top: 20px;
-  display: flex;
-`;
 
 // Coding Purpose
 

@@ -67,7 +67,7 @@ const ContentText = styled.div`
   }
 `;
 
-const ForwardButton = styled.div`
+const ForwardButton = styled.button`
   height: 70px;
   width: 70px;
   position: fixed;
@@ -79,7 +79,7 @@ const ForwardButton = styled.div`
   bottom: 5vh;
   margin-right: 5vw;
 `;
-const PrevButton = styled.div`
+const PrevButton = styled.button`
   height: 70px;
   width: 70px;
   position: fixed;
@@ -196,11 +196,10 @@ class Lesson extends Component {
         <FirstQuizTitle>
           {this.props.page.length &&
             this.props.page[this.state.currentPage].lesson_title}
-          <h2>
+          <div>
             {this.props.page.length &&
               this.props.page[this.state.currentPage].subtitle}
-          </h2>
-          <h3 />
+          </div>
         </FirstQuizTitle>
 
         {content &&

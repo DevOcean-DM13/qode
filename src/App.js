@@ -16,6 +16,7 @@ import LessonPage from "./components/Lesson/AllLessonPages";
 import Button from "./components/MP-Components/Button";
 import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
 import NavBar from "./components/MP-Components/NavBar";
+import { Wrappa, Sq1, Sq2 } from "./components/MP-Components/QoGo";
 //IMPORT ASSETS AND CSS
 import "./App.css";
 import { getUser, logout } from "./ducks/userReducer";
@@ -61,6 +62,10 @@ class App extends Component {
           </NavBar>
         ) : (
           <NavBar>
+            <Wrappa>
+              <Sq1 />
+              <Sq2 />
+            </Wrappa>
             <ButtonWrapper>
               <Button onClick={this.clickLogin} nav>
                 Login
