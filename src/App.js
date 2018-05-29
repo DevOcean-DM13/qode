@@ -20,6 +20,11 @@ import NavBar from "./components/MP-Components/NavBar";
 import "./App.css";
 import { getUser } from "./ducks/userReducer";
 
+//IMPORT STYLED COMPONENTS
+import Button from "./components/MP-Components/Button";
+import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
+import NavBar from "./components/MP-Components/NavBar";
+
 class App extends Component {
   // componentDidUpdate(prevProps, prevState) {
   //   if (
