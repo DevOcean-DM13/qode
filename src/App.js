@@ -53,7 +53,6 @@ class App extends Component {
     this.props.logout(this.props.user.user_name);
   }
   render() {
-    console.log(`look here`, this.props);
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
@@ -75,7 +74,7 @@ class App extends Component {
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route
-            path="/lesson/:lesson_id/:page_id"
+            path="/lesson/:lesson_id/:pageoflesson"
             render={() => <LessonPage />}
           />
           <Route

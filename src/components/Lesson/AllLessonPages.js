@@ -4,6 +4,7 @@ import styled from "styled-components";
 // i dont think this is the right way of doing it but i'm trying it out <--michael
 import { LessonBar } from "../hoc/SideBars/AllSideBars.js";
 import TextEditor from "../hoc/TextEditor/TextEditor.js";
+import Quiz from "../Quiz/Quiz";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getLesson } from "../../ducks/lessReducer";
@@ -15,31 +16,81 @@ const LessonsPages = styled.div`
   background: #122932;
   position: fixed;
   font-family: "Roboto", sans-serif;
+  color: white;
+  /* z-index: -10; */
 `;
 
 class LessonPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: this.props.match.params.pageoflesson
+      // currentLesson: this.props.match.params.lesson_id
+      // currentPage: this.props.match.params.pageoflesson
+    };
+  }
   componentDidMount() {
     this.props.getLesson(this.props.match.params.lesson_id);
+    // .then(pageList =>
+    //   this.setState({ page: pageList[this.props.match.params.pageoflesson] })
+    // );
+    // .then(() =>
+    // console.log(
+    //   `LOOK HERE BITCH`,
+    //   this.props.lesson[this.props.match.params.lesson_id].has_editor_imp
+    // )
+    // );
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.props.getLesson(this.props.match.params.lesson_id).then(() => {
+        // console.log(`whyyounoupdate`);
+        this.setState({ page: this.props.match.params.pageoflesson });
+      });
+    }
   }
   render() {
-    console.log(`LESSON HOC`, this.props);
+    console.log(
+      `lesson props in AllLessonPages`,
+      this.state.page,
+      this.props.lesson,
+      this.props.match.params,
+      this.props.lesson[this.state.page]
+    );
+
     return (
       <div>
         <LessonBar lesson={this.props.lesson} />
-        {this.props.lesson[this.props.match.params.lesson_id] &&
-        this.props.lesson[this.props.match.params.lesson_id].has_editor ? (
-          <LessonsPages>
-            <TextEditor
-              default={`<html>
+
+        {this.props.lesson[this.state.page] &&
+          this.props.lesson[this.state.page].has_editor_imp && (
+            <LessonsPages>
+              <TextEditor
+                default={`<html>
   <body>
     <p>Hello</p>
   </body>
 </html>`}
-            />
-          </LessonsPages>
-        ) : (
-          <LessonsPages />
-        )}
+              />
+            </LessonsPages>
+          )}
+
+        {this.props.lesson[this.state.page] &&
+          this.props.lesson[this.state.page].page_type === "prequiz" && (
+            <LessonsPages>
+              <Quiz />
+            </LessonsPages>
+          )}
+        {this.props.lesson[this.state.page] &&
+          this.props.lesson[this.state.page].page_type === "postquiz" && (
+            <LessonsPages>
+              <Quiz />
+            </LessonsPages>
+          )}
+        {this.props.lesson[this.state.page] &&
+          this.props.lesson[this.state.page].page_type === "lesson" && (
+            <LessonsPages />
+          )}
       </div>
     );
   }
