@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 //IMPORT COMPONENTS
 import Landing from "./components/Landing/Landing";
@@ -9,6 +11,11 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Signup from "./components/Signup/Signup";
 import LessonOneTest from "./components/Lesson/AllLessonPages";
 
+// IMPORT STYLED COMPONENTS
+
+import Button from "./components/MP-Components/Button";
+import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
+import NavBar from "./components/MP-Components/NavBar";
 //IMPORT ASSETS AND CSS
 import "./App.css";
 import { getUser } from "./ducks/userReducer";
@@ -25,13 +32,42 @@ class App extends Component {
   //   }
   // }
 
+  constructor() {
+    super();
+    this.state = {
+      opened: false
+    };
+    this.clickLogin = this.clickLogin.bind(this);
+  }
+
   componentDidMount() {
     this.props.getUser();
   }
+
+  clickLogin() {
+    this.setState({ opened: !this.state.opened });
+  }
+
   render() {
     console.log(`look here`, this.props);
     return (
       <div className="App">
+        {this.props.user && this.props.user.user_name ? (
+          <NavBar>
+            <button>Logout</button>
+          </NavBar>
+        ) : (
+          <NavBar>
+            <ButtonWrapper>
+              <Button onClick={this.clickLogin} nav>
+                Login
+              </Button>
+              <NavLink to="/signup">
+                <Button nav>Register</Button>
+              </NavLink>
+            </ButtonWrapper>
+          </NavBar>
+        )}
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/test" render={() => <LessonOneTest />} />
@@ -41,7 +77,7 @@ class App extends Component {
               this.props.user && this.props.user.user_name ? (
                 <Dashboard />
               ) : (
-                <Landing />
+                <Landing opened={this.state.opened} />
               )
             }
           />
