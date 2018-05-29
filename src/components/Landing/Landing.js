@@ -22,22 +22,22 @@ const LandingBody = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const NavBar = styled.div`
-  width: 100%;
-  height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background: white;
-  width: 100%;
-  backface-visibility: hidden;
-  border-bottom: solid 1px lightgrey;
-  position: fixed;
-  z-index: 500;
-  transition-duration: .15s;
- 
-}
-`;
+// const NavBar = styled.div`
+//   width: 100%;
+//   height: 7vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   background: white;
+//   width: 100%;
+//   backface-visibility: hidden;
+//   border-bottom: solid 1px lightgrey;
+//   position: fixed;
+//   z-index: 500;
+//   transition-duration: .15s;
+
+// }
+// `;
 /* FIRST HALF OF THE LANDING */
 const TopPage = styled.div`
   height: 100vh;
@@ -53,7 +53,7 @@ const TopPageContent = styled.div`
   justify-content: space-between;
 `;
 const TextContent = styled.div`
-  width: 50%;
+  width: 35%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -110,6 +110,12 @@ const Curriculum = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  & h1 {
+    color: white;
+    font-size: 5em;
+  }
 `;
 const SlideShow = styled.div`
   width: 50%;
@@ -117,23 +123,23 @@ const SlideShow = styled.div`
 `;
 
 class Landing extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: false
-    };
-    this.clickLogin = this.clickLogin.bind(this);
-  }
-  clickLogin(e) {
-    this.setState({ opened: !this.state.opened });
-    console.log(`hit`);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     opened: false
+  //   };
+  //   this.clickLogin = this.clickLogin.bind(this);
+  // }
+  // clickLogin(e) {
+  //   this.setState({ opened: !this.state.opened });
+  //   console.log(`hit`);
+  // }
   render() {
     console.log(this.props);
 
     return (
       <LandingBody>
-        <NavBar>
+        {/* <NavBar>
           <ButtonWrapper>
             <Button onClick={e => this.clickLogin(e)} nav>
               Login
@@ -142,7 +148,7 @@ class Landing extends Component {
               <Button nav>Register</Button>
             </NavLink>
           </ButtonWrapper>
-        </NavBar>
+        </NavBar> */}
         <TopPage>
           <TopPageContent>
             <TextContent>
@@ -164,10 +170,11 @@ class Landing extends Component {
             </LandingContainer>
           </TopPageContent>
         </TopPage>
-        {this.state.opened && <LoginForm />}
+        {this.props.opened && <LoginForm />}
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
+              <h1>Complexity, made simple.</h1>
               <LessonAccordion />
             </Curriculum>
             <SlideShow>
@@ -180,4 +187,10 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = state => {
+  return {
+    // opened: state.loginReducer.opened
+  };
+};
+
+export default connect(mapStateToProps)(Landing);
