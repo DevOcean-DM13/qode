@@ -22,22 +22,22 @@ const LandingBody = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const NavBar = styled.div`
-  width: 100%;
-  height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background: white;
-  width: 100%;
-  backface-visibility: hidden;
-  border-bottom: solid 1px lightgrey;
-  position: fixed;
-  z-index: 500;
-  transition-duration: .15s;
- 
-}
-`;
+// const NavBar = styled.div`
+//   width: 100%;
+//   height: 7vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   background: white;
+//   width: 100%;
+//   backface-visibility: hidden;
+//   border-bottom: solid 1px lightgrey;
+//   position: fixed;
+//   z-index: 500;
+//   transition-duration: .15s;
+
+// }
+// `;
 /* FIRST HALF OF THE LANDING */
 const TopPage = styled.div`
   height: 100vh;
@@ -52,34 +52,48 @@ const TopPageContent = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+// LEFT SIDE. PG 1
 const TextContent = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12vh 0 10vh 0;
+`;
+const IntroCarrier = styled.div`
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 `;
 const Introduction = styled.h1`
   font-weight: 700;
-  font-size: 46px;
+  font-size: 48px;
   color: black;
   line-height: 59.8px;
   text-align: center;
-  height: 33%;
+  height: auto;
   width: 100%;
   font-family: "Work Sans", sans-serif;
+  padding-bottom: 24px;
 `;
 const Blurb = styled.h2`
-  font-size: 20px;
+  font-size: 17px;
   color: black;
-  line-height: 59.8px;
+  line-height: 28px;
   text-align: center;
   font-weight: 400;
-  height: 33%;
-  width: 100%;
+  height: auto;
+  width: 34vw;
   font-family: "Roboto", sans-serif;
 `;
 const Idk = styled.div`
-  height: 33%;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -110,6 +124,12 @@ const Curriculum = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  & h1 {
+    color: white;
+    font-size: 5em;
+  }
 `;
 const SlideShow = styled.div`
   width: 50%;
@@ -117,23 +137,23 @@ const SlideShow = styled.div`
 `;
 
 class Landing extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: false
-    };
-    this.clickLogin = this.clickLogin.bind(this);
-  }
-  clickLogin(e) {
-    this.setState({ opened: !this.state.opened });
-    console.log(`hit`);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     opened: false
+  //   };
+  //   this.clickLogin = this.clickLogin.bind(this);
+  // }
+  // clickLogin(e) {
+  //   this.setState({ opened: !this.state.opened });
+  //   console.log(`hit`);
+  // }
   render() {
     console.log(this.props);
 
     return (
       <LandingBody>
-        <NavBar>
+        {/* <NavBar>
           <ButtonWrapper>
             <Button onClick={e => this.clickLogin(e)} nav>
               Login
@@ -142,17 +162,19 @@ class Landing extends Component {
               <Button nav>Register</Button>
             </NavLink>
           </ButtonWrapper>
-        </NavBar>
+        </NavBar> */}
         <TopPage>
           <TopPageContent>
             <TextContent>
-              <Introduction>
-                Learn how to code, without the fear of drowning.
-              </Introduction>
-              <Blurb>
-                Don't know where to start on the path of coding? Allow us to be
-                your floatie.
-              </Blurb>
+              <IntroCarrier>
+                <Introduction>
+                  Learn how to code, without the fear of drowning.
+                </Introduction>
+                <Blurb>
+                  Don't know where to start on the path of coding? Allow us to
+                  be your floatie.
+                </Blurb>
+              </IntroCarrier>
               <Idk>
                 <NavLink to="/signup">
                   <Button>Sign Up Now</Button>
@@ -164,10 +186,11 @@ class Landing extends Component {
             </LandingContainer>
           </TopPageContent>
         </TopPage>
-        {this.state.opened && <LoginForm />}
+        {this.props.opened && <LoginForm />}
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
+              <h1>Complexity, made simple.</h1>
               <LessonAccordion />
             </Curriculum>
             <SlideShow>
@@ -180,4 +203,10 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = state => {
+  return {
+    // opened: state.loginReducer.opened
+  };
+};
+
+export default connect(mapStateToProps)(Landing);
