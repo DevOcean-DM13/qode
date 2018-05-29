@@ -55,16 +55,24 @@ export const SignUpSideBar = createSideBar(SignUp);
 // anotha one
 const FirstQuizTitle = styled.h1`
   font-weight: 700;
+  font-family: "Work Sans", sans-serif;
 `;
-const TextBox = styled.div``;
+const ContentText = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+
+  & p {
+  }
+`;
 
 const ForwardButton = styled.div`
   height: 70px;
   width: 70px;
   position: fixed;
   z-index: 1000;
-  border: 1px solid black;
-  font-size: 75px;
+  ${"" /* border: 1px solid lightgrey; */} font-size: 75px;
   line-height: 60px;
   text-align: center;
   left: 28vw;
@@ -77,8 +85,7 @@ const PrevButton = styled.div`
   position: fixed;
   left: 0;
   z-index: 1000;
-  border: 1px solid black;
-  font-size: 75px;
+  ${"" /* border: 1px solid black; */} font-size: 75px;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
@@ -105,9 +112,9 @@ class Lesson extends Component {
   componentDidMount() {}
 
   render() {
-    console.log(`Lesson`, this.props);
-    // let pArr = lessons.page.paragraphs.map((e,i)=> )
+    console.log(`This is this.props`, this.props);
     const { content } = this.props.page[1] || [];
+    console.log(`This is where content is`, { content });
 
     return (
       <LessonContent style={this.props.styleProps}>
@@ -120,6 +127,12 @@ class Lesson extends Component {
           </h2>
           <h3 />
         </FirstQuizTitle>
+
+        {content &&
+          content.map((e, i) => {
+            console.log(e);
+            return <ContentText>{e}</ContentText>;
+          })}
         {/* <p style={{ fontSize: "2rem" }}>
           {`${this.props["lesson" + this.state.currentLesson]}`}
         </p> */}

@@ -54,6 +54,18 @@ export function login(userName, password) {
   };
 }
 
+export function logout() {
+  return {
+    type: LOGOUT_USER,
+    payload: axios
+      .post(`/api/auth/logout`)
+      .then(user => {
+        console.log(user);
+      })
+      .catch(err => console.log(err))
+  };
+}
+
 export function getUser() {
   return {
     type: GET_USER_OBJ,

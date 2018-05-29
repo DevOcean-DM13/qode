@@ -18,12 +18,7 @@ import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
 import NavBar from "./components/MP-Components/NavBar";
 //IMPORT ASSETS AND CSS
 import "./App.css";
-import { getUser } from "./ducks/userReducer";
-
-//IMPORT STYLED COMPONENTS
-import Button from "./components/MP-Components/Button";
-import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
-import NavBar from "./components/MP-Components/NavBar";
+import { getUser, logout } from "./ducks/userReducer";
 
 class App extends Component {
   // componentDidUpdate(prevProps, prevState) {
@@ -43,6 +38,7 @@ class App extends Component {
       opened: false
     };
     this.clickLogin = this.clickLogin.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -53,13 +49,16 @@ class App extends Component {
     this.setState({ opened: !this.state.opened });
   }
 
+  logout() {
+    this.props.logout(this.props.user.user_name);
+  }
   render() {
     console.log(`look here`, this.props);
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
           <NavBar>
-            <button>Logout</button>
+            <Button onClick={this.logout}>Logout</Button>
           </NavBar>
         ) : (
           <NavBar>
@@ -100,4 +99,4 @@ const mapStateToProps = state => {
     user: state.userReducer.user
   };
 };
-export default withRouter(connect(mapStateToProps, { getUser })(App));
+export default withRouter(connect(mapStateToProps, { getUser, logout })(App));
