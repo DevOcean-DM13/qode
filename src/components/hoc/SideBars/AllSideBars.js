@@ -88,26 +88,101 @@ class Lesson extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLesson: 1,
-      currentPage: 2
+      currentLesson: this.props.match.params.lesson_id,
+      currentPage: this.props.match.params.pageoflesson,
+      nextPage: null,
+      nexLesson: null
     };
   }
-  handleForward = e => {
-    let currentLessonAsNum = parseInt(this.state.currentLesson);
-    // if currentLessonAsNum=
-    this.setState({ currentLesson: currentLessonAsNum + 1 });
-  };
-  handleBack = e => {
-    let currentLessonAsNum = parseInt(this.state.currentLesson);
-    this.setState({ currentLesson: currentLessonAsNum - 1 });
+  // handleForward = e => {
+  //   let currentLessonAsNum = parseInt(this.state.currentLesson);
+  //   // if currentLessonAsNum=
+  //   this.setState({ currentLesson: currentLessonAsNum + 1 });
+  // };
+  // handleBack = e => {
+  //   let currentLessonAsNum = parseInt(this.state.currentLesson);
+  //   this.setState({ currentLesson: currentLessonAsNum - 1 });
+  // };
+
+  forwardClick = e => {
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+    let nextPage;
+    let nextLesson;
+
+    if (this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = parseInt(currentPage) + 1;
+      nextLesson = currentLesson;
+    } else if (!this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = 0;
+      nextLesson = parseInt(currentLesson) + 1;
+    }
+    console.log(currentLesson, currentPage);
+
+    this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
 
-  componentDidMount() {}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      // console.log("do something");
+      this.setState({
+        currentLesson: this.props.match.params.lesson_id,
+        currentPage: this.props.match.params.pageoflesson
+      });
+    }
+  }
 
   render() {
-    console.log(`Lesson`, this.props);
-    // let pArr = lessons.page.paragraphs.map((e,i)=> )
+    console.log(`Lesson`, this.props, this.state);
+
     const { content } = this.props.page[1] || [];
+
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+
+    let nextPage;
+    let nextLesson;
+    let lastLesson;
+    let lastPage;
+
+    if (this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = parseInt(currentPage) + 1;
+      nextLesson = currentLesson;
+    } else if (!this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = 0;
+      nextLesson = parseInt(currentLesson) + 1;
+    }
+    if (this.props.page[currentPage - 1] && currentPage > 0) {
+      lastPage = currentPage - 1;
+      lastLesson = currentLesson;
+    } else if (this.props.page[currentPage - 1] && currentPage === 0) {
+      lastPage = 0;
+      lastLesson = parseInt(currentLesson) - 1;
+    }
+
+    console.log(
+      `current:`,
+      currentLesson,
+      currentPage,
+      "next:",
+      nextLesson,
+      nextPage,
+      "last:",
+      lastLesson,
+      lastPage
+    );
+
+    // this.props.page[this.state.currentPage + 1]
+    //   ? this.setState({ nextPage: this.state.currentPage + 1 })
+    //   : null;
+
+    // this.props.page[this.state.currentPage + 1]
+    //   ? null
+    //   : this.setState({ nextLesson: this.state.currentLesson + 1 });
+    // let nextlesson = this.state.nextLesson;
+    // let nextpage = this.state.nextPage;
+
+    console.log(`HERE! LOOK HERE!`, this.props.page[this.state.currentPage]);
 
     return (
       <LessonContent style={this.props.styleProps}>
@@ -123,8 +198,10 @@ class Lesson extends Component {
         {/* <p style={{ fontSize: "2rem" }}>
           {`${this.props["lesson" + this.state.currentLesson]}`}
         </p> */}
-        <ForwardButton onClick={e => this.handleForward(e)}>></ForwardButton>
-        <PrevButton onClick={e => this.handleBack(e)}>{`<`}</PrevButton>
+
+        <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
+
+        <PrevButton>{`<`}</PrevButton>
       </LessonContent>
     );
   }

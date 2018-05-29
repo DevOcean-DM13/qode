@@ -35,7 +35,7 @@ class App extends Component {
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route
-            path="/lesson/:lesson_id/:page_id"
+            path="/lesson/:lesson_id/:pageoflesson"
             render={() => <LessonPage />}
           />
           <Route
