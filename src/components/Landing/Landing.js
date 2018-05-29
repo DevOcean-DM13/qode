@@ -22,22 +22,22 @@ const LandingBody = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const NavBar = styled.div`
-  width: 100%;
-  height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background: white;
-  width: 100%;
-  backface-visibility: hidden;
-  border-bottom: solid 1px lightgrey;
-  position: fixed;
-  z-index: 500;
-  transition-duration: .15s;
- 
-}
-`;
+// const NavBar = styled.div`
+//   width: 100%;
+//   height: 7vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   background: white;
+//   width: 100%;
+//   backface-visibility: hidden;
+//   border-bottom: solid 1px lightgrey;
+//   position: fixed;
+//   z-index: 500;
+//   transition-duration: .15s;
+
+// }
+// `;
 /* FIRST HALF OF THE LANDING */
 const TopPage = styled.div`
   height: 100vh;
@@ -117,23 +117,23 @@ const SlideShow = styled.div`
 `;
 
 class Landing extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: false
-    };
-    this.clickLogin = this.clickLogin.bind(this);
-  }
-  clickLogin(e) {
-    this.setState({ opened: !this.state.opened });
-    console.log(`hit`);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     opened: false
+  //   };
+  //   this.clickLogin = this.clickLogin.bind(this);
+  // }
+  // clickLogin(e) {
+  //   this.setState({ opened: !this.state.opened });
+  //   console.log(`hit`);
+  // }
   render() {
     console.log(this.props);
 
     return (
       <LandingBody>
-        <NavBar>
+        {/* <NavBar>
           <ButtonWrapper>
             <Button onClick={e => this.clickLogin(e)} nav>
               Login
@@ -142,7 +142,7 @@ class Landing extends Component {
               <Button nav>Register</Button>
             </NavLink>
           </ButtonWrapper>
-        </NavBar>
+        </NavBar> */}
         <TopPage>
           <TopPageContent>
             <TextContent>
@@ -164,7 +164,7 @@ class Landing extends Component {
             </LandingContainer>
           </TopPageContent>
         </TopPage>
-        {this.state.opened && <LoginForm />}
+        {this.props.opened && <LoginForm />}
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
@@ -180,4 +180,10 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = state => {
+  return {
+    // opened: state.loginReducer.opened
+  };
+};
+
+export default connect(mapStateToProps)(Landing);

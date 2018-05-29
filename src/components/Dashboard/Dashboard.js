@@ -9,7 +9,7 @@ const ProfilePage = styled.div`
   overflow-y: hidden;
   display: flex;
   justify-content: center;
-  background: #3f5566;
+  /* background: #3f5566; */
 `;
 
 const ProfileContainer = styled.div`
@@ -17,7 +17,7 @@ const ProfileContainer = styled.div`
   width: 65vw;
   box-sizing: border-box;
   margin-left: 35vw;
-  background: #3f5566;
+  /* background: #3f5566; */
   overflow-y: hidden;
 
   &.fullScreen {
@@ -32,7 +32,7 @@ const ProfileMain = styled.div`
   /* background: pink; */
   width: auto;
   box-sizing: border-box;
-  padding-top: 11vh;
+  padding-top: 30vh;
 `;
 const ProfileInfo = styled.div`
   height: auto;
@@ -70,7 +70,7 @@ const PurbackTitle = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   letter-spacing: 0.5px;
-  color: white;
+  /* color: white; */
 `;
 const PurbackContent = styled.div`
   font-size: 1.6em;
@@ -79,7 +79,7 @@ const PurbackContent = styled.div`
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: white;
+  /* color: white; */
 `;
 
 const NameContainer = styled.div`
@@ -99,14 +99,14 @@ const UserName = styled.p`
   letter-spacing: 0.5px;
   margin-bottom: -1vh;
   box-sizing: border-box;
-  color: white;
+  /* color: white; */
 `;
 const Email = styled.p`
   font-size: 0.8em;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   letter-spacing: 0.5px;
-  color: white;
+  /* color: white; */
 `;
 const OpenButton = styled.button`
   height: 20px;
@@ -132,20 +132,16 @@ class Dashboard extends Component {
     const { background, goals, pic, purpose, username, email } = this.props;
     return (
       <ProfilePage>
-        <ProfileSideBar />
-        {sidebar && (
-          <ProfileSideBar className="" style={{ position: "absolute" }} />
-        )}
+        {sidebar && <ProfileSideBar />}
         {!this.state.sidebar ? (
           <ProfileContainer className="fullScreen">
             <ProfileMain>
               <ProfileInfo>
-                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Background:</PurbackTitle>
                   <PurbackContent>{background}</PurbackContent>
                 </PurBackContainer>
-
+                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Purpose:</PurbackTitle>
                   <PurbackContent>{purpose}</PurbackContent>
@@ -162,11 +158,11 @@ class Dashboard extends Component {
           <ProfileContainer>
             <ProfileMain>
               <ProfileInfo>
-                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Background:</PurbackTitle>
                   <PurbackContent>{background}</PurbackContent>
                 </PurBackContainer>
+                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Purpose:</PurbackTitle>
                   <PurbackContent>{purpose}</PurbackContent>
