@@ -12,7 +12,7 @@ export function getLesson(lesson_id) {
     payload: axios
       .get(`/api/content/get_lesson/${lesson_id}`)
       .then(lesson => {
-        console.log(lesson);
+        // console.log(lesson);
         return lesson.data;
       })
       .catch(err => console.log(err))

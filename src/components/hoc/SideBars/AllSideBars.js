@@ -55,16 +55,24 @@ export const SignUpSideBar = createSideBar(SignUp);
 // anotha one
 const FirstQuizTitle = styled.h1`
   font-weight: 700;
+  font-family: "Work Sans", sans-serif;
 `;
-const TextBox = styled.div``;
+const ContentText = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+
+  & p {
+  }
+`;
 
 const ForwardButton = styled.div`
   height: 70px;
   width: 70px;
   position: fixed;
   z-index: 1000;
-  border: 1px solid black;
-  font-size: 75px;
+  ${"" /* border: 1px solid lightgrey; */} font-size: 75px;
   line-height: 60px;
   text-align: center;
   left: 28vw;
@@ -77,8 +85,7 @@ const PrevButton = styled.div`
   position: fixed;
   left: 0;
   z-index: 1000;
-  border: 1px solid black;
-  font-size: 75px;
+  ${"" /* border: 1px solid black; */} font-size: 75px;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
@@ -89,9 +96,7 @@ class Lesson extends Component {
     super(props);
     this.state = {
       currentLesson: this.props.match.params.lesson_id,
-      currentPage: this.props.match.params.pageoflesson,
-      nextPage: null,
-      nexLesson: null
+      currentPage: this.props.match.params.pageoflesson
     };
   }
   // handleForward = e => {
@@ -117,7 +122,7 @@ class Lesson extends Component {
       nextPage = 0;
       nextLesson = parseInt(currentLesson) + 1;
     }
-    console.log(currentLesson, currentPage);
+    // console.log(currentLesson, currentPage);
 
     this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
@@ -133,9 +138,11 @@ class Lesson extends Component {
   }
 
   render() {
-    console.log(`Lesson`, this.props, this.state);
+    // console.log(`Lesson`, this.state);
 
-    const { content } = this.props.page[1] || [];
+    // console.log(`This is this.props`, this.props);
+    const { content } =
+      this.props.page[this.props.match.params.pageoflesson] || [];
 
     let currentLesson = this.state.currentLesson;
     let currentPage = this.state.currentPage;
@@ -160,17 +167,17 @@ class Lesson extends Component {
       lastLesson = parseInt(currentLesson) - 1;
     }
 
-    console.log(
-      `current:`,
-      currentLesson,
-      currentPage,
-      "next:",
-      nextLesson,
-      nextPage,
-      "last:",
-      lastLesson,
-      lastPage
-    );
+    // console.log(
+    //   `current:`,
+    //   currentLesson,
+    //   currentPage,
+    //   "next:",
+    //   nextLesson,
+    //   nextPage,
+    //   "last:",
+    //   lastLesson,
+    //   lastPage
+    // );
 
     // this.props.page[this.state.currentPage + 1]
     //   ? this.setState({ nextPage: this.state.currentPage + 1 })
@@ -182,7 +189,7 @@ class Lesson extends Component {
     // let nextlesson = this.state.nextLesson;
     // let nextpage = this.state.nextPage;
 
-    console.log(`HERE! LOOK HERE!`, this.props.page[this.state.currentPage]);
+    // console.log(`HERE! LOOK HERE!`, this.props.page[this.state.currentPage]);
 
     return (
       <LessonContent style={this.props.styleProps}>
@@ -195,6 +202,14 @@ class Lesson extends Component {
           </h2>
           <h3 />
         </FirstQuizTitle>
+
+        {content &&
+          content.map((e, i) => {
+            {
+              /* console.log(e); */
+            }
+            return <ContentText key={i}>{e}</ContentText>;
+          })}
         {/* <p style={{ fontSize: "2rem" }}>
           {`${this.props["lesson" + this.state.currentLesson]}`}
         </p> */}

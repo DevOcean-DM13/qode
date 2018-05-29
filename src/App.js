@@ -53,7 +53,6 @@ class App extends Component {
     this.props.logout(this.props.user.user_name);
   }
   render() {
-    console.log(`look here`, this.props);
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
