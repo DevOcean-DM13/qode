@@ -7,6 +7,7 @@ of its own: An Express application is
 essentially a series of middleware function calls.
 */
 const app = express();
+app.use(express.static(`${__dirname}/../build`));
 const cors = require("cors");
 const port = process.env.PORT || 4891;
 const massive = require("massive");
@@ -66,7 +67,12 @@ app.use((req, res, next) => {
   res.status(404).send({ message: "RoUtE NoT FOUnd:(" });
   //defaults to a 404 error if route does not exist
 });
-//---------EXPRESS ROUTES-------------
+//---------E-------------
+
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`API listening on port ${port}`);
