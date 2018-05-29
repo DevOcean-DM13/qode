@@ -17,7 +17,8 @@ const EditorAndDisplay = styled.div`
 
 const DisplayWindow = styled.div`
   height: 60.6vh;
-  ${"" /* width: 42.5vh; */} border: 1px solid lightgray;
+  /* width: 42.5vh; */
+  border: 1px solid lightgray;
   display: block;
   width: 0px;
   z-index: -1;
@@ -34,11 +35,16 @@ export default class LandingEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput: `<h1>Hi from an h1 tag!</h1>   
+      userInput: `
+  <h1>Hi from an h1 tag!</h1>   
   <h2>Hi from an h2 tag!</h2> 
   <p>Something is missing here! What is it?
-  <style> h1{
-                  }</style>
+  
+  <style> 
+    h1{
+ 
+  }
+  </style>
   
   `,
       showHTML: true
@@ -68,7 +74,7 @@ export default class LandingEditor extends Component {
             theme="ambiance"
             onChange={this.onChange}
             name="UNIQUE_ID_OF_DIV"
-            height="600px"
+            height="300px"
             highlightActiveLine={true}
             editorProps={{
               $blockScrolling: true

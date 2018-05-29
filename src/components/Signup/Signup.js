@@ -7,6 +7,7 @@ import {
 } from "../hoc/SignButtons/AllSignButtons";
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
+import LoginForm from "../Landing/LoginForm";
 
 const SignUpForm = styled.div`
   height: auto;
