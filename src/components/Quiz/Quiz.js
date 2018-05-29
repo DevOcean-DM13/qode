@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { EleAndTagSideBar } from "../hoc/SideBars/AllSideBars";
+import { LessonBar } from "../hoc/SideBars/AllSideBars";
 import styled from "styled-components";
 
 import { getHtmlQuestions } from "../../ducks/quizReducer";
@@ -49,14 +49,25 @@ class Quiz extends Component {
     super(props);
     this.state = { question: 1, section: 1 };
   }
+
+  handleCorrect(event) {}
+  handleClick = e => {
+    this.setState({ buttonChosen: e });
+    if (e == this.props.html["section" + this.state.current].pre.one.correct) {
+      alert("correct!");
+    } else {
+      alert("wrong");
+    }
+  };
+
   render() {
     console.log(this.props);
 
     return (
       <div>
-        <EleAndTagSideBar />
+        <LessonBar />
         <QuizComponent>
-          <h1>{}</h1>
+          <h1>hello</h1>
           <h2>Question 1</h2>
           <AnswersContainer>
             <AnswerBox>

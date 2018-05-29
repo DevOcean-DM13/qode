@@ -8,7 +8,8 @@ const initialState = {
       prompt: `Let's start with a quick quiz!`,
       pre: {
         one: {
-          prompt: "What are the three languages used in most modern websites?",
+          prompt:
+            "What three coding languages are used in nearly all modern websites?",
           answers: [
             "HTML, CSS, and Javascript",
             "Python, Perl, C#",
