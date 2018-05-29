@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import createSideBar from "./SideBars";
 import styled from "styled-components";
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getHtmlLessons } from "../../../ducks/lessonReducer";
 
@@ -55,16 +55,24 @@ export const SignUpSideBar = createSideBar(SignUp);
 // anotha one
 const FirstQuizTitle = styled.h1`
   font-weight: 700;
+  font-family: "Work Sans", sans-serif;
 `;
-const TextBox = styled.div``;
+const ContentText = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+
+  & p {
+  }
+`;
 
 const ForwardButton = styled.div`
   height: 70px;
   width: 70px;
   position: fixed;
   z-index: 1000;
-  border: 1px solid black;
-  font-size: 75px;
+  ${"" /* border: 1px solid lightgrey; */} font-size: 75px;
   line-height: 60px;
   text-align: center;
   left: 28vw;
@@ -77,57 +85,164 @@ const PrevButton = styled.div`
   position: fixed;
   left: 0;
   z-index: 1000;
-  border: 1px solid black;
-  font-size: 75px;
+  ${"" /* border: 1px solid black; */} font-size: 75px;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
   margin-left: 2vw;
 `;
-class EleAndTag extends Component {
-  constructor() {
-    super();
+class Lesson extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      currentLesson: "1"
+      currentLesson: this.props.match.params.lesson_id,
+      currentPage: this.props.match.params.pageoflesson
     };
   }
-  handleForward = e => {
-    let currentLessonAsNum = parseInt(this.state.currentLesson);
-    // if currentLessonAsNum=
-    this.setState({ currentLesson: currentLessonAsNum + 1 });
-  };
-  handleBack = e => {
-    let currentLessonAsNum = parseInt(this.state.currentLesson);
-    this.setState({ currentLesson: currentLessonAsNum - 1 });
+  // handleForward = e => {
+  //   let currentLessonAsNum = parseInt(this.state.currentLesson);
+  //   // if currentLessonAsNum=
+  //   this.setState({ currentLesson: currentLessonAsNum + 1 });
+  // };
+  // handleBack = e => {
+  //   let currentLessonAsNum = parseInt(this.state.currentLesson);
+  //   this.setState({ currentLesson: currentLessonAsNum - 1 });
+  // };
+
+  forwardClick = e => {
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+    let nextPage;
+    let nextLesson;
+
+    if (this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = parseInt(currentPage) + 1;
+      nextLesson = currentLesson;
+    } else if (!this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = 0;
+      nextLesson = parseInt(currentLesson) + 1;
+    }
+    // console.log(currentLesson, currentPage);
+
+    this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
 
-  componentDidMount() {
-    this.props.getHtmlLessons();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      // console.log("do something");
+      this.setState({
+        currentLesson: this.props.match.params.lesson_id,
+        currentPage: this.props.match.params.pageoflesson
+      });
+    }
   }
+
   render() {
-    console.log(this.props);
-    // let pArr = lessons.page.paragraphs.map((e,i)=> )
+    // console.log(`Lesson`, this.state);
+
+    // console.log(`This is this.props`, this.props);
+    const { content } =
+      this.props.page[this.props.match.params.pageoflesson] || [];
+
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+
+    let nextPage;
+    let nextLesson;
+    let lastLesson;
+    let lastPage;
+
+    if (this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = parseInt(currentPage) + 1;
+      nextLesson = currentLesson;
+    } else if (!this.props.page[parseInt(currentPage) + 1]) {
+      nextPage = 0;
+      nextLesson = parseInt(currentLesson) + 1;
+    }
+    if (this.props.page[currentPage - 1] && currentPage > 0) {
+      lastPage = currentPage - 1;
+      lastLesson = currentLesson;
+    } else if (this.props.page[currentPage - 1] && currentPage === 0) {
+      lastPage = 0;
+      lastLesson = parseInt(currentLesson) - 1;
+    }
+
+    // console.log(
+    //   `current:`,
+    //   currentLesson,
+    //   currentPage,
+    //   "next:",
+    //   nextLesson,
+    //   nextPage,
+    //   "last:",
+    //   lastLesson,
+    //   lastPage
+    // );
+
+    // this.props.page[this.state.currentPage + 1]
+    //   ? this.setState({ nextPage: this.state.currentPage + 1 })
+    //   : null;
+
+    // this.props.page[this.state.currentPage + 1]
+    //   ? null
+    //   : this.setState({ nextLesson: this.state.currentLesson + 1 });
+    // let nextlesson = this.state.nextLesson;
+    // let nextpage = this.state.nextPage;
+
+    // console.log(`HERE! LOOK HERE!`, this.props.page[this.state.currentPage]);
+
     return (
-      <div style={this.props.styleProps}>
-        <FirstQuizTitle>Intro to HTML</FirstQuizTitle>
-        <p style={{ fontSize: "2rem" }}>{`${
-          this.props["lesson" + this.state.currentLesson]
-        }`}</p>
-        <ForwardButton onClick={e => this.handleForward(e)}>></ForwardButton>
-        <PrevButton onClick={e => this.handleBack(e)}>{`<`}</PrevButton>
-      </div>
+      <LessonContent style={this.props.styleProps}>
+        <FirstQuizTitle>
+          {this.props.page.length &&
+            this.props.page[this.state.currentPage].lesson_title}
+          <h2>
+            {this.props.page.length &&
+              this.props.page[this.state.currentPage].subtitle}
+          </h2>
+          <h3 />
+        </FirstQuizTitle>
+
+        {content &&
+          content.map((e, i) => {
+            {
+              /* console.log(e); */
+            }
+            return <ContentText key={i}>{e}</ContentText>;
+          })}
+        {/* <p style={{ fontSize: "2rem" }}>
+          {`${this.props["lesson" + this.state.currentLesson]}`}
+        </p> */}
+
+        <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
+
+        <PrevButton>{`<`}</PrevButton>
+      </LessonContent>
     );
   }
 }
 
+const LessonContent = styled.div`
+  & p.test {
+    color: "white";
+  }
+
+  h1 {
+    font-weight: 700;
+  }
+  h2 {
+    font-weight: 400;
+  }
+`;
+
 const mapStateToProps = state => {
   return {
-    ...state.lessonReducer
+    page: state.lessReducer.lesson
   };
 };
 
-export const EleAndTagSideBar = createSideBar(
-  connect(mapStateToProps, { getHtmlLessons })(EleAndTag)
+export const LessonBar = createSideBar(
+  withRouter(connect(mapStateToProps, {})(Lesson))
 );
 
 const CourseWrapper = styled.div`

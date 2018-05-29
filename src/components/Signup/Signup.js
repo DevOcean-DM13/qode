@@ -7,6 +7,7 @@ import {
 } from "../hoc/SignButtons/AllSignButtons";
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
+import LoginForm from "../Landing/LoginForm";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -20,7 +21,7 @@ const SignUpForm = styled.div`
   /* position: relative; */
   overflow-y: hidden;
   padding-bottom: 150px;
-  background: #f9f9f7;
+  background: #fffffd;
 `;
 
 // Coding Background
@@ -162,7 +163,7 @@ const Register = styled.div`
   box-sizing: border-box;
   align-items: center;
   justify-content: flex-end;
-  background: #f9f9f7;
+  background: #fffffd;
 `;
 const RegisterButton = styled.button`
   height: 35px;
