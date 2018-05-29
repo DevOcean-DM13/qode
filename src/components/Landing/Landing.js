@@ -53,7 +53,7 @@ const TopPageContent = styled.div`
   justify-content: space-between;
 `;
 const TextContent = styled.div`
-  width: 50%;
+  width: 35%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -110,6 +110,12 @@ const Curriculum = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  & h1 {
+    color: white;
+    font-size: 5em;
+  }
 `;
 const SlideShow = styled.div`
   width: 50%;
@@ -168,6 +174,7 @@ class Landing extends Component {
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
+              <h1>Complexity, made simple.</h1>
               <LessonAccordion />
             </Curriculum>
             <SlideShow>

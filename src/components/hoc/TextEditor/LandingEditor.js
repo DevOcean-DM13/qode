@@ -4,6 +4,7 @@ import brace from "brace";
 import AceEditor from "react-ace";
 import "brace/mode/html";
 import "brace/theme/ambiance";
+import "brace/theme/ambiance";
 
 // IMPORTING IN A FEW STYLED COMPONENTS CAPS LOCK
 import styled from "styled-components";
@@ -24,7 +25,7 @@ const DisplayWindow = styled.div`
 const TextEditorContainer = styled.body`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   height: 88%;
 `;
@@ -34,8 +35,12 @@ export default class LandingEditor extends Component {
     super(props, context);
     this.state = {
       userInput: `<h1>Hi from an h1 tag!</h1>   
-        <h2>Hi from an h2 tag!</h2> 
-        <p>Something is missing here! What is it?`,
+  <h2>Hi from an h2 tag!</h2> 
+  <p>Something is missing here! What is it?
+  <style> h1{
+                  }</style>
+  
+  `,
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
@@ -59,9 +64,8 @@ export default class LandingEditor extends Component {
       <TextEditorContainer>
         <EditorAndDisplay>
           <AceEditor
-            classname="HEREHHERHEHHERHEH"
             mode="html"
-            theme="monokai"
+            theme="ambiance"
             onChange={this.onChange}
             name="UNIQUE_ID_OF_DIV"
             height="600px"
