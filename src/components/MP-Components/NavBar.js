@@ -6,7 +6,7 @@ export default styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: white;
+  background: #fffffd;
   width: 100%;
   backface-visibility: hidden;
   border-bottom: solid 1px lightgrey;
