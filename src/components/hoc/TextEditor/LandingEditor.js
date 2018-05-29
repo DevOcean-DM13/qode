@@ -25,7 +25,7 @@ const DisplayWindow = styled.div`
 const TextEditorContainer = styled.body`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   height: 88%;
 `;
