@@ -132,20 +132,16 @@ class Dashboard extends Component {
     const { background, goals, pic, purpose, username, email } = this.props;
     return (
       <ProfilePage>
-        <ProfileSideBar />
-        {sidebar && (
-          <ProfileSideBar className="" style={{ position: "absolute" }} />
-        )}
+        {sidebar && <ProfileSideBar />}
         {!this.state.sidebar ? (
           <ProfileContainer className="fullScreen">
             <ProfileMain>
               <ProfileInfo>
-                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Background:</PurbackTitle>
                   <PurbackContent>{background}</PurbackContent>
                 </PurBackContainer>
-
+                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Purpose:</PurbackTitle>
                   <PurbackContent>{purpose}</PurbackContent>
@@ -162,11 +158,11 @@ class Dashboard extends Component {
           <ProfileContainer>
             <ProfileMain>
               <ProfileInfo>
-                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Background:</PurbackTitle>
                   <PurbackContent>{background}</PurbackContent>
                 </PurBackContainer>
+                <ProfilePic src={pic} />
                 <PurBackContainer>
                   <PurbackTitle>Purpose:</PurbackTitle>
                   <PurbackContent>{purpose}</PurbackContent>

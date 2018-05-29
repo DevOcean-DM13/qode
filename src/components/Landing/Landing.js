@@ -22,22 +22,6 @@ const LandingBody = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const NavBar = styled.div`
-  width: 100%;
-  height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background: white;
-  width: 100%;
-  backface-visibility: hidden;
-  border-bottom: solid 1px lightgrey;
-  position: fixed;
-  z-index: 500;
-  transition-duration: .15s;
- 
-}
-`;
 /* FIRST HALF OF THE LANDING */
 const TopPage = styled.div`
   height: 100vh;
@@ -133,16 +117,6 @@ class Landing extends Component {
 
     return (
       <LandingBody>
-        <NavBar>
-          <ButtonWrapper>
-            <Button onClick={e => this.clickLogin(e)} nav>
-              Login
-            </Button>
-            <NavLink to="/signup">
-              <Button nav>Register</Button>
-            </NavLink>
-          </ButtonWrapper>
-        </NavBar>
         <TopPage>
           <TopPageContent>
             <TextContent>
@@ -164,7 +138,7 @@ class Landing extends Component {
             </LandingContainer>
           </TopPageContent>
         </TopPage>
-        {this.state.opened && <LoginForm />}
+        {this.props.opened && <LoginForm />}
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
