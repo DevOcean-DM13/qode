@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Signup from "./components/Signup/Signup";
-import LessonOneTest from "./components/Lesson/AllLessonPages";
+import LessonPage from "./components/Lesson/AllLessonPages";
 
 // IMPORT STYLED COMPONENTS
 
@@ -70,7 +70,10 @@ class App extends Component {
         )}
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
-          <Route path="/test" render={() => <LessonOneTest />} />
+          <Route
+            path="/lesson/:lesson_id/:page_id"
+            render={() => <LessonPage />}
+          />
           <Route
             path="/"
             render={() =>

@@ -27,7 +27,6 @@ const getLesson = (req, res) => {
     .get("db")
     .get_lesson(lesson_id)
     .then(response => {
-      console.log(response);
       res.status(200).send(response);
     })
     .catch(console.log);
