@@ -49,6 +49,17 @@ class Quiz extends Component {
     super(props);
     this.state = { question: 1, section: 1 };
   }
+
+  handleCorrect(event) {}
+  handleClick = e => {
+    this.setState({ buttonChosen: e });
+    if (e == this.props.html["section" + this.state.current].pre.one.correct) {
+      alert("correct!");
+    } else {
+      alert("wrong");
+    }
+  };
+
   render() {
     console.log(this.props);
 
