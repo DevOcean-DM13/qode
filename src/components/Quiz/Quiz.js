@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { EleAndTagSideBar } from "../hoc/SideBars/AllSideBars";
+import { LessonBar } from "../hoc/SideBars/AllSideBars";
 import styled from "styled-components";
 
 import { getHtmlQuestions } from "../../ducks/quizReducer";
@@ -54,9 +54,9 @@ class Quiz extends Component {
 
     return (
       <div>
-        <EleAndTagSideBar />
+        <LessonBar />
         <QuizComponent>
-          <h1>{}</h1>
+          <h1>hello</h1>
           <h2>Question 1</h2>
           <AnswersContainer>
             <AnswerBox>
