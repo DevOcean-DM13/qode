@@ -18,6 +18,10 @@ const LessonsPages = styled.div`
   font-family: "Roboto", sans-serif;
   color: white;
   /* z-index: -10; */
+
+  &.Quiz {
+    width: 100vw;
+  }
 `;
 
 class LessonPage extends Component {
@@ -25,42 +29,33 @@ class LessonPage extends Component {
     super(props);
     this.state = {
       page: this.props.match.params.pageoflesson
-      // currentLesson: this.props.match.params.lesson_id
-      // currentPage: this.props.match.params.pageoflesson
     };
   }
   componentDidMount() {
     this.props.getLesson(this.props.match.params.lesson_id);
-    // .then(pageList =>
-    //   this.setState({ page: pageList[this.props.match.params.pageoflesson] })
-    // );
-    // .then(() =>
-    // console.log(
-    //   `LOOK HERE BITCH`,
-    //   this.props.lesson[this.props.match.params.lesson_id].has_editor_imp
-    // )
-    // );
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.props.getLesson(this.props.match.params.lesson_id).then(() => {
-        // console.log(`whyyounoupdate`);
         this.setState({ page: this.props.match.params.pageoflesson });
       });
     }
   }
   render() {
     console.log(
-      `lesson props in AllLessonPages`,
+      `page`,
       this.state.page,
+      `all lesson`,
       this.props.lesson,
+      `params object`,
       this.props.match.params,
+      `page content`,
       this.props.lesson[this.state.page]
     );
 
     return (
       <div>
-        <LessonBar lesson={this.props.lesson} />
+        {this.state.page !== 0 && <LessonBar lesson={this.props.lesson} />}
 
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].has_editor_imp && (
@@ -77,19 +72,25 @@ class LessonPage extends Component {
 
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].page_type === "prequiz" && (
-            <LessonsPages>
-              <Quiz />
+            <LessonsPages className="Quiz" page={this.state.page}>
+              <Quiz
+                quiz_id={this.props.lesson[this.state.page].quiz_id}
+                pageContent={this.props.lesson[this.state.page]}
+              />
             </LessonsPages>
           )}
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].page_type === "postquiz" && (
-            <LessonsPages>
-              <Quiz />
+            <LessonsPages className="Quiz">
+              <Quiz
+                quiz_id={this.props.lesson[this.state.page].quiz_id}
+                pageContent={this.props.lesson[this.state.page]}
+              />
             </LessonsPages>
           )}
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].page_type === "lesson" && (
-            <LessonsPages />
+            <LessonsPages page={this.state.page} />
           )}
       </div>
     );

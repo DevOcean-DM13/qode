@@ -10,3 +10,7 @@
   margin: 0;
   padding: 0;
 }
+
+.swal2-popup .swal2-title {
+  color: white;
+}

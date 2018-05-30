@@ -136,7 +136,7 @@ class LoginForm extends Component {
     console.log(`HERE`, this.props);
     console.log(this.state);
     return (
-      <LoginContainerBox className="parent">
+      <LoginContainerBox data-cy-login-box>
         <SignUpTitle>Welcome</SignUpTitle>
         <LoginContainer
           id="login"
@@ -147,6 +147,7 @@ class LoginForm extends Component {
           <InputBoxed>
             <InputContainer>
               <Input
+                data-cy-login-user
                 name="usernameEmail"
                 placeholder="Username or Email"
                 value={this.state.usernameEmail}
@@ -158,6 +159,7 @@ class LoginForm extends Component {
 
             <InputContainer>
               <Input
+                data-cy-login-password
                 name="password"
                 placeholder="Password"
                 value={this.state.password}
@@ -167,7 +169,12 @@ class LoginForm extends Component {
               />
             </InputContainer>
           </InputBoxed>
-          <Login className="hover" type="submit" value="Login" />
+          <Login
+            data-cy-login-button
+            className="hover"
+            type="submit"
+            value="Login"
+          />
         </LoginContainer>
       </LoginContainerBox>
     );
