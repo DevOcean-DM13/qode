@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 //   width: 100%;
 // `;
 const ActualSlides = styled.img`
-  height: 100%;
+  height: 62vh;
   width: 100%;
 `;
 
