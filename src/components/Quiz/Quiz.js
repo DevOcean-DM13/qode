@@ -127,7 +127,8 @@ class Quiz extends Component {
         confirmButtonText: "I'm Ready",
         padding: "3em",
         color: "#ffffff",
-        background: "#000000"
+        background: "#000000",
+        confirmButtonColor: "#00a7e1"
       });
     });
   }

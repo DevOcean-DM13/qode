@@ -51,9 +51,8 @@ class App extends Component {
   }
 
   logout() {
-    this.props.logout(this.props.user.user_name).then(() => {
-      this.setState({ opened: !this.state.opened });
-    });
+    this.setState({ opened: !this.state.opened });
+    this.props.logout(this.props.user.user_name);
   }
 
   render() {
