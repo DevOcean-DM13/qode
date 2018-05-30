@@ -11,6 +11,7 @@ const QuizComponent = styled.div`
   position: absolute;
   left: 0;
   width: 90vw;
+  height: 90vh;
   margin: 5vw;
   padding: 30px;
   display: flex;
@@ -19,6 +20,7 @@ const QuizComponent = styled.div`
   color: white;
   border-radius: 5px;
   background: #000000;
+  justify-content: space-between;
 
   & h1 {
     font-size: 4rem;
@@ -69,7 +71,7 @@ const NextQuestionButton = styled.button`
   border-radius: 6px;
   outline: none;
   font-size: 0.75em;
-  border: solid 1px #a0dcff;
+  border: solid 1px transparent;
 
   &:hover {
     outline: none;
@@ -124,9 +126,8 @@ class Quiz extends Component {
         title: `${this.props.pageContent.content[0]}`,
         confirmButtonText: "I'm Ready",
         padding: "3em",
-        color: "white",
-        background:
-          "#fff url(https://images.freecreatives.com/wp-content/uploads/2016/02/Free-Blue-Texture-Background-For-Download.jpg)"
+        color: "#ffffff",
+        background: "#000000"
       });
     });
   }
