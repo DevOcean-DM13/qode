@@ -130,8 +130,7 @@ class Quiz extends Component {
           title: "Congrats",
           text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
           position: "center",
-          target: "AnswerBox",
-          
+          target: "AnswerBox"
         })
       : Swal({
           title: "Your work has been saved",
@@ -152,11 +151,8 @@ class Quiz extends Component {
         confirmButtonText: "I'm Ready",
         padding: "3em",
         color: "#ffffff",
-        background: "#000000",
-        
-      }).then(() => this.setState({blurPage:!this.state.blurPage})
-
-      )
+        background: "#000000"
+      }).then(() => this.setState({ blurPage: !this.state.blurPage }));
     });
   }
 
@@ -177,6 +173,9 @@ class Quiz extends Component {
     }
 
     console.log(
+      `THIS IS THIS.PROPS.QUIZ:`,
+      this.props.quiz,
+      `ABOVE IS THIS.PROPS.QUIZ:`,
       this.props,
       this.state,
       `Current Lesson`,
@@ -218,7 +217,6 @@ class Quiz extends Component {
                 <h1>tests</h1>
               )}
             </AnswersContainer>
-
             {this.state.questionIndex <= 1 ? (
               <NextQuestionButton
                 onClick={() =>
