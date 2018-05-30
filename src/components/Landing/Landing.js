@@ -165,6 +165,7 @@ const Comp = styled.div`
 const SlideShow = styled.div`
   width: 50%;
   height: 100%;
+  padding-top: 7.7vh;
 `;
 
 class Landing extends Component {
