@@ -90,9 +90,9 @@ export default class LandingEditor extends Component {
             }}
           />
         </EditorAndDisplay>
-        <div>
+        {/* <div>
           <Button onClick={e => this.showHTML(e)}>Run code</Button>
-        </div>
+        </div> */}
       </TextEditorContainer>
     );
   }
