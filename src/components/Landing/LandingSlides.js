@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 // `;
 const ActualSlides = styled.img`
   height: 62vh;
-  width: 100%;
+  width: 80%;
 `;
 
 export default class SimpleSlider extends Component {
