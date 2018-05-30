@@ -27,22 +27,24 @@ const AnswersContainer = styled.div`
   margin-top: 5vh;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 1px solid white;
   font-size: 4rem;
   justify-content: center;
   align-items: center;
   height: 60vh;
   width: 100%;
 `;
+
 const AnswerBox = styled.div`
-  display: inline-block;
+  /* display: inline-block; */
   height: 10vh;
   width: 40%;
-  border: 1px solid black;
+  border: 1px solid white;
   margin: 2vh 1vw;
   text-align: center;
   font-size: 2rem;
 `;
+
 const NextQuestionButton = styled.button`
   height: 35px;
   width: 180px;
@@ -79,9 +81,20 @@ class Quiz extends Component {
   }
 
   answerQuestion = e => {
-    this.setState({ chosenAnswer: e.e });
-    console.log(e.e);
+    this.setState({ chosenAnswer: e.e }, () => this.evaluateAnswer());
   };
+
+  evaluateAnswer = () => {
+    console.log(
+      this.state.chosenAnswer,
+      this.props.quiz[this.state.questionIndex].correct_answer
+    );
+    this.state.chosenAnswer ===
+    this.props.quiz[this.state.questionIndex].correct_answer
+      ? alert("That's right, you're a coding ninja!")
+      : alert("Try again");
+  };
+
   componentDidMount() {
     this.props.getQuiz(this.props.quiz_id);
   }
@@ -141,13 +154,24 @@ class Quiz extends Component {
                 <h1>tests</h1>
               )}
             </AnswersContainer>
-            <NextQuestionButton
-              onClick={() =>
-                this.setState({ questionIndex: this.state.questionIndex + 1 })
-              }
-            >
-              Next Q
-            </NextQuestionButton>
+
+            {this.state.questionIndex <= 1 ? (
+              <NextQuestionButton
+                onClick={() =>
+                  this.setState({ questionIndex: this.state.questionIndex + 1 })
+                }
+              >
+                Next Q
+              </NextQuestionButton>
+            ) : (
+              <NextQuestionButton
+                onClick={() =>
+                  this.props.history.push(`/lesson/${nextLesson}/${nextPage}`)
+                }
+              >
+                Continue to Lesson
+              </NextQuestionButton>
+            )}
           </QuizComponent>
         )}
       </div>
