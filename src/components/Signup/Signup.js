@@ -8,6 +8,7 @@ import {
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
+import { NavLink } from "react-router-dom";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -43,12 +44,6 @@ const Question = styled.p`
     margin-top: 34px;
     margin-bottom: 40px;
   }
-`;
-const BackgroundQuestionButtons = styled.div`
-  height: 88px;
-  box-sizing: border-box;
-  margin-top: 20px;
-  display: flex;
 `;
 
 // Coding Purpose
@@ -257,29 +252,31 @@ class Signup extends Component {
           </InputContainer>
 
           <Register>
-            <RegisterButton
-              onClick={() => {
-                console.log(
-                  this.state.userName,
-                  this.state.email,
-                  this.state.password,
-                  this.props.coding_background,
-                  this.props.purpose,
-                  this.state.goals
-                );
-                this.props.registerUser(
-                  this.state.userName,
-                  this.state.email,
-                  this.state.password,
-                  this.props.coding_background,
-                  this.props.purpose,
-                  this.state.goals
-                );
-              }}
-              className="backButt"
-            >
-              Register
-            </RegisterButton>
+            <NavLink to="/">
+              <RegisterButton
+                onClick={() => {
+                  console.log(
+                    this.state.userName,
+                    this.state.email,
+                    this.state.password,
+                    this.props.coding_background,
+                    this.props.purpose,
+                    this.state.goals
+                  );
+                  this.props.registerUser(
+                    this.state.userName,
+                    this.state.email,
+                    this.state.password,
+                    this.props.coding_background,
+                    this.props.purpose,
+                    this.state.goals
+                  );
+                }}
+                className="backButt"
+              >
+                Register
+              </RegisterButton>
+            </NavLink>
           </Register>
         </SignUpForm>
       </div>

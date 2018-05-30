@@ -16,6 +16,7 @@ import LessonPage from "./components/Lesson/AllLessonPages";
 import Button from "./components/MP-Components/Button";
 import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
 import NavBar from "./components/MP-Components/NavBar";
+import { Wrappa, Sq1, Sq2 } from "./components/MP-Components/QoGo";
 //IMPORT ASSETS AND CSS
 import "./App.css";
 import { getUser, logout } from "./ducks/userReducer";
@@ -50,19 +51,33 @@ class App extends Component {
   }
 
   logout() {
+<<<<<<< HEAD
+    this.setState({ opened: !this.state.opened });
     this.props.logout(this.props.user.user_name);
+=======
+    this.props.logout(this.props.user.user_name).then(() => {
+      this.setState({ opened: !this.state.opened });
+    });
+>>>>>>> master
   }
+
   render() {
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
           <NavBar>
-            <Button onClick={this.logout}>Logout</Button>
+            <Button data-cy-logout-btn onClick={this.logout}>
+              Logout
+            </Button>
           </NavBar>
         ) : (
           <NavBar>
+            <Wrappa>
+              <Sq1 />
+              <Sq2 />
+            </Wrappa>
             <ButtonWrapper>
-              <Button onClick={this.clickLogin} nav>
+              <Button data-cy-login onClick={this.clickLogin} nav>
                 Login
               </Button>
               <NavLink to="/signup">
