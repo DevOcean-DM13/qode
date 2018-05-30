@@ -13,9 +13,9 @@ const LessonsPages = styled.div`
   height: 100vh;
   width: 65vw;
   right: 0;
-  background: #122932;
   position: fixed;
   font-family: "Roboto", sans-serif;
+  background: #435058;
   color: white;
   /* z-index: -10; */
 
