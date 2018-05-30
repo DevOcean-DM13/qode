@@ -131,7 +131,7 @@ class LoginForm extends Component {
         <SignUpTitle>Welcome</SignUpTitle>
         <LoginContainer
           id="login"
-          onSubmit={e => this.userPressesLoginButton(e)}
+          onSubmit={this.userPressesLoginButton}
           method="POST"
         >
           <Welcome />
