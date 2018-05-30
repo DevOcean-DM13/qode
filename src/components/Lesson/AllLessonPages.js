@@ -30,7 +30,14 @@ class LessonPage extends Component {
     };
   }
   componentDidMount() {
-    this.props.getLesson(this.props.match.params.lesson_id);
+    this.props
+      .getLesson(this.props.match.params.lesson_id)
+      .then(() =>
+        console.log(
+          `test for quiz_id`,
+          this.props.lesson[this.state.page].quiz_id
+        )
+      );
     // .then(pageList =>
     //   this.setState({ page: pageList[this.props.match.params.pageoflesson] })
     // );
@@ -78,13 +85,13 @@ class LessonPage extends Component {
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].page_type === "prequiz" && (
             <LessonsPages>
-              <Quiz />
+              <Quiz quiz_id={this.props.lesson[this.state.page].quiz_id} />
             </LessonsPages>
           )}
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].page_type === "postquiz" && (
             <LessonsPages>
-              <Quiz />
+              <Quiz quiz_id={this.props.lesson[this.state.page].quiz_id} />
             </LessonsPages>
           )}
         {this.props.lesson[this.state.page] &&
