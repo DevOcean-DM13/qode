@@ -258,6 +258,7 @@ class Signup extends Component {
                   name="userName"
                   placeholder="Username"
                   value={this.state.userName}
+                  pattern="/^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/"
                 />
               </InputBox>
               <InputTitle>Password</InputTitle>
