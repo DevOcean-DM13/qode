@@ -4,12 +4,13 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getQuiz } from "../../ducks/quizRedux";
+import Swal from "sweetalert2";
 
 const QuizComponent = styled.div`
   box-sizing: border-box;
   position: absolute;
-  right: 0;
-  width: 55vw;
+  left: 0;
+  width: 90vw;
   margin: 5vw;
   display: flex;
   flex-direction: column;
@@ -27,22 +28,24 @@ const AnswersContainer = styled.div`
   margin-top: 5vh;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 1px solid white;
   font-size: 4rem;
   justify-content: center;
   align-items: center;
   height: 60vh;
   width: 100%;
 `;
+
 const AnswerBox = styled.div`
-  display: inline-block;
+  /* display: inline-block; */
   height: 10vh;
   width: 40%;
-  border: 1px solid black;
+  border: 1px solid white;
   margin: 2vh 1vw;
   text-align: center;
   font-size: 2rem;
 `;
+
 const NextQuestionButton = styled.button`
   height: 35px;
   width: 180px;
@@ -74,16 +77,41 @@ class Quiz extends Component {
       currentLesson: parseInt(this.props.match.params.lesson_id),
       currentPage: parseInt(this.props.match.params.pageoflesson),
       chosenAnswer: "",
-      score: 0
+      score: 0,
+      showSweetAlert: false
     };
   }
 
   answerQuestion = e => {
-    this.setState({ chosenAnswer: e.e });
-    console.log(e.e);
+    this.setState({ chosenAnswer: e.e }, () => this.evaluateAnswer());
   };
+
+  evaluateAnswer = () => {
+    console.log(
+      this.state.chosenAnswer,
+      this.props.quiz[this.state.questionIndex].correct_answer
+    );
+    Swal({
+      position: "center",
+      target: "AnswerBox"
+    });
+    // this.state.chosenAnswer ===
+    //   this.props.quiz[this.state.questionIndex].correct_answer
+    //     ? alert("That's right, you're a coding ninja!")
+    //     : alert("Try again");
+  };
+
   componentDidMount() {
-    this.props.getQuiz(this.props.quiz_id);
+    this.props.getQuiz(this.props.quiz_id).then(() => {
+      Swal({
+        title: `${this.props.pageContent.content[0]}`,
+        confirmButtonText: "I'm Ready",
+        padding: "3em",
+        color: "white",
+        background:
+          "#fff url(https://images.freecreatives.com/wp-content/uploads/2016/02/Free-Blue-Texture-Background-For-Download.jpg)"
+      });
+    });
   }
 
   render() {
@@ -117,7 +145,10 @@ class Quiz extends Component {
 
     return (
       <div>
-        <LessonBar />
+        {/* <LessonBar
+          id="QuizLessonBar"
+          style={{ background: "red ! important" }}
+        /> */}
         {this.props.quiz.length && (
           <QuizComponent>
             <h2>{this.props.quiz[this.state.questionIndex].text}</h2>
@@ -141,13 +172,24 @@ class Quiz extends Component {
                 <h1>tests</h1>
               )}
             </AnswersContainer>
-            <NextQuestionButton
-              onClick={() =>
-                this.setState({ questionIndex: this.state.questionIndex + 1 })
-              }
-            >
-              Next Q
-            </NextQuestionButton>
+
+            {this.state.questionIndex <= 1 ? (
+              <NextQuestionButton
+                onClick={() =>
+                  this.setState({ questionIndex: this.state.questionIndex + 1 })
+                }
+              >
+                Next Q
+              </NextQuestionButton>
+            ) : (
+              <NextQuestionButton
+                onClick={() =>
+                  this.props.history.push(`/lesson/${nextLesson}/${nextPage}`)
+                }
+              >
+                Continue to Lesson
+              </NextQuestionButton>
+            )}
           </QuizComponent>
         )}
       </div>
