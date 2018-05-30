@@ -9,18 +9,27 @@ const LoginContainerBox = styled.div`
   right: 0;
   top: 5vh;
   height: 100%;
-  width: 30vw;
-  background: #00a7e1;
+  width: 385px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgb(0, 167, 225, 0.8);
   z-index: 1;
+  /* opacity: 0.5; */
+  &.parent:before {
+    /* right: 0;
+    top: 5vh;
+    height: 100%;
+    width: 30vw;
+    position: fixed;
+    opacity: 0.5; */
+  }
 `;
 const LoginContainer = styled.form`
   background: white;
   border-radius: 3px;
   /* border: solid 1px black; */
-  width: 25vw;
+  width: 320px;
   height: 422px;
   display: flex;
   flex-direction: column;
@@ -44,7 +53,7 @@ const SignUpTitle = styled.p`
 // Inputs
 
 const InputBoxed = styled.div`
-  height: 25vh;
+  height: 146px;
   width: auto;
   display: flex;
   flex-direction: column;
@@ -56,7 +65,7 @@ const InputBoxed = styled.div`
 `;
 const InputContainer = styled.div`
   height: 40px;
-  width: 20vw;
+  width: 256px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +74,7 @@ const InputContainer = styled.div`
 `;
 const Input = styled.input`
   height: 30px;
-  width: 19vw;
+  width: 256px;
   outline: none;
   border: none;
   background: transparent;
@@ -89,7 +98,7 @@ const Welcome = styled.div`
 `;
 const Login = styled.input`
   height: 35px;
-  width: 14vw;
+  width: 178px;
   border-radius: 6px;
   outline: none;
   font-size: 0.75em;
@@ -127,7 +136,7 @@ class LoginForm extends Component {
     console.log(`HERE`, this.props);
     console.log(this.state);
     return (
-      <LoginContainerBox>
+      <LoginContainerBox className="parent">
         <SignUpTitle>Welcome</SignUpTitle>
         <LoginContainer
           id="login"

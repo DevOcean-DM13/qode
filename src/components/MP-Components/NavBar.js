@@ -13,4 +13,6 @@ export default styled.div`
   position: fixed;
   z-index: 500;
   transition-duration: 0.15s;
+  box-sizing: border-box;
+  padding-right: 1vw;
 `;

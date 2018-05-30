@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { ProfileSideBar } from "../hoc/SideBars/AllSideBars";
 
 const ProfilePage = styled.div`
-  height: 100vh;
+  height: auto;
   width: 100%;
   overflow-y: hidden;
   display: flex;
@@ -29,36 +29,29 @@ const ProfileContainer = styled.div`
 // MAIN SECTION
 
 const ProfileMain = styled.div`
-  height: 1000px;
+  height: auto;
   background: white;
   width: auto;
   box-sizing: border-box;
   padding-top: 7vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const ProfilePicContainer = styled.div`
   height: auto;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 4vh 0 3vh 0;
+  margin: 5vh 0 0 0;
 `;
 const ProfilePic = styled.img`
-  height: 180px;
-  width: 180px;
+  height: 120px;
+  width: 120px;
   border-radius: 50%;
-  box-shadow: 1px 1px 16px #54595e;
-  border: solid 6px #00a7e1;
+  box-shadow: 1px 1px 12px #54595e;
+  border: solid 2px #202020;
   background-color: white;
-`;
-const ProfileInfo = styled.div`
-  height: auto;
-  width: 100%;
-  /* background: teal; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 3vw 0 3vw;
-  box-sizing: border-box;
 `;
 const NameContainer = styled.div`
   height: auto;
@@ -72,11 +65,11 @@ const NameContainer = styled.div`
   padding-bottom: 5vh;
 `;
 const UserName = styled.p`
-  font-size: 3.5em;
+  font-size: 3em;
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0.5px;
-  margin-bottom: -1vh;
+  margin-bottom: 0.6vh;
   box-sizing: border-box;
   /* color: white; */
 `;
@@ -85,7 +78,22 @@ const Email = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   letter-spacing: 0.5px;
-  /* color: white; */
+  color: #7c7c7c;
+`;
+
+// Purpose/Background
+
+const ProfileInfo = styled.div`
+  height: auto;
+  width: 75%;
+  /* background: skyblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3vw 0 3vw;
+  box-sizing: border-box;
+  border-top: solid 2px #a3a3a3;
+  border-bottom: solid 2px #a3a3a3;
 `;
 const PurBackContainer = styled.div`
   height: auto;
@@ -95,8 +103,8 @@ const PurBackContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: solid 2px #a3a3a3;
-  border-bottom: solid 2px #a3a3a3;
+  /* border-top: solid 2px #a3a3a3; */
+  /* border-bottom: solid 2px #a3a3a3; */
   padding: 3vh 0 3vh 0;
 `;
 const PurbackTitle = styled.p`
@@ -120,13 +128,14 @@ const PurbackContent = styled.div`
 // GOALS
 
 const GoalsContainer = styled.div`
-  width: 100%;
+  width: 75%;
   height: auto;
-  /* background: teal; */
+  /* background: pink; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4vh 0 4vh 0;
+  padding: 4vh 0 7vh 0;
+  border-bottom: solid 2px #a3a3a3;
 `;
 const GoalsTitle = styled.div`
   font-size: 0.4em;
@@ -140,11 +149,21 @@ const GoalsText = styled.p`
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0.5px;
+  text-align: center;
 `;
 // COURSES
 
 const CourseContainer = styled.div`
-  height: auto;
+  height: 200px;
+  width: 75%;
+  background: #202020;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-bottom: 2vh;
+
+  &.HTML {
+    margin-top: 2vh;
+  }
 `;
 const OpenButton = styled.button`
   height: 20px;
@@ -197,6 +216,9 @@ class Dashboard extends Component {
                 <GoalsTitle>Goals:</GoalsTitle>
                 <GoalsText>{goals}</GoalsText>
               </GoalsContainer>
+              <CourseContainer className="HTML">HTML</CourseContainer>
+              <CourseContainer>CSS</CourseContainer>
+              <CourseContainer>SANDBOX</CourseContainer>
             </ProfileMain>
           </ProfileContainer>
         ) : (
@@ -224,6 +246,9 @@ class Dashboard extends Component {
                 <GoalsTitle>Goals:</GoalsTitle>
                 <GoalsText>{goals}</GoalsText>
               </GoalsContainer>
+              <CourseContainer className="HTML">HTML</CourseContainer>
+              <CourseContainer>CSS</CourseContainer>
+              <CourseContainer>SANDBOX</CourseContainer>
             </ProfileMain>
           </ProfileContainer>
         )}
