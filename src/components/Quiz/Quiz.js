@@ -10,6 +10,7 @@ const QuizComponent = styled.div`
   box-sizing: border-box;
   position: absolute;
   left: 0;
+  top:10vh;
   width: 90vw;
   margin: 5vw;
   display: flex;
@@ -88,13 +89,28 @@ class Quiz extends Component {
 
   evaluateAnswer = () => {
     console.log(
+      `chosen`,
       this.state.chosenAnswer,
+      `correct`,
       this.props.quiz[this.state.questionIndex].correct_answer
     );
-    Swal({
-      position: "center",
-      target: "AnswerBox"
-    });
+
+    let chosen = this.state.chosenAnswer;
+    let correct = this.props.quiz[this.state.questionIndex].correct_answer;
+    chosen === correct
+      ? Swal({
+          type: "success",
+          title: "Congrats",
+          text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
+          position: "center",
+          target: "AnswerBox"
+        })
+      : Swal({
+          title: "Your work has been saved",
+          type: "warning",
+          text: `${this.props.quiz[this.state.questionIndex].explanation[1]}`,
+          timer: 1500
+        });
     // this.state.chosenAnswer ===
     //   this.props.quiz[this.state.questionIndex].correct_answer
     //     ? alert("That's right, you're a coding ninja!")
