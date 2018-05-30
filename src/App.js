@@ -75,7 +75,9 @@ class App extends Component {
                 Login
               </Button>
               <NavLink to="/signup">
-                <Button nav>Register</Button>
+                <Button data-cy-register nav>
+                  Register
+                </Button>
               </NavLink>
             </ButtonWrapper>
           </NavBar>

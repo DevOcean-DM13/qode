@@ -193,6 +193,7 @@ class Signup extends Component {
     console.log(this.props);
   };
   render() {
+    console.log(this.state.email);
     return (
       <div>
         <SignUpSideBar />
@@ -211,6 +212,7 @@ class Signup extends Component {
           <QodingGoal>
             <Question>What are your goals?</Question>
             <GoalText
+              data-cy-goals
               placeholder="ex. &quot;I want to be able to code a website for my personal business&quot;"
               name="goals"
               value={this.state.goals}
@@ -224,6 +226,7 @@ class Signup extends Component {
               <InputTitle>Email</InputTitle>
               <InputBox>
                 <Input
+                  data-cy-create-email
                   onChange={e => this.userInput(e)}
                   name="email"
                   placeholder="Email"
@@ -233,6 +236,7 @@ class Signup extends Component {
               <InputTitle>Username</InputTitle>
               <InputBox>
                 <Input
+                  data-cy-create-user
                   onChange={e => this.userInput(e)}
                   name="userName"
                   placeholder="Username"
@@ -242,6 +246,7 @@ class Signup extends Component {
               <InputTitle>Password</InputTitle>
               <InputBox>
                 <Input
+                  data-cy-create-password
                   onChange={e => this.userInput(e)}
                   name="password"
                   placeholder="Password"
@@ -254,6 +259,7 @@ class Signup extends Component {
           <Register>
             <NavLink to="/">
               <RegisterButton
+                data-cy-register-user
                 onClick={() => {
                   console.log(
                     this.state.userName,
@@ -263,14 +269,22 @@ class Signup extends Component {
                     this.props.purpose,
                     this.state.goals
                   );
-                  this.props.registerUser(
-                    this.state.userName,
-                    this.state.email,
-                    this.state.password,
-                    this.props.coding_background,
-                    this.props.purpose,
-                    this.state.goals
-                  );
+                  //validate email address.
+                  if (
+                    /^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)
+                  ) {
+                    this.props.registerUser(
+                      this.state.userName,
+                      this.state.email,
+                      this.state.password,
+                      this.props.coding_background,
+                      this.props.purpose,
+                      this.state.goals
+                    );
+                    alert("register successful");
+                  } else {
+                    alert("Enter a valid email");
+                  }
                 }}
                 className="backButt"
               >
