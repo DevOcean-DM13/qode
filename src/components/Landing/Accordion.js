@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 const AccordionItem = styled.div`
@@ -22,7 +21,9 @@ const AccordionItem = styled.div`
 `;
 
 const ItemHover = styled.div`
+  border-radius: 5px;
   &:hover {
+    transition: 0.4s;
     background: #ff7860;
   }
 `;
@@ -58,15 +59,6 @@ const FoldingPanel = styled.div`
     line-height: 40px;
     text-indent: 40px;
   }
-`;
-
-const AccordionTitle = styled.h1`
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 66px;
-  margin-top: 10vh;
-  letter-spacing: 10px;
 `;
 
 class Item extends React.Component {

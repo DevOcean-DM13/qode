@@ -27,7 +27,7 @@ const DisplayWindow = styled.div`
   display: block;
   background: white;
 `;
-const TextEditorContainer = styled.body`
+const TextEditorContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
