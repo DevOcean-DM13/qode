@@ -151,7 +151,6 @@ const Register = styled.div`
   width: 63.8vw;
   position: fixed;
   bottom: 0px;
-  background: white;
   border-top: solid 1px #a0dcff;
   display: flex;
   box-sizing: border-box;

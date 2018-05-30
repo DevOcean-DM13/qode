@@ -17,7 +17,7 @@ const ProfileContainer = styled.div`
   width: 65vw;
   box-sizing: border-box;
   margin-left: 35vw;
-  background: #00a7e1;
+  /* background: #00a7e1; */
   overflow-y: hidden;
 
   &.fullScreen {
@@ -29,7 +29,7 @@ const ProfileContainer = styled.div`
 // MAIN SECTION
 
 const ProfileMain = styled.div`
-  height: auto;
+  height: 1000px;
   background: white;
   width: auto;
   box-sizing: border-box;
