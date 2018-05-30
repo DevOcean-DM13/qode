@@ -8,6 +8,7 @@ import {
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
+import { NavLink } from "react-router-dom";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -256,22 +257,11 @@ class Signup extends Component {
           </InputContainer>
 
           <Register>
-            <RegisterButton
-              data-cy-register-user
-              onClick={() => {
-                console.log(
-                  this.state.userName,
-                  this.state.email,
-                  this.state.password,
-                  this.props.coding_background,
-                  this.props.purpose,
-                  this.state.goals
-                );
-                //validate email address.
-                if (
-                  /^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)
-                ) {
-                  this.props.registerUser(
+            <NavLink to="/">
+              <RegisterButton
+                data-cy-register-user
+                onClick={() => {
+                  console.log(
                     this.state.userName,
                     this.state.email,
                     this.state.password,
@@ -279,15 +269,28 @@ class Signup extends Component {
                     this.props.purpose,
                     this.state.goals
                   );
-                  alert("register successful");
-                } else {
-                  alert("Enter a valid email");
-                }
-              }}
-              className="backButt"
-            >
-              Register
-            </RegisterButton>
+                  //validate email address.
+                  if (
+                    /^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)
+                  ) {
+                    this.props.registerUser(
+                      this.state.userName,
+                      this.state.email,
+                      this.state.password,
+                      this.props.coding_background,
+                      this.props.purpose,
+                      this.state.goals
+                    );
+                    alert("register successful");
+                  } else {
+                    alert("Enter a valid email");
+                  }
+                }}
+                className="backButt"
+              >
+                Register
+              </RegisterButton>
+            </NavLink>
           </Register>
         </SignUpForm>
       </div>
