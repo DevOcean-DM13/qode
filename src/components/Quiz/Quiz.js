@@ -106,7 +106,8 @@ class Quiz extends Component {
       currentPage: parseInt(this.props.match.params.pageoflesson),
       chosenAnswer: "",
       score: 0,
-      blurPage: true
+      blurPage: true,
+      moveOn: false
     };
   }
 
@@ -122,6 +123,19 @@ class Quiz extends Component {
       this.props.quiz[this.state.questionIndex].correct_answer
     );
 
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+    let nextLesson;
+    let nextPage;
+
+    if (currentPage === 0) {
+      nextLesson = parseInt(currentLesson);
+      nextPage = parseInt(currentPage + 1);
+    } else {
+      nextPage = 0;
+      nextLesson = parseInt(currentLesson) + 1;
+    }
+
     let chosen = this.state.chosenAnswer;
     let correct = this.props.quiz[this.state.questionIndex].correct_answer;
     chosen === correct
@@ -131,7 +145,12 @@ class Quiz extends Component {
           text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
           position: "center",
           target: "AnswerBox"
-        })
+        }).then(
+          () =>
+            this.state.questionIndex <= 1
+              ? this.setState({ questionIndex: this.state.questionIndex + 1 })
+              : this.props.history.push(`/lesson/${nextLesson}/${nextPage}`)
+        )
       : Swal({
           title: "Your work has been saved",
           type: "warning",
@@ -157,36 +176,21 @@ class Quiz extends Component {
   }
 
   render() {
-    // let { answerOptions } = this.props.quiz[this.state.questionIndex];
-
-    let currentLesson = this.state.currentLesson;
-    let currentPage = this.state.currentPage;
-    let nextLesson;
-    let nextPage;
-
-    if (currentPage === 0) {
-      nextLesson = parseInt(currentLesson);
-      nextPage = parseInt(currentPage + 1);
-    } else {
-      nextPage = 0;
-      nextLesson = parseInt(currentLesson) + 1;
-    }
-
-    console.log(
-      `THIS IS THIS.PROPS.QUIZ:`,
-      this.props.quiz,
-      `ABOVE IS THIS.PROPS.QUIZ:`,
-      this.props,
-      this.state,
-      `Current Lesson`,
-      currentLesson,
-      `currentPage`,
-      currentLesson,
-      `Next Lesson:`,
-      nextLesson,
-      `Next Page:`,
-      nextPage
-    );
+    // console.log(
+    //   `THIS IS THIS.PROPS.QUIZ:`,
+    //   this.props.quiz,
+    //   `ABOVE IS THIS.PROPS.QUIZ:`,
+    //   this.props,
+    //   this.state,
+    //   `Current Lesson`,
+    //   currentLesson,
+    //   `currentPage`,
+    //   currentLesson,
+    //   `Next Lesson:`,
+    //   nextLesson,
+    //   `Next Page:`,
+    //   nextPage
+    // );
 
     return (
       <div>
@@ -217,23 +221,6 @@ class Quiz extends Component {
                 <h1>tests</h1>
               )}
             </AnswersContainer>
-            {this.state.questionIndex <= 1 ? (
-              <NextQuestionButton
-                onClick={() =>
-                  this.setState({ questionIndex: this.state.questionIndex + 1 })
-                }
-              >
-                Next Q
-              </NextQuestionButton>
-            ) : (
-              <NextQuestionButton
-                onClick={() =>
-                  this.props.history.push(`/lesson/${nextLesson}/${nextPage}`)
-                }
-              >
-                Continue to Lesson
-              </NextQuestionButton>
-            )}
           </QuizComponent>
         )}
       </div>
