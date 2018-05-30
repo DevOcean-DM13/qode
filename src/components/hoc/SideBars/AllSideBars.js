@@ -102,6 +102,15 @@ const PrevButton = styled.button`
   bottom: 5vh;
   margin-left: 2vw;
   background: transparent;
+  border: transparent;
+  border-radius: 5px;
+  transition: 0.4s;
+  padding-bottom: 10px;
+  &:hover {
+    background: #ffffff;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
 `;
 class Lesson extends Component {
   constructor(props) {
@@ -135,6 +144,23 @@ class Lesson extends Component {
       nextLesson = parseInt(currentLesson) + 1;
     }
     // console.log(currentLesson, currentPage);
+
+    this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
+  };
+
+  backClick = e => {
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+    let nextPage;
+    let nextLesson;
+
+    if (this.props.page[parseInt(currentPage) - 1]) {
+      nextPage = parseInt(currentPage) - 1;
+      nextLesson = currentLesson;
+    } else if (!this.props.page[parseInt(currentPage) - 1]) {
+      nextPage = 0;
+      nextLesson = parseInt(currentLesson) - 1;
+    }
 
     this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
@@ -227,7 +253,7 @@ class Lesson extends Component {
 
         <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
 
-        <PrevButton>{`<`}</PrevButton>
+        <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
       </LessonContent>
     );
   }

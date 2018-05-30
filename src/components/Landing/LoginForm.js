@@ -132,6 +132,7 @@ class LoginForm extends Component {
         <SignUpTitle>Welcome</SignUpTitle>
         <LoginContainer
           id="login"
+          //check 500 server error
           onSubmit={this.userPressesLoginButton}
           method="POST"
         >
