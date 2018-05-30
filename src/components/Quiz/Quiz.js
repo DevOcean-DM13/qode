@@ -21,7 +21,7 @@ const QuizComponent = styled.div`
   color: white;
   border-radius: 5px;
   background: #000000;
-  justify-content: space-between;
+  justify-content: space-around;
 
   & h1 {
     font-size: 4rem;
@@ -130,8 +130,7 @@ class Quiz extends Component {
           title: "Congrats",
           text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
           position: "center",
-          target: "AnswerBox",
-          
+          target: "AnswerBox"
         })
       : Swal({
           title: "Your work has been saved",
@@ -152,11 +151,8 @@ class Quiz extends Component {
         confirmButtonText: "I'm Ready",
         padding: "3em",
         color: "#ffffff",
-        background: "#000000",
-        
-      }).then(() => this.setState({blurPage:!this.state.blurPage})
-
-      )
+        background: "#000000"
+      }).then(() => this.setState({ blurPage: !this.state.blurPage }));
     });
   }
 
@@ -197,6 +193,7 @@ class Quiz extends Component {
         /> */}
         {this.props.quiz.length && (
           <QuizComponent className={this.state.blurPage && "blurred"}>
+            <h3>Question {this.state.questionIndex + 1}:</h3>
             <h2>{this.props.quiz[this.state.questionIndex].text}</h2>
 
             <AnswersContainer>
