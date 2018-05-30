@@ -53,6 +53,32 @@ const TopPageContent = styled.div`
   justify-content: space-between;
 `;
 // LEFT SIDE. PG 1
+const Banner = styled.div`
+  width: 50%;
+  height: 100%;
+  background: #202020;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 14px;
+  box-sizing: border-box;
+  padding: 4vh 0 4vh 0;
+`;
+const Solve = styled.div`
+  font-size: 3em;
+  color: white;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+`;
+const SignUpContainer = styled.div`
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const TextContent = styled.div`
   width: 50%;
   height: 100%;
@@ -73,35 +99,30 @@ const IntroCarrier = styled.div`
 `;
 const Introduction = styled.h1`
   font-weight: 700;
-  font-size: 48px;
+  font-size: 5em;
   color: black;
-  line-height: 59.8px;
+  line-height: 65px;
   text-align: center;
   height: auto;
-  width: 100%;
+  width: 34vw;
   font-family: "Work Sans", sans-serif;
   padding-bottom: 24px;
+  text-align: left;
 `;
 const Blurb = styled.h2`
   font-size: 17px;
   color: black;
   line-height: 28px;
   text-align: center;
-  font-weight: 400;
+  font-weight: 300;
   height: auto;
   width: 34vw;
   font-family: "Roboto", sans-serif;
-`;
-const Idk = styled.div`
-  height: auto;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: left;
 `;
 const LandingContainer = styled.div`
-  width: 50%;
-  height: 100%;
+  width: auto;
+  height: auto;
   border: 1px lightgrey;
 `;
 /* BOTTOM HALF OF THE LANDING */
@@ -112,11 +133,16 @@ const BottomPage = styled.div`
   align-items: center;
   justify-content: center;
   background: #000501;
+  /* background: teal; */
+  box-sizing: border-box;
 `;
 const BottomPageContent = styled.div`
-  height: 80%;
+  height: 100%;
   width: 85%;
   display: flex;
+  box-sizing: border-box;
+  padding: 5vh 0 5vh 0;
+  /* background: pink; */
 `;
 const Curriculum = styled.div`
   width: 50%;
@@ -125,11 +151,16 @@ const Curriculum = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  /* background: skyblue; */
 
   & h1 {
     color: white;
     font-size: 5em;
+    margin-bottom: 4vh;
   }
+`;
+const Comp = styled.div`
+  color: #00a7e1;
 `;
 const SlideShow = styled.div`
   width: 50%;
@@ -153,44 +184,39 @@ class Landing extends Component {
 
     return (
       <LandingBody>
-        {/* <NavBar>
-          <ButtonWrapper>
-            <Button onClick={e => this.clickLogin(e)} nav>
-              Login
-            </Button>
-            <NavLink to="/signup">
-              <Button nav>Register</Button>
-            </NavLink>
-          </ButtonWrapper>
-        </NavBar> */}
         <TopPage>
           <TopPageContent>
+            <Banner>
+              <Solve>Try solving it!</Solve>
+              <LandingContainer>
+                <LandingEditor />
+              </LandingContainer>
+              <SignUpContainer>
+                <NavLink to="/signup">
+                  <Button>Sign Up Now</Button>
+                </NavLink>
+              </SignUpContainer>
+            </Banner>
             <TextContent>
               <IntroCarrier>
                 <Introduction>
                   Learn how to code, without the fear of drowning.
                 </Introduction>
                 <Blurb>
-                  Don't know where to start on the path of coding? Allow us to
-                  be your floatie.
+                  Don't know where to start on the path of coding? <br />Allow
+                  us to be your floatie.
                 </Blurb>
               </IntroCarrier>
-              <Idk>
-                <NavLink to="/signup">
-                  <Button>Sign Up Now</Button>
-                </NavLink>
-              </Idk>
             </TextContent>
-            <LandingContainer>
-              <LandingEditor />
-            </LandingContainer>
           </TopPageContent>
         </TopPage>
         {this.props.opened && <LoginForm />}
         <BottomPage>
           <BottomPageContent>
             <Curriculum>
-              <h1>Complexity, made simple.</h1>
+              <h1>
+                <Comp>Complexity,</Comp> made simple.
+              </h1>
               <LessonAccordion />
             </Curriculum>
             <SlideShow>
