@@ -106,12 +106,7 @@ class Quiz extends Component {
       currentPage: parseInt(this.props.match.params.pageoflesson),
       chosenAnswer: "",
       score: 0,
-<<<<<<< HEAD
-      showSweetAlert: false,
-      gotItRight: true
-=======
       blurPage: true
->>>>>>> master
     };
   }
 
@@ -135,8 +130,7 @@ class Quiz extends Component {
           title: "Congrats",
           text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
           position: "center",
-          target: "AnswerBox",
-          
+          target: "AnswerBox"
         })
       : Swal({
           title: "Your work has been saved",
@@ -157,16 +151,8 @@ class Quiz extends Component {
         confirmButtonText: "I'm Ready",
         padding: "3em",
         color: "#ffffff",
-        background: "#000000",
-<<<<<<< HEAD
-        confirmButtonColor: "#00a7e1"
-      });
-=======
-        
-      }).then(() => this.setState({blurPage:!this.state.blurPage})
-
-      )
->>>>>>> master
+        background: "#000000"
+      }).then(() => this.setState({ blurPage: !this.state.blurPage }));
     });
   }
 
