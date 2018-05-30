@@ -8,7 +8,7 @@ import {
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -192,6 +192,27 @@ class Signup extends Component {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.props);
   };
+
+  register = () => {
+    console.log(
+      this.state.userName,
+      this.state.email,
+      this.state.password,
+      this.props.coding_background,
+      this.props.purpose,
+      this.state.goals
+    );
+    this.props
+      .registerUser(
+        this.state.userName,
+        this.state.email,
+        this.state.password,
+        this.props.coding_background,
+        this.props.purpose,
+        this.state.goals
+      )
+      .then(response => (response.value ? this.props.history.push("/") : null));
+  };
   render() {
     return (
       <div>
@@ -252,31 +273,12 @@ class Signup extends Component {
           </InputContainer>
 
           <Register>
-            <NavLink to="/">
-              <RegisterButton
-                onClick={() => {
-                  console.log(
-                    this.state.userName,
-                    this.state.email,
-                    this.state.password,
-                    this.props.coding_background,
-                    this.props.purpose,
-                    this.state.goals
-                  );
-                  this.props.registerUser(
-                    this.state.userName,
-                    this.state.email,
-                    this.state.password,
-                    this.props.coding_background,
-                    this.props.purpose,
-                    this.state.goals
-                  );
-                }}
-                className="backButt"
-              >
-                Register
-              </RegisterButton>
-            </NavLink>
+            <RegisterButton
+              onClick={() => this.register()}
+              className="backButt"
+            >
+              Register
+            </RegisterButton>
           </Register>
         </SignUpForm>
       </div>
@@ -289,4 +291,4 @@ const mapStateToProps = state => {
     purpose: state.userReducer.purpose
   };
 };
-export default connect(mapStateToProps, { registerUser })(Signup);
+export default withRouter(connect(mapStateToProps, { registerUser })(Signup));
