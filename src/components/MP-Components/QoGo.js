@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrappa = styled.div`
   height: 50px;
   width: 50px;
-  padding-left: 60px;
 `;
 
 export const Sq1 = styled.div`

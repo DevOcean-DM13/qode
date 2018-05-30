@@ -10,20 +10,13 @@ const LoginContainerBox = styled.div`
   top: 5vh;
   height: 100%;
   width: 385px;
+  background: rgba(0, 167, 225, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(0, 167, 225, 0.8);
+  justify-content: center;
   z-index: 1;
-  /* opacity: 0.5; */
-  &.parent:before {
-    /* right: 0;
-    top: 5vh;
-    height: 100%;
-    width: 30vw;
-    position: fixed;
-    opacity: 0.5; */
-  }
+  padding-bottom: 5vh;
 `;
 const LoginContainer = styled.form`
   background: white;
@@ -44,8 +37,7 @@ const LoginContainer = styled.form`
 const SignUpTitle = styled.p`
   font-size: 2em;
   color: white;
-  margin-top: 10vh;
-  margin-bottom: 6vh;
+  margin-bottom: 30px;
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
@@ -53,7 +45,7 @@ const SignUpTitle = styled.p`
 // Inputs
 
 const InputBoxed = styled.div`
-  height: 146px;
+  height: 160px;
   width: auto;
   display: flex;
   flex-direction: column;
@@ -65,7 +57,7 @@ const InputBoxed = styled.div`
 `;
 const InputContainer = styled.div`
   height: 40px;
-  width: 256px;
+  width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +66,7 @@ const InputContainer = styled.div`
 `;
 const Input = styled.input`
   height: 30px;
-  width: 256px;
+  width: 250px;
   outline: none;
   border: none;
   background: transparent;
@@ -98,7 +90,7 @@ const Welcome = styled.div`
 `;
 const Login = styled.input`
   height: 35px;
-  width: 178px;
+  width: 180px;
   border-radius: 6px;
   outline: none;
   font-size: 0.75em;

@@ -9,7 +9,7 @@ const ProfilePage = styled.div`
   overflow-y: hidden;
   display: flex;
   justify-content: center;
-  background: #00a7e1;
+  /* background: #00a7e1; */
 `;
 
 const ProfileContainer = styled.div`
@@ -37,13 +37,40 @@ const ProfileMain = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
-const ProfilePicContainer = styled.div`
-  height: auto;
-  width: 100%;
+
+// PROFILE BOX
+const ProfileBox = styled.div`
+  width: 95%;
+  height: 400px;
+  background: teal;
   display: flex;
+  margin: 7vh 0 2vh 0;
+  border-radius: 14px;
+`;
+const ProfileLeft = styled.div`
+  width: 40%;
+  height: 100%;
+  background: pink;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 5vh 0 0 0;
+  border-radius: 14px 0 0 14px;
+`;
+const ProfileRight = styled.div`
+  width: 60%;
+  height: 100%;
+  background: skyblue;
+  border-radius: 0 14px 14px 0;
+`;
+const ProfileInfoBox = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4vh 0 0 0;
 `;
 const ProfilePic = styled.img`
   height: 120px;
@@ -52,6 +79,7 @@ const ProfilePic = styled.img`
   box-shadow: 1px 1px 12px #54595e;
   border: solid 2px #202020;
   background-color: white;
+  margin-top: 2vh;
 `;
 const NameContainer = styled.div`
   height: auto;
@@ -81,31 +109,24 @@ const Email = styled.p`
   color: #7c7c7c;
 `;
 
-// Purpose/Background
+// PURPOSE/BACKGROUND
 
 const ProfileInfo = styled.div`
   height: auto;
-  width: 75%;
+  width: auto;
   /* background: skyblue; */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 3vw 0 3vw;
   box-sizing: border-box;
-  border-top: solid 2px #a3a3a3;
-  border-bottom: solid 2px #a3a3a3;
 `;
 const PurBackContainer = styled.div`
   height: auto;
   width: 20vw;
-  /* background: skyblue; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border-top: solid 2px #a3a3a3; */
-  /* border-bottom: solid 2px #a3a3a3; */
-  padding: 3vh 0 3vh 0;
 `;
 const PurbackTitle = styled.p`
   font-size: 0.4em;
@@ -154,26 +175,42 @@ const GoalsText = styled.p`
 // COURSES
 
 const CourseContainer = styled.div`
-  height: 200px;
-  width: 75%;
-  background: #202020;
+  height: auto;
+  width: 95%;
+  /* background: lightgray; */
   box-sizing: border-box;
-  border-radius: 8px;
-  margin-bottom: 2vh;
+  border-radius: 14px;
+  margin-bottom: 1.2vh;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
   &.HTML {
-    margin-top: 2vh;
+    margin-top: 1.2vh;
+  }
+`;
+const CourseCard = styled.div`
+  height: 300px;
+  width: 48%;
+  background: lightblue;
+  margin-bottom: 30px;
+  border-radius: 14px;
+  &.stuff {
+    background: lightcoral;
   }
 `;
 const OpenButton = styled.button`
   height: 20px;
   width: 20px;
+  position: fixed;
+  left: 20px;
+  top: 9vh;
 `;
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebar: true
+      sidebar: false
     };
     this.clickOpen = this.clickOpen.bind(this);
   }
@@ -190,65 +227,84 @@ class Dashboard extends Component {
     return (
       <ProfilePage>
         {sidebar && <ProfileSideBar />}
-        {!this.state.sidebar ? (
-          <ProfileContainer className="fullScreen">
-            <ProfileMain>
-              <OpenButton onClick={e => this.clickOpen(e)} />
-              <ProfilePicContainer>
-                <ProfilePic src={pic} />
-              </ProfilePicContainer>
-              <NameContainer>
-                <UserName>{username}</UserName>
-                <Email>{email}</Email>
-              </NameContainer>
-              <ProfileInfo>
-                <PurBackContainer>
-                  <PurbackTitle>Background:</PurbackTitle>
-                  <PurbackContent>{background}</PurbackContent>
-                </PurBackContainer>
-
-                <PurBackContainer>
-                  <PurbackTitle>Purpose:</PurbackTitle>
-                  <PurbackContent>{purpose}</PurbackContent>
-                </PurBackContainer>
-              </ProfileInfo>
-              <GoalsContainer>
-                <GoalsTitle>Goals:</GoalsTitle>
-                <GoalsText>{goals}</GoalsText>
-              </GoalsContainer>
-              <CourseContainer className="HTML">HTML</CourseContainer>
-              <CourseContainer>CSS</CourseContainer>
-              <CourseContainer>SANDBOX</CourseContainer>
-            </ProfileMain>
-          </ProfileContainer>
-        ) : (
+        {this.state.sidebar ? (
           <ProfileContainer>
             <ProfileMain>
               <OpenButton onClick={e => this.clickOpen(e)} />
-              <ProfilePicContainer>
-                <ProfilePic src={pic} />
-              </ProfilePicContainer>
-              <NameContainer>
-                <UserName>{username}</UserName>
-                <Email>{email}</Email>
-              </NameContainer>
-              <ProfileInfo>
-                <PurBackContainer>
-                  <PurbackTitle>Background:</PurbackTitle>
-                  <PurbackContent>{background}</PurbackContent>
-                </PurBackContainer>
-                <PurBackContainer>
-                  <PurbackTitle>Purpose:</PurbackTitle>
-                  <PurbackContent>{purpose}</PurbackContent>
-                </PurBackContainer>
-              </ProfileInfo>
-              <GoalsContainer>
-                <GoalsTitle>Goals:</GoalsTitle>
-                <GoalsText>{goals}</GoalsText>
-              </GoalsContainer>
-              <CourseContainer className="HTML">HTML</CourseContainer>
-              <CourseContainer>CSS</CourseContainer>
-              <CourseContainer>SANDBOX</CourseContainer>
+              <ProfileBox>
+                <ProfileLeft>
+                  <ProfileInfoBox>
+                    <ProfilePic src={pic} />
+                    <NameContainer>
+                      <UserName>{username}</UserName>
+                      <Email>{email}</Email>
+                    </NameContainer>
+                  </ProfileInfoBox>
+                </ProfileLeft>
+                <ProfileRight>
+                  <ProfileInfo>
+                    <PurBackContainer>
+                      <PurbackTitle>Background:</PurbackTitle>
+                      <PurbackContent>{background}</PurbackContent>
+                    </PurBackContainer>
+                    <PurBackContainer>
+                      <PurbackTitle>Purpose:</PurbackTitle>
+                      <PurbackContent>{purpose}</PurbackContent>
+                    </PurBackContainer>
+                  </ProfileInfo>
+
+                  <GoalsContainer>
+                    <GoalsTitle>Goals:</GoalsTitle>
+                    <GoalsText>{goals}</GoalsText>
+                  </GoalsContainer>
+                </ProfileRight>
+              </ProfileBox>
+
+              <CourseContainer className="HTML">
+                <CourseCard className="stuff">HTML</CourseCard>
+                <CourseCard>CSS</CourseCard>
+                <CourseCard>SANDBOX</CourseCard>
+                <CourseCard className="stuff">dude</CourseCard>
+              </CourseContainer>
+            </ProfileMain>
+          </ProfileContainer>
+        ) : (
+          <ProfileContainer className="fullScreen">
+            <ProfileMain>
+              <OpenButton onClick={e => this.clickOpen(e)} />
+              <ProfileBox>
+                <ProfileLeft>
+                  <ProfileInfoBox>
+                    <ProfilePic src={pic} />
+                    <NameContainer>
+                      <UserName>{username}</UserName>
+                      <Email>{email}</Email>
+                    </NameContainer>
+                  </ProfileInfoBox>
+                </ProfileLeft>
+                <ProfileRight>
+                  <ProfileInfo>
+                    <PurBackContainer>
+                      <PurbackTitle>Background:</PurbackTitle>
+                      <PurbackContent>{background}</PurbackContent>
+                    </PurBackContainer>
+                    <PurBackContainer>
+                      <PurbackTitle>Purpose:</PurbackTitle>
+                      <PurbackContent>{purpose}</PurbackContent>
+                    </PurBackContainer>
+                  </ProfileInfo>
+                  <GoalsContainer>
+                    <GoalsTitle>Goals:</GoalsTitle>
+                    <GoalsText>{goals}</GoalsText>
+                  </GoalsContainer>
+                </ProfileRight>
+              </ProfileBox>
+              <CourseContainer className="HTML">
+                <CourseCard className="stuff">HTML</CourseCard>
+                <CourseCard>CSS</CourseCard>
+                <CourseCard>SANDBOX</CourseCard>
+                <CourseCard className="stuff">dude</CourseCard>
+              </CourseContainer>
             </ProfileMain>
           </ProfileContainer>
         )}

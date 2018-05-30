@@ -5,5 +5,4 @@ export default styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding-right: 40px;
 `;
