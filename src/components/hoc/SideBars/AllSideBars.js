@@ -72,12 +72,22 @@ const ForwardButton = styled.button`
   width: 70px;
   position: fixed;
   z-index: 1000;
-  ${"" /* border: 1px solid lightgrey; */} font-size: 75px;
+  font-size: 75px;
   line-height: 60px;
   text-align: center;
   left: 28vw;
   bottom: 5vh;
   margin-right: 5vw;
+  background: transparent;
+  border: transparent;
+  border-radius: 5px;
+  transition: 0.4s;
+  padding-bottom: 10px;
+  &:hover {
+    background: #ffffff;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
 `;
 const PrevButton = styled.button`
   height: 70px;
@@ -85,11 +95,13 @@ const PrevButton = styled.button`
   position: fixed;
   left: 0;
   z-index: 1000;
-  ${"" /* border: 1px solid black; */} font-size: 75px;
+  border: transparent;
+  font-size: 75px;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
   margin-left: 2vw;
+  background: transparent;
 `;
 class Lesson extends Component {
   constructor(props) {

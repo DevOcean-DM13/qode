@@ -53,6 +53,7 @@ class App extends Component {
   logout() {
     this.props.logout(this.props.user.user_name);
   }
+
   render() {
     return (
       <div className="App">

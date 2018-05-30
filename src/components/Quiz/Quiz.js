@@ -11,15 +11,21 @@ const QuizComponent = styled.div`
   right: 0;
   width: 55vw;
   margin: 5vw;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+  border-radius: 5px;
+  background: #000000;
 
   & h1 {
     font-size: 4rem;
+    font-family: "Work Sans", sans-serif;
   }
   & h2 {
     font-size: 3rem;
+    font-family: "Roboto", sans-serif;
   }
 `;
 
@@ -27,21 +33,32 @@ const AnswersContainer = styled.div`
   margin-top: 5vh;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 1px solid transparent;
   font-size: 4rem;
   justify-content: center;
   align-items: center;
   height: 60vh;
+  border-radius: 5px;
   width: 100%;
+  background: white;
 `;
 const AnswerBox = styled.div`
   display: inline-block;
   height: 10vh;
   width: 40%;
-  border: 1px solid black;
+  border: 1px solid transparent;
+  border-radius: 5px;
   margin: 2vh 1vw;
   text-align: center;
   font-size: 2rem;
+  background: #848c8e;
+  font-family: "Roboto", sans-serif;
+  &:hover {
+    transition: 0.4s;
+    background: #ff7860;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
 `;
 
 class Quiz extends Component {
