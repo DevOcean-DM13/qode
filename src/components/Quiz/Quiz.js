@@ -97,7 +97,8 @@ class Quiz extends Component {
       currentPage: parseInt(this.props.match.params.pageoflesson),
       chosenAnswer: "",
       score: 0,
-      showSweetAlert: false
+      showSweetAlert: false,
+      gotItRight: true
     };
   }
 
@@ -150,6 +151,9 @@ class Quiz extends Component {
     }
 
     console.log(
+      `THIS IS THIS.PROPS.QUIZ:`,
+      this.props.quiz,
+      `ABOVE IS THIS.PROPS.QUIZ:`,
       this.props,
       this.state,
       `Current Lesson`,
@@ -191,7 +195,6 @@ class Quiz extends Component {
                 <h1>tests</h1>
               )}
             </AnswersContainer>
-
             {this.state.questionIndex <= 1 ? (
               <NextQuestionButton
                 onClick={() =>
