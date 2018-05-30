@@ -10,9 +10,10 @@ const QuizComponent = styled.div`
   box-sizing: border-box;
   position: absolute;
   left: 0;
+  top: 10vh;
   width: 90vw;
   height: 90vh;
-  margin: 5vw;
+  margin: 0 5vw;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -26,9 +27,14 @@ const QuizComponent = styled.div`
     font-size: 4rem;
     font-family: "Work Sans", sans-serif;
   }
+
   & h2 {
     font-size: 3rem;
     font-family: "Roboto", sans-serif;
+  }
+
+  &.blurred {
+    filter: blur(1rem);
   }
 `;
 
@@ -48,6 +54,9 @@ const AnswersContainer = styled.div`
 
 const AnswerBox = styled.div`
   /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 10vh;
   width: 40%;
   border: 1px solid transparent;
@@ -97,7 +106,7 @@ class Quiz extends Component {
       currentPage: parseInt(this.props.match.params.pageoflesson),
       chosenAnswer: "",
       score: 0,
-      showSweetAlert: false
+      blurPage: true
     };
   }
 
@@ -107,13 +116,29 @@ class Quiz extends Component {
 
   evaluateAnswer = () => {
     console.log(
+      `chosen`,
       this.state.chosenAnswer,
+      `correct`,
       this.props.quiz[this.state.questionIndex].correct_answer
     );
-    Swal({
-      position: "center",
-      target: "AnswerBox"
-    });
+
+    let chosen = this.state.chosenAnswer;
+    let correct = this.props.quiz[this.state.questionIndex].correct_answer;
+    chosen === correct
+      ? Swal({
+          type: "success",
+          title: "Congrats",
+          text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
+          position: "center",
+          target: "AnswerBox",
+          
+        })
+      : Swal({
+          title: "Your work has been saved",
+          type: "warning",
+          text: `${this.props.quiz[this.state.questionIndex].explanation[1]}`,
+          timer: 1500
+        });
     // this.state.chosenAnswer ===
     //   this.props.quiz[this.state.questionIndex].correct_answer
     //     ? alert("That's right, you're a coding ninja!")
@@ -127,8 +152,11 @@ class Quiz extends Component {
         confirmButtonText: "I'm Ready",
         padding: "3em",
         color: "#ffffff",
-        background: "#000000"
-      });
+        background: "#000000",
+        
+      }).then(() => this.setState({blurPage:!this.state.blurPage})
+
+      )
     });
   }
 
@@ -168,7 +196,7 @@ class Quiz extends Component {
           style={{ background: "red ! important" }}
         /> */}
         {this.props.quiz.length && (
-          <QuizComponent>
+          <QuizComponent className={this.state.blurPage && "blurred"}>
             <h2>{this.props.quiz[this.state.questionIndex].text}</h2>
 
             <AnswersContainer>
