@@ -107,8 +107,8 @@ export default class Accordion extends React.Component {
   }
   renderQuestion(key) {
     return (
-      <ItemHover>
-        <Item key={key} index={key} details={this.state.lessons[key]} />{" "}
+      <ItemHover key={key}>
+        <Item index={key} details={this.state.lessons[key]} />
       </ItemHover>
     );
   }

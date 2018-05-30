@@ -23,7 +23,7 @@ const DisplayWindow = styled.div`
   width: 0px;
   z-index: -1;
 `;
-const TextEditorContainer = styled.body`
+const TextEditorContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
