@@ -12,16 +12,24 @@ const QuizComponent = styled.div`
   left: 0;
   top:10vh;
   width: 90vw;
+  height: 90vh;
   margin: 5vw;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+  border-radius: 5px;
+  background: #000000;
+  justify-content: space-between;
 
   & h1 {
     font-size: 4rem;
+    font-family: "Work Sans", sans-serif;
   }
   & h2 {
     font-size: 3rem;
+    font-family: "Roboto", sans-serif;
   }
 `;
 
@@ -29,22 +37,33 @@ const AnswersContainer = styled.div`
   margin-top: 5vh;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid white;
+  border: 1px solid transparent;
   font-size: 4rem;
   justify-content: center;
   align-items: center;
   height: 60vh;
+  border-radius: 5px;
   width: 100%;
+  background: white;
 `;
 
 const AnswerBox = styled.div`
   /* display: inline-block; */
   height: 10vh;
   width: 40%;
-  border: 1px solid white;
+  border: 1px solid transparent;
+  border-radius: 5px;
   margin: 2vh 1vw;
   text-align: center;
   font-size: 2rem;
+  background: #848c8e;
+  font-family: "Roboto", sans-serif;
+  &:hover {
+    transition: 0.4s;
+    background: #ff7860;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
 `;
 
 const NextQuestionButton = styled.button`
@@ -53,7 +72,7 @@ const NextQuestionButton = styled.button`
   border-radius: 6px;
   outline: none;
   font-size: 0.75em;
-  border: solid 1px #a0dcff;
+  border: solid 1px transparent;
 
   &:hover {
     outline: none;
@@ -123,9 +142,8 @@ class Quiz extends Component {
         title: `${this.props.pageContent.content[0]}`,
         confirmButtonText: "I'm Ready",
         padding: "3em",
-        color: "white",
-        background:
-          "#fff url(https://images.freecreatives.com/wp-content/uploads/2016/02/Free-Blue-Texture-Background-For-Download.jpg)"
+        color: "#ffffff",
+        background: "#000000"
       });
     });
   }
