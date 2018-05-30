@@ -51,14 +51,8 @@ class App extends Component {
   }
 
   logout() {
-<<<<<<< HEAD
     this.setState({ opened: !this.state.opened });
     this.props.logout(this.props.user.user_name);
-=======
-    this.props.logout(this.props.user.user_name).then(() => {
-      this.setState({ opened: !this.state.opened });
-    });
->>>>>>> master
   }
 
   render() {
@@ -66,6 +60,10 @@ class App extends Component {
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
           <NavBar>
+            <Wrappa>
+              <Sq1 />
+              <Sq2 />
+            </Wrappa>
             <Button data-cy-logout-btn onClick={this.logout}>
               Logout
             </Button>

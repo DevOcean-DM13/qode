@@ -14,5 +14,5 @@ export default styled.div`
   z-index: 500;
   transition-duration: 0.15s;
   box-sizing: border-box;
-  padding-right: 1vw;
+  padding: 0 3vw 0 5vw;
 `;
