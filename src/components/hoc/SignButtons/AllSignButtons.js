@@ -54,6 +54,7 @@ class Background extends Component {
     const backMapped = this.state.backgroundName.map((e, i) => {
       return (
         <Button
+          data-cy-background
           key={i}
           onClick={() => this.backgroundChoice(e)}
           className={`backButt ${
@@ -98,6 +99,7 @@ class Purpose extends Component {
     const purpMapped = this.state.purposeName.map((e, i) => {
       return (
         <Button
+          data-cy-purpose
           key={i}
           onClick={() => this.purposeChoice({ e })}
           name={e}
