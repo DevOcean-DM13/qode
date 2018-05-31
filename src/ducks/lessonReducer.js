@@ -153,11 +153,11 @@ export function gradeHtmlActivity7(userInput) {
 
 export function gradeCssActivities(userInput, activityKey) {
   let result = "";
-  if (input === initialState[activity].solution) {
-    result = initialState[activity].success;
+  if (userInput === initialState[activityKey].solution) {
+    result = initialState[activityKey].success;
     return result;
   } else {
-    result = initialState[activity].fail;
+    result = initialState[activityKey].fail;
     return result;
   }
   return {
