@@ -190,9 +190,9 @@ class Signup extends Component {
   }
   userInput = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.props);
   };
   render() {
+    console.log(this.props);
     console.log(this.state.email);
     return (
       <div>
