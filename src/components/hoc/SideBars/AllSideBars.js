@@ -53,17 +53,52 @@ class SignUp extends Component {
 export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
-const FirstQuizTitle = styled.h1`
-  font-weight: 700;
-  font-family: "Work Sans", sans-serif;
+const LessonHeader = styled.div`
+  & h1.Title {
+    color: white;
+    font-weight: 700;
+    font-family: "Work Sans", sans-serif;
+    font-size: 2.5rem;
+    background: inherit;
+    letter-spacing: inherit;
+    text-align: start;
+    padding: inherit;
+    margin: inherit;
+    height: auto;
+    width: auto;
+    border: none;
+    opacity: inherit;
+    visibility: visible;
+    display: inherit;
+  }
+  & h2.Subtitle {
+    color: white;
+    font-weight: 600;
+    font-family: "Work Sans", sans-serif;
+    font-size: 2rem;
+    background: inherit;
+    letter-spacing: inherit;
+    text-align: start;
+    padding: 0.5vh 0 1.5vh 0;
+    margin: inherit;
+    height: auto;
+    width: auto;
+    border: none;
+    opacity: inherit;
+    visibility: visible;
+    display: inherit;
+  }
 `;
+
 const ContentText = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: start;
   font-family: "Roboto", sans-serif;
+  font-size: 2rem;
   &.contentText {
     color: white;
+    font-size: 1rem;
   }
 
   & p {
@@ -220,6 +255,16 @@ class Lesson extends Component {
     //   lastPage
     // );
 
+    //tests for css activities;
+    //scores for quizes;
+    //randomize in database;
+    //check all content for grammar, spelling, 4 answers..
+    //cypress tests
+    //endpoints tests
+    //TextEditor default values?
+    //profile page lesson links
+    //completed section functionality
+
     // this.props.page[this.state.currentPage + 1]
     //   ? this.setState({ nextPage: this.state.currentPage + 1 })
     //   : null;
@@ -234,14 +279,19 @@ class Lesson extends Component {
 
     return (
       <LessonContent style={this.props.styleProps}>
-        <FirstQuizTitle>
-          {this.props.page.length &&
-            this.props.page[this.state.currentPage].lesson_title}
-          <div>
+        <LessonHeader>
+          <h1 className="Title">
+            {this.props.page.length &&
+              this.props.page[this.state.currentPage].lesson_title}
+          </h1>
+          <h2 className="Subtitle">
+            {this.props.match.params.lesson_id}.{
+              this.props.match.params.pageoflesson
+            }-
             {this.props.page.length &&
               this.props.page[this.state.currentPage].subtitle}
-          </div>
-        </FirstQuizTitle>
+          </h2>
+        </LessonHeader>
 
         {content &&
           content.map((e, i) => {

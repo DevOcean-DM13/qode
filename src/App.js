@@ -12,7 +12,6 @@ import Signup from "./components/Signup/Signup";
 import LessonPage from "./components/Lesson/AllLessonPages";
 
 // IMPORT STYLED COMPONENTS
-
 import Button from "./components/MP-Components/Button";
 import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
 import NavBar from "./components/MP-Components/NavBar";
@@ -59,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
-          <NavBar>
+          <NavBar className="NavBarProtected">
             <Wrappa>
               <Sq1 />
               <Sq2 />
@@ -69,12 +68,12 @@ class App extends Component {
             </Button>
           </NavBar>
         ) : (
-          <NavBar>
+          <NavBar className="NavBarProtected">
             <Wrappa>
               <Sq1 />
               <Sq2 />
             </Wrappa>
-            <ButtonWrapper>
+            <ButtonWrapper className="ButtonContainer">
               <Button data-cy-login onClick={this.clickLogin} nav>
                 Login
               </Button>
