@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
@@ -90,7 +91,7 @@ class App extends Component {
           <Route path="/signup" render={() => <Signup />} />
           <Route
             path="/lesson/:lesson_id/:pageoflesson"
-            render={() => <LessonPage />}
+            render={() => <LessonPage user={this.props.user} />}
           />
           <Route
             path="/"

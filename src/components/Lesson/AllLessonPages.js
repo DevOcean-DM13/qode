@@ -8,6 +8,7 @@ import Quiz from "../Quiz/Quiz";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getLesson } from "../../ducks/lessReducer";
+import { getUser } from "../../ducks/userReducer";
 
 const LessonsPages = styled.div`
   height: 100vh;
@@ -52,6 +53,7 @@ class LessonPage extends Component {
       `page content`,
       this.props.lesson[this.state.page]
     );
+    console.log(this.props);
 
     return (
       <div>
@@ -99,8 +101,11 @@ class LessonPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    lesson: state.lessReducer.lesson
+    lesson: state.lessReducer.lesson,
+    user: state.userReducer.user
   };
 };
 
-export default withRouter(connect(mapStateToProps, { getLesson })(LessonPage));
+export default withRouter(
+  connect(mapStateToProps, { getLesson, getUser })(LessonPage)
+);

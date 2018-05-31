@@ -217,11 +217,10 @@ class Dashboard extends Component {
 
   clickOpen(e) {
     this.setState({ sidebar: !this.state.sidebar });
-    console.log(`hit`);
-    console.log(this.state.sidebar);
   }
 
   render() {
+    console.log(this.props);
     const { sidebar } = this.state;
     const { background, goals, pic, purpose, username, email } = this.props;
     return (
@@ -252,7 +251,6 @@ class Dashboard extends Component {
                       <PurbackContent>{purpose}</PurbackContent>
                     </PurBackContainer>
                   </ProfileInfo>
-
                   <GoalsContainer>
                     <GoalsTitle>Goals:</GoalsTitle>
                     <GoalsText>{goals}</GoalsText>
