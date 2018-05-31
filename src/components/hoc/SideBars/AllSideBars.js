@@ -74,6 +74,8 @@ const QuizTitle = styled.h1`
   font-family: "Work Sans", sans-serif;
   font-size: 30px;
   margin-bottom: 40px;
+  padding: 20px;
+  border-bottom: 1.5px solid #ff7860;
 `;
 const QuizSubtitle = styled.h2`
   font-family: "Work Sans", sans-serif;
@@ -103,6 +105,7 @@ const ForwardButton = styled.button`
   border-radius: 5px;
   transition: 0.4s;
   padding-bottom: 10px;
+  outline: none;
   &:hover {
     background: #ffffff;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -125,6 +128,7 @@ const PrevButton = styled.button`
   border: transparent;
   border-radius: 5px;
   transition: 0.4s;
+  outline: none;
   padding-bottom: 10px;
   &:hover {
     background: #ffffff;
