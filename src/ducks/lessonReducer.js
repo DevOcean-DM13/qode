@@ -3,6 +3,7 @@ const GRADE_HTML_ACTIVITY_4 = "GRADE_HTML_ACTIVITY_4";
 const GRADE_HTML_ACTIVITY_5 = "GRADE_HTML_ACTIVITY_5";
 const GRADE_HTML_ACTIVITY_6 = "GRADE_HTML_ACTIVITY_6";
 const GRADE_HTML_ACTIVITY_7 = "GRADE_HTML_ACTIVITY_7";
+const GRADE_CSS_ACTIVITIES = "GRADE_CSS_ACTIVITIES";
 
 var initialState = {
   regex: {
@@ -14,6 +15,65 @@ var initialState = {
     1: "<h1>Hello world!</h1>", //add symbols
     2: "<p>Joe Anderson the third</p>",
     3: "<ul><li>Steak</li><li>Eggs</li></ul>"
+  },
+  css: {
+    activity1: {
+      solution: "h1 {color: yellow;}",
+      success:
+        "Nice job! Selectors are an important part of CSS - they are the target of your styling modifications",
+      fail: "Try again. Double check your syntax!"
+    },
+    activity2: {
+      solution: ".contact-info {font-size: 14px;}",
+      success:
+        'Nice one! Class selectors are very important too. You can also give elements an id attribute and reference them with a "#" in CSS',
+      fail:
+        "Try again, be sure to use period notation in your selector to specify the class"
+    },
+    activity3: {
+      solution: 'p {font-size: 16px; color: purple; font-family: "Helvetica";}',
+      success:
+        "Those are some of the basic font styling modifiers you can use, but there are tons more",
+      fail:
+        'This section covers a lot of material - your answer should follow this syntax: p {font-size: 16px; color: purple; font-family: "Helvetica";}'
+    },
+    activity4: {
+      solution: "div {border: solid black 1px; background-color: gold;}",
+      success:
+        "Borders can also have properties like shadowing and relief that makes them appear to be 3D on a page",
+      fail:
+        "Try again! The border properties are ordered by style first, color second, and thickness third. Thickness needs to be in px"
+    },
+    activity5: {
+      solution: ".company-logo {background-image: url(``);}",
+      success:
+        "Background image is good to use in a pinch if you forgot to include a <img> element in your html doc. The syntax is different from <img> though!",
+      fail:
+        "Try again, make sure you are using the right syntax for background-image!"
+    },
+    activity6: {
+      solution:
+        ".parent {background-color: black; height: 100px; width: 100px;} .child {background-color: green; height: 50%; width: 50%;}",
+      success:
+        "Good job setting that up - next we will show how margin and padding affect these properties differently",
+      fail:
+        "Try again. You want to format both elements, like this: .parent {background-color: black; height: 100px; width: 100px;} .child {background-color: green; height: 50%; width: 50%;}"
+    },
+    activity7: {
+      solution:
+        ".parent {background-color: black; height: 100px; width: 100px; margin: 10px;} .child {background-color: green; height: 50%; width: 50%;}",
+      success: "Nice job! What did you see change?",
+      fail:
+        "Try again - just add the margin modifier to the existing parent CSS statement"
+    },
+    activity8: {
+      solution:
+        ".parent {background-color: black; height: 100px; width: 100px; margin: 10px;} .child {background-color: green; height: 50%; width: 50%; padding: 50px;}",
+      success:
+        "Cool so now we see that the padding pushes in from the border of the child element toward the text content, shrinking the size available for the text",
+      fail:
+        "Give it another go. Like the last problem, just add the padding modifier to the child statement after the existing declarations"
+    }
   }
 };
 
@@ -89,6 +149,23 @@ export function gradeHtmlActivity7(userInput) {
   };
 }
 
+// CSS TESTS //
+
+export function gradeCssActivities(userInput, activityKey) {
+  let result = "";
+  if (input === initialState[activity].solution) {
+    result = initialState[activity].success;
+    return result;
+  } else {
+    result = initialState[activity].fail;
+    return result;
+  }
+  return {
+    type: GRADE_CSS_ACTIVITIES,
+    payload: result
+  };
+}
+
 // EXPORT LESSON REDUCER //
 
 export default function lessonReducer(state = initialState, action) {
@@ -137,6 +214,9 @@ export default function lessonReducer(state = initialState, action) {
       } else {
         return "Try again!";
       }
+
+    case `${GRADE_CSS_ACTIVITIES}`:
+      return action.payload;
 
     default:
       return state;
