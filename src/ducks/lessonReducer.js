@@ -26,7 +26,7 @@ var initialState = {
     activity2: {
       solution: ".contact-info {font-size: 14px;}",
       success:
-        'Nice one! Class selectors are very important too. You can also give elements an id attribute and reference them with a "#" in CSS',
+        'Nice one! Class selectors are also very important to know. You can also give elements an id attribute and reference them with a "#" in CSS',
       fail:
         "Try again, be sure to use period notation in your selector to specify the class"
     },
