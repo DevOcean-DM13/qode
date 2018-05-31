@@ -53,18 +53,38 @@ class SignUp extends Component {
 export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
-const FirstQuizTitle = styled.h1`
-  font-weight: 700;
+const PrettyBox = styled.div`
+  height: 90%;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  padding: 50px 50px 50px 50px;
+`;
+const LessonContent = styled.div`
+  h1 {
+    font-weight: 900;
+  }
+  h2 {
+    font-weight: 700;
+  }
+`;
+const QuizTitle = styled.h1`
   font-family: "Work Sans", sans-serif;
+  font-size: 30px;
+  margin-bottom: 40px;
+`;
+const QuizSubtitle = styled.h2`
+  font-family: "Work Sans", sans-serif;
+  font-size: 20px;
+  margin-bottom: 40px;
 `;
 const ContentText = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
   font-family: "Roboto", sans-serif;
-
-  & p {
-  }
 `;
 
 const ForwardButton = styled.button`
@@ -230,47 +250,37 @@ class Lesson extends Component {
     // console.log(`HERE! LOOK HERE!`, this.props.page[this.state.currentPage]);
 
     return (
-      <LessonContent style={this.props.styleProps}>
-        <FirstQuizTitle>
-          {this.props.page.length &&
-            this.props.page[this.state.currentPage].lesson_title}
-          <div>
+      <LessonContent className="cap n crunch" style={this.props.styleProps}>
+        <PrettyBox>
+          <QuizTitle className="gimme da light">
+            {this.props.page.length &&
+              this.props.page[this.state.currentPage].lesson_title}
+          </QuizTitle>
+          <QuizSubtitle className="i am beautiful and unique title">
             {this.props.page.length &&
               this.props.page[this.state.currentPage].subtitle}
-          </div>
-        </FirstQuizTitle>
+          </QuizSubtitle>
 
-        {content &&
-          content.map((e, i) => {
-            {
-              /* console.log(e); */
-            }
-            return <ContentText key={i}>{e}</ContentText>;
-          })}
-        {/* <p style={{ fontSize: "2rem" }}>
-          {`${this.props["lesson" + this.state.currentLesson]}`}
-        </p> */}
+          {content &&
+            content.map((e, i) => {
+              {
+                /* console.log(e); */
+              }
+              return (
+                <ContentText className="contentText" key={i}>
+                  {e}
+                </ContentText>
+              );
+            })}
 
-        <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
+          <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
 
-        <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
+          <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
+        </PrettyBox>
       </LessonContent>
     );
   }
 }
-
-const LessonContent = styled.div`
-  & p.test {
-    color: "white";
-  }
-
-  h1 {
-    font-weight: 700;
-  }
-  h2 {
-    font-weight: 400;
-  }
-`;
 
 const mapStateToProps = state => {
   return {

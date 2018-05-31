@@ -8,7 +8,8 @@ import {
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -190,10 +191,55 @@ class Signup extends Component {
   }
   userInput = e => {
     this.setState({ [e.target.name]: e.target.value });
+<<<<<<< HEAD
   };
   render() {
     console.log(this.props);
     console.log(this.state.email);
+=======
+    // console.log(this.props);
+  };
+
+  register = () => {
+    if (/^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)) {
+      this.props
+        .registerUser(
+          this.state.userName,
+          this.state.email,
+          this.state.password,
+          this.props.coding_background,
+          this.props.purpose,
+          this.state.goals
+        )
+        .then(response => {
+          console.log(response, "here ya go michael");
+          response.value
+            ? this.props.history.push("/")
+            : Swal({
+                title: "Something went wrong!",
+                text: "This username or email is already taken!",
+                type: "warning"
+              });
+        })
+        .catch(console.log);
+      console.log(
+        "THIS POST RIGHT HERE",
+        this.state.userName,
+        "FROM THE BACK",
+        this.props.user
+      );
+    } else {
+      Swal({
+        title: "Something went wrong!",
+        confirmButtonText: "Ok",
+        text: "Please enter a valid email!",
+        type: "warning"
+      });
+    }
+  };
+  render() {
+    // console.log(this.props);
+>>>>>>> master
     return (
       <div>
         <SignUpSideBar />
@@ -241,6 +287,7 @@ class Signup extends Component {
                   name="userName"
                   placeholder="Username"
                   value={this.state.userName}
+                  pattern="/^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/"
                 />
               </InputBox>
               <InputTitle>Password</InputTitle>
@@ -257,40 +304,13 @@ class Signup extends Component {
           </InputContainer>
 
           <Register>
-            <NavLink to="/">
-              <RegisterButton
-                data-cy-register-user
-                onClick={() => {
-                  console.log(
-                    this.state.userName,
-                    this.state.email,
-                    this.state.password,
-                    this.props.coding_background,
-                    this.props.purpose,
-                    this.state.goals
-                  );
-                  //validate email address.
-                  if (
-                    /^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)
-                  ) {
-                    this.props.registerUser(
-                      this.state.userName,
-                      this.state.email,
-                      this.state.password,
-                      this.props.coding_background,
-                      this.props.purpose,
-                      this.state.goals
-                    );
-                    alert("register successful");
-                  } else {
-                    alert("Enter a valid email");
-                  }
-                }}
-                className="backButt"
-              >
-                Register
-              </RegisterButton>
-            </NavLink>
+            <RegisterButton
+              data-cy-register-user
+              onClick={() => this.register()}
+              className="backButt"
+            >
+              Register
+            </RegisterButton>
           </Register>
         </SignUpForm>
       </div>
@@ -299,8 +319,10 @@ class Signup extends Component {
 }
 const mapStateToProps = state => {
   return {
-    coding_background: state.userReducer.coding_background,
-    purpose: state.userReducer.purpose
+    ...state.userReducer
+    // coding_background: state.userReducer.coding_background,
+    // purpose: state.userReducer.purpose
   };
+  // return state;
 };
-export default connect(mapStateToProps, { registerUser })(Signup);
+export default withRouter(connect(mapStateToProps, { registerUser })(Signup));
