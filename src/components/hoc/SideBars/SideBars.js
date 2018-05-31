@@ -6,11 +6,7 @@ const createSideBar = WrappedComponent => {
       super();
       this.state = {
         styleProps: {
-<<<<<<< HEAD
           height: "auto",
-=======
-          height: "130vh",
->>>>>>> master
           width: "35vw",
           left: "0",
           background: "#00a7e1",

@@ -191,12 +191,6 @@ class Signup extends Component {
   }
   userInput = e => {
     this.setState({ [e.target.name]: e.target.value });
-<<<<<<< HEAD
-  };
-  render() {
-    console.log(this.props);
-    console.log(this.state.email);
-=======
     // console.log(this.props);
   };
 
@@ -239,7 +233,6 @@ class Signup extends Component {
   };
   render() {
     // console.log(this.props);
->>>>>>> master
     return (
       <div>
         <SignUpSideBar />
