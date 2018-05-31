@@ -1,3 +1,8 @@
+/*
+-------------------------------PURPOSE OF THIS TEST-------------------------
+VALIDATES THAT THE SITE EXISTS. USER LOGS IN LOGS OUT SUCCESSFULLY. SUCCESSFULLY REGISTERS A USER
+*/
+
 //Asserts title is correct
 describe("Site exists", () => {
   it(".should() - assert that <title> is correct and location pathname correct", () => {

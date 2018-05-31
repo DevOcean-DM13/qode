@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "a7983834-0930-4e9d-af67-34b569cc711f",
+		"name": "Qode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Quiz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9967c5ae-f47a-4b04-b330-a6322f7d7859",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Is an array of objects\",()=>{",
+							"    pm.expect(Array.isArray(pm.response.json())).to.eql(true);",
+							"    var noObj = pm.response.json().filter((e,i)=>{",
+							"        return typeof e !== \"object\"",
+							"    })",
+							"    pm.expect(noObj.length).to.eql(0)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4891/api/content/get_quiz/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4891",
+					"path": [
+						"api",
+						"content",
+						"get_quiz",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a5cd3acc-b962-4dea-9675-32fb0de6ce59",
+						"type": "text/javascript",
+						"exec": [
+							"var userObj = {",
+							"    \"user_name\": \"TEST\",",
+							"    \"user_email\": \"josephiznot@gmail.com\",",
+							"    \"profile_pic\": \"we-penguin\",",
+							"    \"progress_bar\": 0,",
+							"    \"start_date\": \"2018-05-31T05:00:00.000Z\",",
+							"    \"coding_background\": \"I knew an IT guy.\",",
+							"    \"purpose\": \"student\",",
+							"    \"goals\": null,",
+							"    \"current_section\": \"'What is HTML?'\",",
+							"    \"account_activated\": false",
+							"}",
+							"",
+							"pm.test(\"Account created\",()=>{",
+							"  pm.response.to.have.status(201)",
+							"})",
+							"pm.test(\"Returns user object with user_name\",()=>{",
+							"    pm.expect(pm.response.json().user_name).to.eql(userObj.user_name)",
+							"})",
+							"pm.test(\"User object DOES NOT contain password\",()=>{",
+							"    pm.expect(pm.response.json().user_password).to.eql(undefined)",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"TEST\",\n\t\"password\": \"TEST\",\n\t\"email\":\"josephiznot@gmail.com\",\n\t\"codingBackground\": \"I knew an IT guy.\",\n\t\"purpose\": \"student\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4891/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4891",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				},
+				"description": "http://localhost:4891/api/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "User can logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4891/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4891",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User can  login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4891/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4891",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				},
+				"description": "GET"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd5d70d5-f81d-4520-b699-bd47d3144a36",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Session ended\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"session ended\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"TEST\",\n\t\"email\":\"josephiznot@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4891/api/auth/delete_account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4891",
+					"path": [
+						"api",
+						"auth",
+						"delete_account"
+					]
+				},
+				"description": "http://localhost:4891/api/auth/delete_account"
+			},
+			"response": []
+		},
+		{
+			"name": "No user on sessions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0a95dcd-121d-4482-bafb-4e61305246d4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Unauthorized user on landing page\",()=>{",
+							"    pm.expect(pm.response.code).to.eql(401)",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"123\",\n\t\"email\":\"josephiznot@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4891/api/auth/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4891",
+					"path": [
+						"api",
+						"auth",
+						"user"
+					]
+				},
+				"description": "POST"
+			},
+			"response": []
+		}
+	]
+}
