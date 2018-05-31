@@ -39,7 +39,7 @@ app.use(
     saveUninitialized: false, //only have a session if it was interacted with. Saves on storage.
     resave: false,
     cookie: {
-      maxAge: 1000 * 5 // 30min
+      maxAge: 1000 * 60 * 60 // 1 HOUR
     }
   })
 );
