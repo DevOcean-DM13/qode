@@ -144,7 +144,8 @@ class Quiz extends Component {
           title: "Congrats",
           text: `${this.props.quiz[this.state.questionIndex].explanation[0]}`,
           position: "center",
-          target: "AnswerBox"
+          target: "AnswerBox",
+          confirmButtonColor: "#00a7e1"
         }).then(
           () =>
             this.state.questionIndex <= 1
@@ -157,10 +158,6 @@ class Quiz extends Component {
           text: `${this.props.quiz[this.state.questionIndex].explanation[1]}`,
           timer: 1500
         });
-    // this.state.chosenAnswer ===
-    //   this.props.quiz[this.state.questionIndex].correct_answer
-    //     ? alert("That's right, you're a coding ninja!")
-    //     : alert("Try again");
   };
 
   componentDidMount() {
@@ -170,7 +167,8 @@ class Quiz extends Component {
         confirmButtonText: "I'm Ready",
         padding: "3em",
         color: "#ffffff",
-        background: "#000000"
+        background: "#000000",
+        confirmButtonColor: "#00a7e1"
       }).then(() => this.setState({ blurPage: !this.state.blurPage }));
     });
   }

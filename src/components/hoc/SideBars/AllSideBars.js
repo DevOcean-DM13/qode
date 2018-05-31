@@ -62,6 +62,9 @@ const ContentText = styled.div`
   flex-direction: column;
   text-align: center;
   font-family: "Roboto", sans-serif;
+  &.contentText {
+    color: white;
+  }
 
   & p {
   }
@@ -245,7 +248,11 @@ class Lesson extends Component {
             {
               /* console.log(e); */
             }
-            return <ContentText key={i}>{e}</ContentText>;
+            return (
+              <ContentText className="contentText" key={i}>
+                {e}
+              </ContentText>
+            );
           })}
         {/* <p style={{ fontSize: "2rem" }}>
           {`${this.props["lesson" + this.state.currentLesson]}`}
