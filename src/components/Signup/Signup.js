@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
 import { NavLink, withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -190,18 +191,10 @@ class Signup extends Component {
   }
   userInput = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.props);
+    // console.log(this.props);
   };
 
   register = () => {
-    console.log(
-      this.state.userName,
-      this.state.email,
-      this.state.password,
-      this.props.coding_background,
-      this.props.purpose,
-      this.state.goals
-    );
     if (/^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)) {
       this.props
         .registerUser(
@@ -212,15 +205,34 @@ class Signup extends Component {
           this.props.purpose,
           this.state.goals
         )
-        .then(
-          response => (response.value ? this.props.history.push("/") : null)
-        );
+        .then(response => {
+          console.log(response, "here ya go michael");
+          response.value
+            ? this.props.history.push("/")
+            : Swal({
+                title: "Something went wrong!",
+                text: "This username or email is already taken!",
+                type: "warning"
+              });
+        })
+        .catch(console.log);
+      console.log(
+        "THIS POST RIGHT HERE",
+        this.state.userName,
+        "FROM THE BACK",
+        this.props.user
+      );
     } else {
-      alert("invalid email");
+      Swal({
+        title: "Something went wrong!",
+        confirmButtonText: "Ok",
+        text: "Please enter a valid email!",
+        type: "warning"
+      });
     }
   };
   render() {
-    console.log(this.state.email);
+    // console.log(this.props);
     return (
       <div>
         <SignUpSideBar />
@@ -300,8 +312,10 @@ class Signup extends Component {
 }
 const mapStateToProps = state => {
   return {
-    coding_background: state.userReducer.coding_background,
-    purpose: state.userReducer.purpose
+    ...state.userReducer
+    // coding_background: state.userReducer.coding_background,
+    // purpose: state.userReducer.purpose
   };
+  // return state;
 };
 export default withRouter(connect(mapStateToProps, { registerUser })(Signup));
