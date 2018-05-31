@@ -145,12 +145,14 @@ function getUser(req, res) {
   }
 }
 function logout(req, res) {
+  console.log("trying to logout");
   if (req.session.user.user_name) {
     req.session.destroy();
-    return res.status(200).send({ message: "session ended" });
     console.log("session ended");
+    return res.status(200).send({ message: "session ended" });
   } else {
     //Forbidden request. Cannot destroy a session that doesnt exist.
+    console.log("user not logged in");
     return res.status(403).send({
       message: "User not logged in."
     });
