@@ -98,8 +98,12 @@ class LessonPage extends Component {
     );
   }
 }
+//this.props.userReducer.user
+//this.props.user
+//
 
 const mapStateToProps = state => {
+  console.log("mstp state", state);
   return {
     lesson: state.lessReducer.lesson,
     user: state.userReducer.user

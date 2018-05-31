@@ -55,18 +55,19 @@ export function login(userName, password) {
 }
 
 export function logout() {
+  console.log("logging out here");
   return {
     type: LOGOUT_USER,
-    payload: axios
-      .post(`/api/auth/logout`)
-      .then(user => {
-        console.log(user);
-      })
-      .catch(err => console.log(err))
+    payload: axios.get(`/api/auth/logout`)
+    // .then(user => {
+    //   console.log(user);
+    // })
+    // .catch(err => console.log(err))
   };
 }
 
 export function getUser() {
+  console.log("getting user");
   return {
     type: GET_USER_OBJ,
     payload: axios
@@ -101,6 +102,7 @@ export default function userReducer(state = initialState, action) {
     case `${GET_USER}_FULFILLED`:
     case `${GET_USER_OBJ}_FULFILLED`:
       console.log(`HEREHEREHERE`, action.payload);
+
       return { ...state, user: action.payload };
     case `${REGISTER_USER}_FULFILLED`:
       return { ...state, loading: false, user: action.payload };
@@ -109,6 +111,6 @@ export default function userReducer(state = initialState, action) {
     case `${UPDATE_PURPOSE}`:
       return { ...state, purpose: action.payload };
     default:
-      return { state };
+      return state;
   }
 }

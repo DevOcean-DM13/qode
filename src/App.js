@@ -42,6 +42,7 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
+  //USER OBJECT ALREADY EXISTS AFTER YOU LOGIN.
   componentDidMount() {
     this.props.getUser();
   }
