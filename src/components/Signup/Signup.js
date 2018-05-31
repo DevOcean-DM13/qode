@@ -8,7 +8,7 @@ import {
 import { connect } from "react-redux";
 import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -192,7 +192,35 @@ class Signup extends Component {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.props);
   };
+
+  register = () => {
+    console.log(
+      this.state.userName,
+      this.state.email,
+      this.state.password,
+      this.props.coding_background,
+      this.props.purpose,
+      this.state.goals
+    );
+    if (/^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/.test(this.state.email)) {
+      this.props
+        .registerUser(
+          this.state.userName,
+          this.state.email,
+          this.state.password,
+          this.props.coding_background,
+          this.props.purpose,
+          this.state.goals
+        )
+        .then(
+          response => (response.value ? this.props.history.push("/") : null)
+        );
+    } else {
+      alert("invalid email");
+    }
+  };
   render() {
+    console.log(this.state.email);
     return (
       <div>
         <SignUpSideBar />
@@ -211,6 +239,7 @@ class Signup extends Component {
           <QodingGoal>
             <Question>What are your goals?</Question>
             <GoalText
+              data-cy-goals
               placeholder="ex. &quot;I want to be able to code a website for my personal business&quot;"
               name="goals"
               value={this.state.goals}
@@ -224,6 +253,7 @@ class Signup extends Component {
               <InputTitle>Email</InputTitle>
               <InputBox>
                 <Input
+                  data-cy-create-email
                   onChange={e => this.userInput(e)}
                   name="email"
                   placeholder="Email"
@@ -233,15 +263,18 @@ class Signup extends Component {
               <InputTitle>Username</InputTitle>
               <InputBox>
                 <Input
+                  data-cy-create-user
                   onChange={e => this.userInput(e)}
                   name="userName"
                   placeholder="Username"
                   value={this.state.userName}
+                  pattern="/^[a-z0-9_]+@[a-z0-9_]+\.[a-z0-9_]+$/"
                 />
               </InputBox>
               <InputTitle>Password</InputTitle>
               <InputBox>
                 <Input
+                  data-cy-create-password
                   onChange={e => this.userInput(e)}
                   name="password"
                   placeholder="Password"
@@ -252,31 +285,13 @@ class Signup extends Component {
           </InputContainer>
 
           <Register>
-            <NavLink to="/">
-              <RegisterButton
-                onClick={() => {
-                  console.log(
-                    this.state.userName,
-                    this.state.email,
-                    this.state.password,
-                    this.props.coding_background,
-                    this.props.purpose,
-                    this.state.goals
-                  );
-                  this.props.registerUser(
-                    this.state.userName,
-                    this.state.email,
-                    this.state.password,
-                    this.props.coding_background,
-                    this.props.purpose,
-                    this.state.goals
-                  );
-                }}
-                className="backButt"
-              >
-                Register
-              </RegisterButton>
-            </NavLink>
+            <RegisterButton
+              data-cy-register-user
+              onClick={() => this.register()}
+              className="backButt"
+            >
+              Register
+            </RegisterButton>
           </Register>
         </SignUpForm>
       </div>
@@ -289,4 +304,4 @@ const mapStateToProps = state => {
     purpose: state.userReducer.purpose
   };
 };
-export default connect(mapStateToProps, { registerUser })(Signup);
+export default withRouter(connect(mapStateToProps, { registerUser })(Signup));

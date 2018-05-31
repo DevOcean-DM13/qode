@@ -60,6 +60,10 @@ class App extends Component {
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
           <NavBar>
+            <Wrappa>
+              <Sq1 />
+              <Sq2 />
+            </Wrappa>
             <Button data-cy-logout-btn onClick={this.logout}>
               Logout
             </Button>
@@ -75,7 +79,9 @@ class App extends Component {
                 Login
               </Button>
               <NavLink to="/signup">
-                <Button nav>Register</Button>
+                <Button data-cy-register nav>
+                  Register
+                </Button>
               </NavLink>
             </ButtonWrapper>
           </NavBar>

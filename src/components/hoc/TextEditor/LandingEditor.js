@@ -42,12 +42,7 @@ export default class LandingEditor extends Component {
 <!-- What is missing below? -->
 
 <p>What is it?
-  
-<style> 
-  h1{
- 
-}
-</style>`,
+  `,
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
