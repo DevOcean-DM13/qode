@@ -4,7 +4,7 @@ import brace from "brace";
 import AceEditor from "react-ace";
 import "brace/mode/html";
 import "brace/theme/ambiance";
-import "brace/theme/ambiance";
+import "brace/theme/monokai";
 
 // IMPORTING IN A FEW STYLED COMPONENTS CAPS LOCK
 import styled from "styled-components";
@@ -67,7 +67,7 @@ export default class LandingEditor extends Component {
         <EditorAndDisplay>
           <AceEditor
             mode="html"
-            theme="ambiance"
+            theme="monokai"
             onChange={this.onChange}
             name="UNIQUE_ID_OF_DIV"
             height="300px"

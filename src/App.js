@@ -10,16 +10,21 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Signup from "./components/Signup/Signup";
 import LessonPage from "./components/Lesson/AllLessonPages";
+import qode from "./qode.png";
 
 // IMPORT STYLED COMPONENTS
-
 import Button from "./components/MP-Components/Button";
 import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
 import NavBar from "./components/MP-Components/NavBar";
-import { Wrappa, Sq1, Sq2 } from "./components/MP-Components/QoGo";
+// import { Wrappa, Sq1, Sq2 } from "./components/MP-Components/QoGo";
 //IMPORT ASSETS AND CSS
 import "./App.css";
 import { getUser, logout } from "./ducks/userReducer";
+
+const Logo = styled.img`
+  height: 50px;
+  width: 72px;
+`;
 
 class App extends Component {
   // componentDidUpdate(prevProps, prevState) {
@@ -53,7 +58,9 @@ class App extends Component {
 
   logout() {
     this.setState({ opened: !this.state.opened });
-    this.props.logout(this.props.user.user_name);
+    this.props.logout(this.props.user.user_name).then(response => {
+      window.location.reload();
+    });
   }
 
   render() {
@@ -61,24 +68,18 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
-          <NavBar>
+          <NavBar className="NavBarProtected">
             <NavLink to="/dashboard">
-              <Wrappa>
-                <Sq1 />
-                <Sq2 />
-              </Wrappa>
+              <Logo src={qode} />
             </NavLink>
             <Button data-cy-logout-btn onClick={this.logout}>
               Logout
             </Button>
           </NavBar>
         ) : (
-          <NavBar>
+          <NavBar className="NavBarProtected">
             <NavLink to="/">
-              <Wrappa>
-                <Sq1 />
-                <Sq2 />
-              </Wrappa>
+              <Logo src={qode} />
             </NavLink>
             <ButtonWrapper>
               <Button data-cy-login onClick={this.clickLogin} nav>
@@ -95,14 +96,10 @@ class App extends Component {
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route
-            path="/lesson/:lesson_id/:pageoflesson"
-            render={() => <LessonPage user={this.props.user} />}
-          />
-          <Route
             path="/"
             render={() =>
               this.props.user && this.props.user.user_name ? (
-                <Dashboard />
+                <Dashboard user={this.props.user} />
               ) : (
                 <Landing opened={this.state.opened} />
               )

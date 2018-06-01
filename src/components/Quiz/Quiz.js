@@ -23,7 +23,7 @@ const QuizComponent = styled.div`
   color: white;
   border-radius: 5px;
   background: #000000;
-  justify-content: space-between;
+  justify-content: space-around;
 
   & h1 {
     font-size: 4rem;
@@ -100,25 +100,24 @@ const NextQuestionButton = styled.button`
   }
 `;
 const PrevButton = styled.button`
-  height: 70px;
-  width: 70px;
-  position: fixed;
+  width: 10vw;
+  font-size: 15px;
+  position: top;
   left: 0;
+  bottom: 0;
   z-index: 1000;
-  border: transparent;
-  font-size: 75px;
+  border: 1px solid black;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
   margin-left: 2vw;
   background: transparent;
-  border: transparent;
   border-radius: 5px;
   transition: 0.4s;
-  padding-bottom: 10px;
+  padding: 1vh 0;
   outline: none;
   &:hover {
-    background: #ffffff;
+    background: #9b111e;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
@@ -149,12 +148,12 @@ class Quiz extends Component {
 
     if (currentPage > 0) {
       nextLesson = parseInt(currentLesson);
-      nextPage = parseInt(currentPage) - 1;
+      nextPage = 1;
     } else if (currentPage === 0) {
       console.log(`hereherehereh ${currentLesson - 1}`);
       console.log(this.state);
       nextLesson = currentLesson - 1;
-      nextPage = this.props.lastLesson.length - 1;
+      nextPage = 1;
 
       console.log(nextPage);
     }
@@ -202,8 +201,7 @@ class Quiz extends Component {
       : Swal({
           title: "Your work has been saved",
           type: "warning",
-          text: `${this.props.quiz[this.state.questionIndex].explanation[1]}`,
-          timer: 1500
+          text: `${this.props.quiz[this.state.questionIndex].explanation[1]}`
         });
   };
 
@@ -250,6 +248,7 @@ class Quiz extends Component {
         /> */}
         {this.props.quiz.length && (
           <QuizComponent className={this.state.blurPage && "blurred"}>
+            <h3>Question {this.state.questionIndex + 1}:</h3>
             <h2>{this.props.quiz[this.state.questionIndex].text}</h2>
 
             <AnswersContainer>
@@ -273,7 +272,7 @@ class Quiz extends Component {
             </AnswersContainer>
           </QuizComponent>
         )}
-        <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
+        <PrevButton onClick={e => this.backClick(e)}>back to lesson</PrevButton>
       </div>
     );
   }
