@@ -9,7 +9,8 @@ function createUser(req, res, next) {
     password,
     codingBackground,
     purpose,
-    goals
+    goals,
+    pic
   } = req.body;
   const startDate = new Date();
   //track time the day that the user's account was created.
@@ -23,7 +24,8 @@ function createUser(req, res, next) {
       startDate,
       codingBackground,
       purpose,
-      goals
+      goals,
+      pic
     ])
     .then(user => {
       console.log(user);
