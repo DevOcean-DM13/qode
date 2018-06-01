@@ -22,8 +22,10 @@ import "./App.css";
 import { getUser, logout } from "./ducks/userReducer";
 
 const Logo = styled.img`
-  height: 50px;
-  width: 72px;
+  height: 55px;
+  width: 103px;
+  outline: none;
+  padding-left: 20px;
 `;
 
 class App extends Component {
@@ -81,7 +83,7 @@ class App extends Component {
             <NavLink to="/">
               <Logo src={qode} />
             </NavLink>
-            <ButtonWrapper>
+            <ButtonWrapper className="ButtonContainer">
               <Button data-cy-login onClick={this.clickLogin} nav>
                 Login
               </Button>
