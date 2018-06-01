@@ -34,6 +34,7 @@ export function getLast(lesson_id) {
 }
 
 export default function lessReducer(state = initialState, action) {
+  // console.log("reducer state:", state);
   switch (action.type) {
     case `${GET_LESSON}_FULFILLED`:
       return Object.assign({}, state, { lesson: action.payload });

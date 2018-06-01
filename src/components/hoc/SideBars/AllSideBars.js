@@ -74,6 +74,8 @@ const QuizTitle = styled.h1`
   font-family: "Work Sans", sans-serif;
   font-size: 30px;
   margin-bottom: 40px;
+  padding: 20px;
+  border-bottom: 1.5px solid #ff7860;
 `;
 const QuizSubtitle = styled.h2`
   font-family: "Work Sans", sans-serif;
@@ -103,6 +105,7 @@ const ForwardButton = styled.button`
   border-radius: 5px;
   transition: 0.4s;
   padding-bottom: 10px;
+  outline: none;
   &:hover {
     background: #ffffff;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -125,6 +128,7 @@ const PrevButton = styled.button`
   border: transparent;
   border-radius: 5px;
   transition: 0.4s;
+  outline: none;
   padding-bottom: 10px;
   &:hover {
     background: #ffffff;
@@ -293,32 +297,291 @@ export const LessonBar = createSideBar(
 );
 
 const CourseWrapper = styled.div`
-  height: 20vh;
+  height: auto;
   width: auto;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `;
-
 const CourseTitle = styled.p`
+  font-size: 1.2em;
   margin-top: 20px;
   margin-bottom: 20px;
 `;
+const LinkItem = styled.div`
+  font-size: 0.7em;
+  color: white;
+  margin-bottom: 10px;
+  margin-top: 7px;
+  cursor: pointer;
+
+  &.linkHover:hover {
+    background: #202020;
+    transition: 0.4s;
+  }
+`;
+const LinkOptionBox = styled.div`
+  height: auto;
+  width: 6vw;
+  display: none;
+  &.one {
+    display: flex;
+    flex-direction: column;
+  }
+  &.two {
+    display: flex;
+    flex-direction: column;
+  }
+  &.three {
+    display: flex;
+    flex-direction: column;
+  }
+  &.four {
+    display: flex;
+    flex-direction: column;
+  }
+  &.five {
+    display: flex;
+    flex-direction: column;
+  }
+  &.six {
+    display: flex;
+    flex-direction: column;
+  }
+  &.seven {
+    display: flex;
+    flex-direction: column;
+  }
+  &.eight {
+    display: flex;
+    flex-direction: column;
+  }
+  &.nine {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+const LinkOptions = styled.div`
+  width: auto;
+  font-size: 0.5em;
+  color: white;
+
+  &.optionHover:hover {
+    background: #202020;
+    transition: 0.4s;
+  }
+`;
 class ProfileSide extends Component {
+  constructor() {
+    super();
+    this.state = {
+      oneOpened: false,
+      twoOpened: false,
+      threeOpened: false,
+      fourOpened: false,
+      fiveOpened: false,
+      sixOpened: false,
+      sevenOpened: false,
+      eightOpened: false,
+      nineOpened: false
+    };
+    this.handleOne = this.handleOne.bind(this);
+    this.handleTwo = this.handleTwo.bind(this);
+    this.handleThree = this.handleThree.bind(this);
+    this.handleFour = this.handleFour.bind(this);
+    this.handleFive = this.handleFive.bind(this);
+    this.handleSix = this.handleSix.bind(this);
+    this.handleSeven = this.handleSeven.bind(this);
+    this.handleEight = this.handleEight.bind(this);
+    this.handleNine = this.handleNine.bind(this);
+  }
+
+  handleOne() {
+    console.log(this.state.oneOpened);
+    this.setState({ oneOpened: !this.state.oneOpened });
+  }
+  handleTwo() {
+    this.setState({ twoOpened: !this.state.twoOpened });
+  }
+  handleThree() {
+    this.setState({ threeOpened: !this.state.threeOpened });
+  }
+  handleFour() {
+    this.setState({ fourOpened: !this.state.fourOpened });
+  }
+  handleFive() {
+    this.setState({ fiveOpened: !this.state.fiveOpened });
+  }
+  handleSix() {
+    this.setState({ sixOpened: !this.state.sixOpened });
+  }
+  handleSeven() {
+    this.setState({ sevenOpened: !this.state.sevenOpened });
+  }
+  handleEight() {
+    this.setState({ eightOpened: !this.state.eightOpened });
+  }
+  handleNine() {
+    this.setState({ nineOpened: !this.state.nineOpened });
+  }
+
   render() {
     return (
       <div style={this.props.styleProps}>
-        <div>Courses</div>
         <CourseWrapper>
           <CourseTitle>HTML</CourseTitle>
-          <Link to="/test">Pre-quiz</Link>
-          <a>Lesson/Activity</a>
-          <a>Post-quiz</a>
+          <LinkItem className="linkHover" onClick={this.handleOne}>
+            1.1 Intro to HTML
+          </LinkItem>
+          {this.state.oneOpened && (
+            <LinkOptionBox className="one">
+              <Link to="/lesson/1/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/1/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/1/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+          <LinkItem className="linkHover" onClick={this.handleTwo}>
+            1.2 Elements and Tags
+          </LinkItem>
+          {this.state.twoOpened && (
+            <LinkOptionBox className="two">
+              <Link to="/lesson/2/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/2/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/2/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+          <LinkItem className="linkHover" onClick={this.handleThree}>
+            1.3 Attributes
+          </LinkItem>
+          {this.state.threeOpened && (
+            <LinkOptionBox className="three">
+              <Link to="/lesson/3/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/3/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/3/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+          <LinkItem className="linkHover" onClick={this.handleFour}>
+            1.4 HTML Layout
+          </LinkItem>
+          {this.state.fourOpened && (
+            <LinkOptionBox className="four">
+              <Link to="/lesson/4/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/4/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/4/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+          <LinkItem className="linkHover" onClick={this.handleFive}>
+            1.5 Tying It All Together
+          </LinkItem>
+          {this.state.fiveOpened && (
+            <LinkOptionBox className="five">
+              <Link to="/lesson/5/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/5/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/5/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
         </CourseWrapper>
         <CourseWrapper>
           <CourseTitle>CSS</CourseTitle>
-          <a>Pre-quiz</a>
-          <a>Lesson/Activity</a>
-          <a>Post-quiz</a>
+
+          <LinkItem className="linkHover" onClick={this.handleSix}>
+            2.1 Intro To CSS
+          </LinkItem>
+          {this.state.sixOpened && (
+            <LinkOptionBox className="six">
+              <Link to="/lesson/6/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/6/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/6/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+
+          <LinkItem className="linkHover" onClick={this.handleSeven}>
+            2.2 CSS Syntax
+          </LinkItem>
+          {this.state.sevenOpened && (
+            <LinkOptionBox className="seven">
+              <Link to="/lesson/7/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/7/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/7/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+
+          <LinkItem className="linkHover" onClick={this.handleEight}>
+            2.3 Styling Tools
+          </LinkItem>
+          {this.state.eightOpened && (
+            <LinkOptionBox className="eight">
+              <Link to="/lesson/8/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/8/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/8/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+
+          <LinkItem className="linkHover" onClick={this.handleNine}>
+            2.4 Tying It All Together
+          </LinkItem>
+          {this.state.nineOpened && (
+            <LinkOptionBox className="nine">
+              <Link to="/lesson/9/0">
+                <LinkOptions className="optionHover">Pre-quiz</LinkOptions>
+              </Link>
+              <Link to="/lesson/9/1">
+                <LinkOptions className="optionHover">Lesson</LinkOptions>
+              </Link>
+              <Link to="/lesson/9/2">
+                <LinkOptions className="optionHover">Post-quiz</LinkOptions>
+              </Link>
+            </LinkOptionBox>
+          )}
+          <CourseTitle>Sandbox</CourseTitle>
         </CourseWrapper>
       </div>
     );

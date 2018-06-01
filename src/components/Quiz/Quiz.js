@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getQuiz } from "../../ducks/quizRedux";
 import { getLast } from "../../ducks/lessReducer.js";
+import { getUser } from "../../ducks/userReducer.js";
 import Swal from "sweetalert2";
 
 const QuizComponent = styled.div`
@@ -115,6 +116,7 @@ const PrevButton = styled.button`
   border-radius: 5px;
   transition: 0.4s;
   padding-bottom: 10px;
+  outline: none;
   &:hover {
     background: #ffffff;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -159,14 +161,6 @@ class Quiz extends Component {
 
     this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
-
-  // if (currentPage - 1) {
-  //   nextLesson = 0;
-  //   nextPage = parseInt(currentPage);
-  // } else {
-  //   nextPage = 0;
-  //   nextLesson = parseInt(currentLesson) - 1;
-  // }
 
   evaluateAnswer = () => {
     console.log(
@@ -214,6 +208,7 @@ class Quiz extends Component {
   };
 
   componentDidMount() {
+    this.props.getUser();
     this.props.getQuiz(this.props.quiz_id).then(() => {
       Swal({
         title: `${this.props.pageContent.content[0]}`,
@@ -292,4 +287,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, { getQuiz, getLast })(Quiz));
+export default withRouter(
+  connect(mapStateToProps, { getQuiz, getLast, getUser })(Quiz)
+);

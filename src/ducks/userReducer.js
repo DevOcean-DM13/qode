@@ -55,10 +55,11 @@ export function login(userName, password) {
 }
 
 export function logout() {
+  console.log("logging out here");
   return {
     type: LOGOUT_USER,
     payload: axios
-      .post(`/api/auth/logout`)
+      .get(`/api/auth/logout`)
       .then(user => {
         console.log(user);
       })
@@ -67,6 +68,7 @@ export function logout() {
 }
 
 export function getUser() {
+  console.log("getting user");
   return {
     type: GET_USER_OBJ,
     payload: axios
@@ -109,6 +111,6 @@ export default function userReducer(state = initialState, action) {
     case `${UPDATE_PURPOSE}`:
       return { ...state, purpose: action.payload };
     default:
-      return { state };
+      return state;
   }
 }
