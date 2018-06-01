@@ -91,13 +91,15 @@ const LessonHeader = styled.div`
 `;
 
 const PrettyBox = styled.div`
-  height: auto;
-  width: 100%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 25px;
-  padding: 50px 50px 50px 50px;
+  &.pretty {
+    height: 90%;
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    padding: 50px 50px 50px 50px;
+  }
 `;
 const LessonContent = styled.div`
   h1 {
@@ -274,7 +276,7 @@ class Lesson extends Component {
 
     return (
       <LessonContent style={this.props.styleProps}>
-        <PrettyBox>
+        <PrettyBox className="pretty">
           <LessonHeader>
             <h1 className="Title">
               {this.props.page.length &&
