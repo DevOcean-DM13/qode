@@ -26,10 +26,10 @@ export default styled.div`
       letter-spacing: inherit;
       text-align: inherit;
       padding: 0 0;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       margin: inherit inherit;
-      width: 16vw;
+      width: 20vw;
       height: auto;
       background: inherit;
     }

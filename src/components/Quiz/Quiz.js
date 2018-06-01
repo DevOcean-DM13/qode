@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const QuizComponent = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 10vh;
   width: 90vw;
@@ -111,7 +111,7 @@ const PrevButton = styled.button`
   text-align: center;
   bottom: 5vh;
   margin-left: 2vw;
-  background: transparent;
+  background: white;
   border-radius: 5px;
   transition: 0.4s;
   padding: 1vh 0;
@@ -248,6 +248,10 @@ class Quiz extends Component {
         /> */}
         {this.props.quiz.length && (
           <QuizComponent className={this.state.blurPage && "blurred"}>
+            <PrevButton onClick={e => this.backClick(e)}>
+              back to lesson
+            </PrevButton>
+
             <h3>Question {this.state.questionIndex + 1}:</h3>
             <h2>{this.props.quiz[this.state.questionIndex].text}</h2>
 
@@ -272,7 +276,6 @@ class Quiz extends Component {
             </AnswersContainer>
           </QuizComponent>
         )}
-        <PrevButton onClick={e => this.backClick(e)}>back to lesson</PrevButton>
       </div>
     );
   }
