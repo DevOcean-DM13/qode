@@ -14,3 +14,7 @@ describe("Purpose button works", () => {
     cy.get("[data-cy-purpose").click();
   });
 });
+
+// check background button works
+// check profile generator works
+// check quiz answer is wrong
