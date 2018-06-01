@@ -91,7 +91,7 @@ const LessonHeader = styled.div`
 `;
 
 const PrettyBox = styled.div`
-  height: 90%;
+  height: auto;
   width: 100%;
   background: white;
   display: flex;
