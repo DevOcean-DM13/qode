@@ -41,6 +41,7 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
+  //USER OBJECT ALREADY EXISTS AFTER YOU LOGIN.
   componentDidMount() {
     this.props.getUser();
   }
@@ -55,25 +56,30 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
-          <NavBar className="NavBarProtected">
-            <Wrappa>
-              <Sq1 />
-              <Sq2 />
-            </Wrappa>
+          <NavBar>
+            <NavLink to="/dashboard">
+              <Wrappa>
+                <Sq1 />
+                <Sq2 />
+              </Wrappa>
+            </NavLink>
             <Button data-cy-logout-btn onClick={this.logout}>
               Logout
             </Button>
           </NavBar>
         ) : (
-          <NavBar className="NavBarProtected">
-            <Wrappa>
-              <Sq1 />
-              <Sq2 />
-            </Wrappa>
-            <ButtonWrapper className="ButtonContainer">
+          <NavBar>
+            <NavLink to="/">
+              <Wrappa>
+                <Sq1 />
+                <Sq2 />
+              </Wrappa>
+            </NavLink>
+            <ButtonWrapper>
               <Button data-cy-login onClick={this.clickLogin} nav>
                 Login
               </Button>
@@ -89,7 +95,7 @@ class App extends Component {
           <Route path="/signup" render={() => <Signup />} />
           <Route
             path="/lesson/:lesson_id/:pageoflesson"
-            render={() => <LessonPage />}
+            render={() => <LessonPage user={this.props.user} />}
           />
           <Route
             path="/"
