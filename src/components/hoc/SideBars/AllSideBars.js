@@ -53,14 +53,53 @@ class SignUp extends Component {
 export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
+const LessonHeader = styled.div`
+  & h1.Title {
+    color: #00a7e1;
+    font-weight: 700;
+    font-family: "Work Sans", sans-serif;
+    font-size: 2.5rem;
+    background: inherit;
+    letter-spacing: inherit;
+    text-align: start;
+    padding: inherit;
+    margin: inherit;
+    height: auto;
+    width: auto;
+    border: none;
+    opacity: inherit;
+    visibility: visible;
+    display: inherit;
+  }
+  & h2.Subtitle {
+    color: #00a7e1;
+    font-weight: 600;
+    font-family: "Work Sans", sans-serif;
+    font-size: 2rem;
+    background: inherit;
+    letter-spacing: inherit;
+    text-align: start;
+    padding: 0.5vh 0 1.5vh 0;
+    margin: inherit;
+    height: auto;
+    width: auto;
+    border: none;
+    opacity: inherit;
+    visibility: visible;
+    display: inherit;
+  }
+`;
+
 const PrettyBox = styled.div`
-  height: 90%;
-  width: 100%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 25px;
-  padding: 50px 50px 50px 50px;
+  &.pretty {
+    height: 90%;
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    padding: 50px 50px 50px 50px;
+  }
 `;
 const LessonContent = styled.div`
   h1 {
@@ -82,11 +121,17 @@ const QuizSubtitle = styled.h2`
   font-size: 20px;
   margin-bottom: 40px;
 `;
+
 const ContentText = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: start;
   font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  &.contentText {
+    color: #00a7e1;
+    font-size: 1rem;
+  }
 `;
 
 const ForwardButton = styled.button`
@@ -229,47 +274,26 @@ class Lesson extends Component {
       lastLesson = parseInt(currentLesson) - 1;
     }
 
-    // console.log(
-    //   `current:`,
-    //   currentLesson,
-    //   currentPage,
-    //   "next:",
-    //   nextLesson,
-    //   nextPage,
-    //   "last:",
-    //   lastLesson,
-    //   lastPage
-    // );
-
-    // this.props.page[this.state.currentPage + 1]
-    //   ? this.setState({ nextPage: this.state.currentPage + 1 })
-    //   : null;
-
-    // this.props.page[this.state.currentPage + 1]
-    //   ? null
-    //   : this.setState({ nextLesson: this.state.currentLesson + 1 });
-    // let nextlesson = this.state.nextLesson;
-    // let nextpage = this.state.nextPage;
-
-    // console.log(`HERE! LOOK HERE!`, this.props.page[this.state.currentPage]);
-
     return (
-      <LessonContent className="cap n crunch" style={this.props.styleProps}>
-        <PrettyBox>
-          <QuizTitle className="gimme da light">
-            {this.props.page.length &&
-              this.props.page[this.state.currentPage].lesson_title}
-          </QuizTitle>
-          <QuizSubtitle className="i am beautiful and unique title">
-            {this.props.page.length &&
-              this.props.page[this.state.currentPage].subtitle}
-          </QuizSubtitle>
+      <LessonContent style={this.props.styleProps}>
+        <PrettyBox className="pretty">
+          <LessonHeader>
+            <h1 className="Title">
+              {this.props.page.length &&
+                this.props.page[this.state.currentPage].lesson_title}
+            </h1>
+            <h2 className="Subtitle">
+              {this.props.match.params.lesson_id}.{
+                this.props.match.params.pageoflesson
+              }-
+              {this.props.page.length &&
+                this.props.page[this.state.currentPage].subtitle}
+            </h2>
+          </LessonHeader>
 
           {content &&
             content.map((e, i) => {
-              {
-                /* console.log(e); */
-              }
+              /* console.log(e); */
               return (
                 <ContentText className="contentText" key={i}>
                   {e}
@@ -285,7 +309,6 @@ class Lesson extends Component {
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     page: state.lessReducer.lesson

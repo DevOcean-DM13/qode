@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import testing from "./testing.png";
-import goodboi from "./grimreaper.jpg";
 import styled from "styled-components";
+import html from "./html.png";
+import css from "./css.png";
+import javascript from "./javascript.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,8 +28,10 @@ export default class SimpleSlider extends Component {
     };
     return (
       <Slider {...settings} className="slides-container">
-        <ActualSlides className="images" src={testing} />
-        <ActualSlides className="images" src={goodboi} />
+        <ActualSlides className="images" src={html} />
+        <ActualSlides className="images" src={css} />
+        <ActualSlides className="images" src={javascript} />
+
         <h3>hihi</h3>
       </Slider>
     );
