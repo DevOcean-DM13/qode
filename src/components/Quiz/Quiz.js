@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getQuiz } from "../../ducks/quizRedux";
+import { getLast } from "../../ducks/lessReducer.js";
 import Swal from "sweetalert2";
 
 const QuizComponent = styled.div`
@@ -97,6 +98,29 @@ const NextQuestionButton = styled.button`
     border: none;
   }
 `;
+const PrevButton = styled.button`
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+  border: transparent;
+  font-size: 75px;
+  line-height: 60px;
+  text-align: center;
+  bottom: 5vh;
+  margin-left: 2vw;
+  background: transparent;
+  border: transparent;
+  border-radius: 5px;
+  transition: 0.4s;
+  padding-bottom: 10px;
+  &:hover {
+    background: #ffffff;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+`;
 class Quiz extends Component {
   constructor(props) {
     super(props);
@@ -114,6 +138,35 @@ class Quiz extends Component {
   answerQuestion = e => {
     this.setState({ chosenAnswer: e.e }, () => this.evaluateAnswer());
   };
+
+  backClick = e => {
+    let currentLesson = this.state.currentLesson;
+    let currentPage = this.state.currentPage;
+    let nextLesson;
+    let nextPage;
+
+    if (currentPage > 0) {
+      nextLesson = parseInt(currentLesson);
+      nextPage = parseInt(currentPage) - 1;
+    } else if (currentPage === 0) {
+      console.log(`hereherehereh ${currentLesson - 1}`);
+      console.log(this.state);
+      nextLesson = currentLesson - 1;
+      nextPage = this.props.lastLesson.length - 1;
+
+      console.log(nextPage);
+    }
+
+    this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
+  };
+
+  // if (currentPage - 1) {
+  //   nextLesson = 0;
+  //   nextPage = parseInt(currentPage);
+  // } else {
+  //   nextPage = 0;
+  //   nextLesson = parseInt(currentLesson) - 1;
+  // }
 
   evaluateAnswer = () => {
     console.log(
@@ -171,6 +224,9 @@ class Quiz extends Component {
         confirmButtonColor: "#00a7e1"
       }).then(() => this.setState({ blurPage: !this.state.blurPage }));
     });
+
+    let currentLesson = this.state.currentLesson;
+    this.props.getLast(currentLesson - 1);
   }
 
   render() {
@@ -189,7 +245,8 @@ class Quiz extends Component {
     //   `Next Page:`,
     //   nextPage
     // );
-
+    console.log(this.props);
+    console.log(this.props.lessons);
     return (
       <div>
         {/* <LessonBar
@@ -222,6 +279,7 @@ class Quiz extends Component {
             </AnswersContainer>
           </QuizComponent>
         )}
+        <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
       </div>
     );
   }
@@ -229,8 +287,10 @@ class Quiz extends Component {
 
 const mapStateToProps = state => {
   return {
-    quiz: state.quizRedux.quiz
+    quiz: state.quizRedux.quiz,
+    lessons: state.lessReducer.lesson,
+    lastLesson: state.lessReducer.lastLesson
   };
 };
 
-export default withRouter(connect(mapStateToProps, { getQuiz })(Quiz));
+export default withRouter(connect(mapStateToProps, { getQuiz, getLast })(Quiz));

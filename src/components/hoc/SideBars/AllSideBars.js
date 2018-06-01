@@ -55,7 +55,7 @@ export const SignUpSideBar = createSideBar(SignUp);
 // anotha one
 const LessonHeader = styled.div`
   & h1.Title {
-    color: white;
+    color: #00a7e1;
     font-weight: 700;
     font-family: "Work Sans", sans-serif;
     font-size: 2.5rem;
@@ -72,7 +72,7 @@ const LessonHeader = styled.div`
     display: inherit;
   }
   & h2.Subtitle {
-    color: white;
+    color: #00a7e1;
     font-weight: 600;
     font-family: "Work Sans", sans-serif;
     font-size: 2rem;
@@ -90,6 +90,34 @@ const LessonHeader = styled.div`
   }
 `;
 
+const PrettyBox = styled.div`
+  height: 90%;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  padding: 50px 50px 50px 50px;
+`;
+const LessonContent = styled.div`
+  h1 {
+    font-weight: 900;
+  }
+  h2 {
+    font-weight: 700;
+  }
+`;
+const QuizTitle = styled.h1`
+  font-family: "Work Sans", sans-serif;
+  font-size: 30px;
+  margin-bottom: 40px;
+`;
+const QuizSubtitle = styled.h2`
+  font-family: "Work Sans", sans-serif;
+  font-size: 20px;
+  margin-bottom: 40px;
+`;
+
 const ContentText = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,11 +125,8 @@ const ContentText = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 2rem;
   &.contentText {
-    color: white;
+    color: #00a7e1;
     font-size: 1rem;
-  }
-
-  & p {
   }
 `;
 
@@ -279,56 +304,39 @@ class Lesson extends Component {
 
     return (
       <LessonContent style={this.props.styleProps}>
-        <LessonHeader>
-          <h1 className="Title">
-            {this.props.page.length &&
-              this.props.page[this.state.currentPage].lesson_title}
-          </h1>
-          <h2 className="Subtitle">
-            {this.props.match.params.lesson_id}.{
-              this.props.match.params.pageoflesson
-            }-
-            {this.props.page.length &&
-              this.props.page[this.state.currentPage].subtitle}
-          </h2>
-        </LessonHeader>
+        <PrettyBox>
+          <LessonHeader>
+            <h1 className="Title">
+              {this.props.page.length &&
+                this.props.page[this.state.currentPage].lesson_title}
+            </h1>
+            <h2 className="Subtitle">
+              {this.props.match.params.lesson_id}.{
+                this.props.match.params.pageoflesson
+              }-
+              {this.props.page.length &&
+                this.props.page[this.state.currentPage].subtitle}
+            </h2>
+          </LessonHeader>
 
-        {content &&
-          content.map((e, i) => {
-            {
+          {content &&
+            content.map((e, i) => {
               /* console.log(e); */
-            }
-            return (
-              <ContentText className="contentText" key={i}>
-                {e}
-              </ContentText>
-            );
-          })}
-        {/* <p style={{ fontSize: "2rem" }}>
-          {`${this.props["lesson" + this.state.currentLesson]}`}
-        </p> */}
+              return (
+                <ContentText className="contentText" key={i}>
+                  {e}
+                </ContentText>
+              );
+            })}
 
-        <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
+          <ForwardButton onClick={e => this.forwardClick(e)}>></ForwardButton>
 
-        <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
+          <PrevButton onClick={e => this.backClick(e)}>{`<`}</PrevButton>
+        </PrettyBox>
       </LessonContent>
     );
   }
 }
-
-const LessonContent = styled.div`
-  & p.test {
-    color: "white";
-  }
-
-  h1 {
-    font-weight: 700;
-  }
-  h2 {
-    font-weight: 400;
-  }
-`;
-
 const mapStateToProps = state => {
   return {
     page: state.lessReducer.lesson
@@ -350,6 +358,7 @@ const CourseTitle = styled.p`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
+
 class ProfileSide extends Component {
   render() {
     return (

@@ -37,7 +37,7 @@ export function registerUser(
         console.log(user.data);
         return user.data;
       })
-      .catch(err => console.log(err))
+      .catch(console.log)
   };
 }
 
