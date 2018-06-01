@@ -23,7 +23,7 @@ const QuizComponent = styled.div`
   color: white;
   border-radius: 5px;
   background: #000000;
-  justify-content: space-between;
+  justify-content: space-around;
 
   & h1 {
     font-size: 4rem;
@@ -250,6 +250,7 @@ class Quiz extends Component {
         /> */}
         {this.props.quiz.length && (
           <QuizComponent className={this.state.blurPage && "blurred"}>
+            <h3>Question {this.state.questionIndex + 1}:</h3>
             <h2>{this.props.quiz[this.state.questionIndex].text}</h2>
 
             <AnswersContainer>

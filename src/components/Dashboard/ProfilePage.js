@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { ProfileSideBar } from "../hoc/SideBars/AllSideBars";
-import { Switch, Route, withRouter } from "react-router-dom";
-import LessonPage from "../Lesson/AllLessonPages";
 
 const ProfilePage = styled.div`
   height: auto;
@@ -208,7 +207,8 @@ const OpenButton = styled.button`
   left: 20px;
   top: 9vh;
 `;
-class Dashboard extends Component {
+
+class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -222,110 +222,98 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(`why you no load`, this.props);
     const { sidebar } = this.state;
     const { background, goals, pic, purpose, username, email } = this.props;
     return (
       <div>
-        <Switch>
-          <Route
-            path="/lesson/:lesson_id/:pageoflesson"
-            render={() => <LessonPage user={this.props.user} />}
-          />
-          <Route
-            path="/"
-            render={() => (
-              <ProfilePage>
-                {sidebar && <ProfileSideBar />}
-                {this.state.sidebar ? (
-                  <ProfileContainer>
-                    <ProfileMain>
-                      <OpenButton onClick={e => this.clickOpen(e)} />
-                      <ProfileBox>
-                        <ProfileLeft>
-                          <ProfileInfoBox>
-                            <ProfilePic src={pic} />
-                            <NameContainer>
-                              <UserName>{username}</UserName>
-                              <Email>{email}</Email>
-                            </NameContainer>
-                          </ProfileInfoBox>
-                        </ProfileLeft>
-                        <ProfileRight>
-                          <ProfileInfo>
-                            <PurBackContainer>
-                              <PurbackTitle>Background:</PurbackTitle>
-                              <PurbackContent>{background}</PurbackContent>
-                            </PurBackContainer>
-                            <PurBackContainer>
-                              <PurbackTitle>Purpose:</PurbackTitle>
-                              <PurbackContent>{purpose}</PurbackContent>
-                            </PurBackContainer>
-                          </ProfileInfo>
-                          <GoalsContainer>
-                            <GoalsTitle>Goals:</GoalsTitle>
-                            <GoalsText>{goals}</GoalsText>
-                          </GoalsContainer>
-                        </ProfileRight>
-                      </ProfileBox>
+        <ProfilePage>
+          {sidebar && <ProfileSideBar />}
+          {this.state.sidebar ? (
+            <ProfileContainer>
+              <ProfileMain>
+                <OpenButton onClick={e => this.clickOpen(e)} />
+                <ProfileBox>
+                  <ProfileLeft>
+                    <ProfileInfoBox>
+                      <ProfilePic src={pic} />
+                      <NameContainer>
+                        <UserName>{username}</UserName>
+                        <Email>{email}</Email>
+                      </NameContainer>
+                    </ProfileInfoBox>
+                  </ProfileLeft>
+                  <ProfileRight>
+                    <ProfileInfo>
+                      <PurBackContainer>
+                        <PurbackTitle>Background:</PurbackTitle>
+                        <PurbackContent>{background}</PurbackContent>
+                      </PurBackContainer>
+                      <PurBackContainer>
+                        <PurbackTitle>Purpose:</PurbackTitle>
+                        <PurbackContent>{purpose}</PurbackContent>
+                      </PurBackContainer>
+                    </ProfileInfo>
+                    <GoalsContainer>
+                      <GoalsTitle>Goals:</GoalsTitle>
+                      <GoalsText>{goals}</GoalsText>
+                    </GoalsContainer>
+                  </ProfileRight>
+                </ProfileBox>
 
-                      <CourseContainer className="HTML">
-                        <CourseCard className="stuff">HTML</CourseCard>
-                        <CourseCard>CSS</CourseCard>
-                        <CourseCard>SANDBOX</CourseCard>
-                        <CourseCard className="stuff">dude</CourseCard>
-                      </CourseContainer>
-                    </ProfileMain>
-                  </ProfileContainer>
-                ) : (
-                  <ProfileContainer className="fullScreen">
-                    <ProfileMain>
-                      <OpenButton onClick={e => this.clickOpen(e)} />
-                      <ProfileBox>
-                        <ProfileLeft>
-                          <ProfileInfoBox>
-                            <ProfilePic src={pic} />
-                            <NameContainer>
-                              <UserName>{username}</UserName>
-                              <Email>{email}</Email>
-                            </NameContainer>
-                          </ProfileInfoBox>
-                        </ProfileLeft>
-                        <ProfileRight>
-                          <ProfileInfo>
-                            <PurBackContainer>
-                              <PurbackTitle>Background:</PurbackTitle>
-                              <PurbackContent>{background}</PurbackContent>
-                            </PurBackContainer>
-                            <PurBackContainer>
-                              <PurbackTitle>Purpose:</PurbackTitle>
-                              <PurbackContent>{purpose}</PurbackContent>
-                            </PurBackContainer>
-                          </ProfileInfo>
-                          <GoalsContainer>
-                            <GoalsTitle>Goals:</GoalsTitle>
-                            <GoalsText>{goals}</GoalsText>
-                          </GoalsContainer>
-                        </ProfileRight>
-                      </ProfileBox>
-                      <CourseContainer className="HTML">
-                        <CourseCard className="stuff">HTML</CourseCard>
-                        <CourseCard>CSS</CourseCard>
-                        <CourseCard>SANDBOX</CourseCard>
-                        <CourseCard className="stuff">dude</CourseCard>
-                      </CourseContainer>
-                    </ProfileMain>
-                  </ProfileContainer>
-                )}
-              </ProfilePage>
-            )}
-          />
-        </Switch>
+                <CourseContainer className="HTML">
+                  <CourseCard className="stuff">HTML</CourseCard>
+                  <CourseCard>CSS</CourseCard>
+                  <CourseCard>SANDBOX</CourseCard>
+                  <CourseCard className="stuff">dude</CourseCard>
+                </CourseContainer>
+              </ProfileMain>
+            </ProfileContainer>
+          ) : (
+            <ProfileContainer className="fullScreen">
+              <ProfileMain>
+                <OpenButton onClick={e => this.clickOpen(e)} />
+                <ProfileBox>
+                  <ProfileLeft>
+                    <ProfileInfoBox>
+                      <ProfilePic src={pic} />
+                      <NameContainer>
+                        <UserName>{username}</UserName>
+                        <Email>{email}</Email>
+                      </NameContainer>
+                    </ProfileInfoBox>
+                  </ProfileLeft>
+                  <ProfileRight>
+                    <ProfileInfo>
+                      <PurBackContainer>
+                        <PurbackTitle>Background:</PurbackTitle>
+                        <PurbackContent>{background}</PurbackContent>
+                      </PurBackContainer>
+                      <PurBackContainer>
+                        <PurbackTitle>Purpose:</PurbackTitle>
+                        <PurbackContent>{purpose}</PurbackContent>
+                      </PurBackContainer>
+                    </ProfileInfo>
+                    <GoalsContainer>
+                      <GoalsTitle>Goals:</GoalsTitle>
+                      <GoalsText>{goals}</GoalsText>
+                    </GoalsContainer>
+                  </ProfileRight>
+                </ProfileBox>
+                <CourseContainer className="HTML">
+                  <CourseCard className="stuff">HTML</CourseCard>
+                  <CourseCard>CSS</CourseCard>
+                  <CourseCard>SANDBOX</CourseCard>
+                  <CourseCard className="stuff">dude</CourseCard>
+                </CourseContainer>
+              </ProfileMain>
+            </ProfileContainer>
+          )}
+        </ProfilePage>
       </div>
     );
   }
 }
-
 const mapStateToProps = state => {
   const { user } = state.userReducer;
   return {
@@ -337,4 +325,4 @@ const mapStateToProps = state => {
     email: user.user_email
   };
 };
-export default withRouter(connect(mapStateToProps)(Dashboard));
+export default connect(mapStateToProps)(ProfilePage);
