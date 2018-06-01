@@ -52,7 +52,9 @@ class App extends Component {
 
   logout() {
     this.setState({ opened: !this.state.opened });
-    this.props.logout(this.props.user.user_name);
+    this.props.logout(this.props.user.user_name).then(response => {
+      window.location.reload();
+    });
   }
 
   render() {
