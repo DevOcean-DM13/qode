@@ -66,9 +66,11 @@ class App extends Component {
               <Sq1 />
               <Sq2 />
             </Wrappa>
-            <Button data-cy-logout-btn onClick={this.logout}>
-              Logout
-            </Button>
+            <NavLink to="/">
+              <Button data-cy-logout-btn onClick={this.logout}>
+                Logout
+              </Button>
+            </NavLink>
           </NavBar>
         ) : (
           <NavBar>
