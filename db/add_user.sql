@@ -9,6 +9,6 @@ VALUES
 ('Tying It All Together', $1)
 RETURNING * 
 )
-INSERT INTO users (user_name, user_password, user_email, start_date, coding_background, purpose, goals)
-VALUES ($1, $2, $3, $4, $5, $6, $7)
+INSERT INTO users (user_name, user_password, user_email, start_date, coding_background, purpose, goals, profile_pic)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 RETURNING *
