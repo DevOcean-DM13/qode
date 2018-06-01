@@ -193,7 +193,7 @@ class Landing extends Component {
                 <LandingEditor />
               </LandingContainer>
               <SignUpContainer>
-                <NavLink to="/signup">
+                <NavLink to="/signup" data-cy-signup>
                   <Button>Sign Up Now</Button>
                 </NavLink>
               </SignUpContainer>
