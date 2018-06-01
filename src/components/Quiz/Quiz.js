@@ -99,27 +99,25 @@ const NextQuestionButton = styled.button`
     border: none;
   }
 `;
-const PrevButton = styled.div`
-  background: lime;
-  width: 30vw;
-  position: fixed;
+const PrevButton = styled.button`
+  width: 10vw;
+  font-size: 15px;
+  position: top;
   left: 0;
   bottom: 0;
   z-index: 1000;
-  border: transparent;
-  font-size: 75px;
+  border: 1px solid black;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
   margin-left: 2vw;
-  border: transparent;
+  background: transparent;
   border-radius: 5px;
   transition: 0.4s;
   padding: 1vh 0;
   outline: none;
   &:hover {
-    background: #ffffff;
-    color: lime;
+    background: #9b111e;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
@@ -274,9 +272,7 @@ class Quiz extends Component {
             </AnswersContainer>
           </QuizComponent>
         )}
-        <PrevButton onClick={e => this.backClick(e)}>
-          return to lesson
-        </PrevButton>
+        <PrevButton onClick={e => this.backClick(e)}>back to lesson</PrevButton>
       </div>
     );
   }
