@@ -20,6 +20,8 @@ export default styled.div`
     letter-spacing: inherit;
     margin: 0 0 0 0;
     background: white;
+    position: sticky;
+    top: 0;
 
     & div.ButtonContainer {
       margin: inherit;
