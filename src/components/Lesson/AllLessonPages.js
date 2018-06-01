@@ -19,7 +19,9 @@ const LessonsPages = styled.div`
   background: #435058;
   color: white;
   /* z-index: -10; */
-
+  & .textEditor {
+    color: black;
+  }
   &.Quiz {
     width: 100vw;
   }
@@ -61,11 +63,21 @@ class LessonPage extends Component {
 
         {this.props.lesson[this.state.page] &&
           this.props.lesson[this.state.page].has_editor_imp && (
-            <LessonsPages>
+            <LessonsPages className="lessonsPages">
               <TextEditor
+                className="textEditor"
                 default={`<html>
   <body>
-    <p>Hello</p>
+    <h1>Hey</h1>
+    <p>I'm text in the browser!</p>
+
+    <style>
+      p, h1 {
+        color: black;
+        text-align:center;
+        margin:1vh;
+      }
+    </style>
   </body>
 </html>`}
               />

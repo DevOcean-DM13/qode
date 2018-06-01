@@ -21,11 +21,13 @@ const EditorAndDisplay = styled.div`
 `;
 
 const DisplayWindow = styled.div`
-  height: 70vh;
-  width: 29.5vw;
-  border: 1px solid lightgray;
-  display: block;
-  background: white;
+  &.displayWindow {
+    height: 70vh;
+    width: 29.5vw;
+    border: 1px solid lightgray;
+    display: block;
+    background: white;
+  }
 `;
 const TextEditorContainer = styled.div`
   display: flex;
@@ -39,7 +41,7 @@ export default class TextEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput: "",
+      userInput: this.props.default,
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
@@ -55,7 +57,8 @@ export default class TextEditor extends Component {
   createWindow() {
     return { __html: `${this.state.userInput}` };
   }
-  showHTML() {
+  showHTML(e) {
+    console.log(e);
     this.setState({ showHTML: !this.state.showHTML });
   }
   render() {
@@ -63,6 +66,7 @@ export default class TextEditor extends Component {
       <TextEditorContainer>
         <EditorAndDisplay>
           <AceEditor
+            className="editor"
             mode="html"
             theme="monokai"
             onChange={this.onChange}
@@ -82,7 +86,10 @@ export default class TextEditor extends Component {
           />
 
           {this.state.showHTML ? (
-            <DisplayWindow dangerouslySetInnerHTML={this.createWindow()} />
+            <DisplayWindow
+              className="displayWindow"
+              dangerouslySetInnerHTML={this.createWindow()}
+            />
           ) : (
             <DisplayWindow />
           )}
