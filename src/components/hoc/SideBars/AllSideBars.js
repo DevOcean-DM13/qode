@@ -25,6 +25,7 @@ const Intro = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   letter-spacing: 0.3px;
+  color: white;
 `;
 const Qode = styled.div`
   font-size: 5em;
@@ -32,6 +33,7 @@ const Qode = styled.div`
   font-weight: 700;
   letter-spacing: 0.8px;
   margin-bottom: 8vh;
+  color: white;
 `;
 class SignUp extends Component {
   render() {
@@ -317,6 +319,7 @@ const CourseTitle = styled.p`
   font-size: 1.2em;
   margin-top: 20px;
   margin-bottom: 20px;
+  color: white;
 `;
 const LinkItem = styled.div`
   font-size: 0.7em;
