@@ -116,6 +116,7 @@ const PrevButton = styled.button`
   border-radius: 5px;
   transition: 0.4s;
   padding-bottom: 10px;
+  outline: none;
   &:hover {
     background: #ffffff;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -160,14 +161,6 @@ class Quiz extends Component {
 
     this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
-
-  // if (currentPage - 1) {
-  //   nextLesson = 0;
-  //   nextPage = parseInt(currentPage);
-  // } else {
-  //   nextPage = 0;
-  //   nextLesson = parseInt(currentLesson) - 1;
-  // }
 
   evaluateAnswer = () => {
     console.log(

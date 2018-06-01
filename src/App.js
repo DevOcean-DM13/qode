@@ -62,22 +62,24 @@ class App extends Component {
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
           <NavBar>
-            <Wrappa>
-              <Sq1 />
-              <Sq2 />
-            </Wrappa>
-            <NavLink to="/">
-              <Button data-cy-logout-btn onClick={this.logout}>
-                Logout
-              </Button>
+            <NavLink to="/dashboard">
+              <Wrappa>
+                <Sq1 />
+                <Sq2 />
+              </Wrappa>
             </NavLink>
+            <Button data-cy-logout-btn onClick={this.logout}>
+              Logout
+            </Button>
           </NavBar>
         ) : (
           <NavBar>
-            <Wrappa>
-              <Sq1 />
-              <Sq2 />
-            </Wrappa>
+            <NavLink to="/">
+              <Wrappa>
+                <Sq1 />
+                <Sq2 />
+              </Wrappa>
+            </NavLink>
             <ButtonWrapper>
               <Button data-cy-login onClick={this.clickLogin} nav>
                 Login
