@@ -106,7 +106,7 @@ const PrevButton = styled.button`
   left: 0;
   bottom: 0;
   z-index: 1000;
-  border: 1px solid black;
+  border: 1px solid;
   line-height: 60px;
   text-align: center;
   bottom: 5vh;

@@ -29,7 +29,7 @@ export default styled.div`
       justify-content: space-between;
       align-items: center;
       margin: inherit inherit;
-      width: 24vw;
+      width: 16vw;
       height: auto;
       background: inherit;
     }

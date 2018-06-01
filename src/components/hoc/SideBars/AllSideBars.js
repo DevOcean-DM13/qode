@@ -63,6 +63,7 @@ const PrettyBox = styled.div`
     flex-direction: column;
     border-radius: 25px;
     padding: 30px 30px 50px 41px;
+    overflow: scroll;
   }
 `;
 const LessonContent = styled.div`
