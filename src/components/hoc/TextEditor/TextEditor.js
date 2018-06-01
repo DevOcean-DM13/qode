@@ -27,6 +27,12 @@ const DisplayWindow = styled.div`
     border: 1px solid lightgray;
     display: block;
     background: white;
+    margin: 0vh;
+    padding: 1vh 2.5vw 0 0vw;
+
+    & p,
+    h1 {
+    }
   }
 `;
 const TextEditorContainer = styled.div`
@@ -46,7 +52,6 @@ export default class TextEditor extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.createWindow = this.createWindow.bind(this);
-    this.showHTML = this.showHTML.bind(this);
   }
 
   onChange(newValue) {
@@ -57,10 +62,10 @@ export default class TextEditor extends Component {
   createWindow() {
     return { __html: `${this.state.userInput}` };
   }
-  showHTML(e) {
-    console.log(e);
-    this.setState({ showHTML: !this.state.showHTML });
-  }
+  // showHTML(e) {
+  //   console.log(e);
+  //   this.setState({ showHTML: !this.state.showHTML });
+  // }
   render() {
     return (
       <TextEditorContainer>
@@ -75,6 +80,7 @@ export default class TextEditor extends Component {
             editorProps={{
               $blockScrolling: true
             }}
+            wrapEnabled={true}
             value={this.state.userInput}
             setOptions={{
               enableBasicAutoCompletion: true,
@@ -95,11 +101,8 @@ export default class TextEditor extends Component {
           )}
         </EditorAndDisplay>
 
-        <Button
-          style={{ marginTop: "2vh", alignSelf: "center" }}
-          onClick={e => this.showHTML(e)}
-        >
-          Run code
+        <Button style={{ marginTop: "2vh", alignSelf: "center" }}>
+          Run Test
         </Button>
       </TextEditorContainer>
     );

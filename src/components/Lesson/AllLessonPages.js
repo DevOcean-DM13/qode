@@ -68,14 +68,16 @@ class LessonPage extends Component {
                 className="textEditor"
                 default={`<html>
   <body>
-    <h1>Hey</h1>
-    <p>I'm text in the browser!</p>
+    <h1>Hey, ${this.props.user.user_name}</h1>
+    <p>This is some starting text. Delete or add to it as you'd like!</p>
 
     <style>
       p, h1 {
         color: black;
         text-align:center;
         margin:1vh;
+        width:inherit;
+        padding:1vh 2vw 0 1vw;
       }
     </style>
   </body>
