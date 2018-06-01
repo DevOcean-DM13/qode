@@ -60,7 +60,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
-          <NavBar>
+          <NavBar className="NavBarProtected">
             <NavLink to="/dashboard">
               <Wrappa>
                 <Sq1 />
@@ -72,7 +72,7 @@ class App extends Component {
             </Button>
           </NavBar>
         ) : (
-          <NavBar>
+          <NavBar className="NavBarProtected">
             <NavLink to="/">
               <Wrappa>
                 <Sq1 />
@@ -94,14 +94,10 @@ class App extends Component {
         <Switch>
           <Route path="/signup" render={() => <Signup />} />
           <Route
-            path="/lesson/:lesson_id/:pageoflesson"
-            render={() => <LessonPage user={this.props.user} />}
-          />
-          <Route
             path="/"
             render={() =>
               this.props.user && this.props.user.user_name ? (
-                <Dashboard />
+                <Dashboard user={this.props.user} />
               ) : (
                 <Landing opened={this.state.opened} />
               )
