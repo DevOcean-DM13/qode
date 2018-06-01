@@ -78,7 +78,7 @@ const ProfilePic = styled.img`
   border-radius: 50%;
   box-shadow: 1px 1px 12px #54595e;
   border: solid 2px #202020;
-  background-color: white;
+  background-color: #00a7e1;
   margin-top: 2vh;
 `;
 const NameContainer = styled.div`
