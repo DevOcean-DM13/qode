@@ -163,7 +163,7 @@ const Comp = styled.div`
   color: #00a7e1;
 `;
 const SlideShow = styled.div`
-  width: 50%;
+  width: 40%;
   height: 100%;
   padding-top: 7.7vh;
 `;

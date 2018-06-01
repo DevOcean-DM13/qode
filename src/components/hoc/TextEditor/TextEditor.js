@@ -21,11 +21,19 @@ const EditorAndDisplay = styled.div`
 `;
 
 const DisplayWindow = styled.div`
-  height: 70vh;
-  width: 29.5vw;
-  border: 1px solid lightgray;
-  display: block;
-  background: white;
+  &.displayWindow {
+    height: 70vh;
+    width: 29.5vw;
+    border: 1px solid lightgray;
+    display: block;
+    background: white;
+    margin: 0vh;
+    padding: 1vh 2.5vw 0 0vw;
+
+    & p,
+    h1 {
+    }
+  }
 `;
 const TextEditorContainer = styled.div`
   display: flex;
@@ -39,12 +47,11 @@ export default class TextEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput: "",
+      userInput: this.props.default,
       showHTML: true
     };
     this.onChange = this.onChange.bind(this);
     this.createWindow = this.createWindow.bind(this);
-    this.showHTML = this.showHTML.bind(this);
   }
 
   onChange(newValue) {
@@ -55,14 +62,16 @@ export default class TextEditor extends Component {
   createWindow() {
     return { __html: `${this.state.userInput}` };
   }
-  showHTML() {
-    this.setState({ showHTML: !this.state.showHTML });
-  }
+  // showHTML(e) {
+  //   console.log(e);
+  //   this.setState({ showHTML: !this.state.showHTML });
+  // }
   render() {
     return (
       <TextEditorContainer>
         <EditorAndDisplay>
           <AceEditor
+            className="editor"
             mode="html"
             theme="monokai"
             onChange={this.onChange}
@@ -71,6 +80,7 @@ export default class TextEditor extends Component {
             editorProps={{
               $blockScrolling: true
             }}
+            wrapEnabled={true}
             value={this.state.userInput}
             setOptions={{
               enableBasicAutoCompletion: true,
@@ -82,17 +92,17 @@ export default class TextEditor extends Component {
           />
 
           {this.state.showHTML ? (
-            <DisplayWindow dangerouslySetInnerHTML={this.createWindow()} />
+            <DisplayWindow
+              className="displayWindow"
+              dangerouslySetInnerHTML={this.createWindow()}
+            />
           ) : (
             <DisplayWindow />
           )}
         </EditorAndDisplay>
 
-        <Button
-          style={{ marginTop: "2vh", alignSelf: "center" }}
-          onClick={e => this.showHTML(e)}
-        >
-          Run code
+        <Button style={{ marginTop: "2vh", alignSelf: "center" }}>
+          Run Test
         </Button>
       </TextEditorContainer>
     );

@@ -10,15 +10,23 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Signup from "./components/Signup/Signup";
 import LessonPage from "./components/Lesson/AllLessonPages";
+import qode from "./qode.png";
 
 // IMPORT STYLED COMPONENTS
 import Button from "./components/MP-Components/Button";
 import ButtonWrapper from "./components/MP-Components/ButtonWrapper";
 import NavBar from "./components/MP-Components/NavBar";
-import { Wrappa, Sq1, Sq2 } from "./components/MP-Components/QoGo";
+// import { Wrappa, Sq1, Sq2 } from "./components/MP-Components/QoGo";
 //IMPORT ASSETS AND CSS
 import "./App.css";
 import { getUser, logout } from "./ducks/userReducer";
+
+const Logo = styled.img`
+  height: 55px;
+  width: 103px;
+  outline: none;
+  padding-left: 20px;
+`;
 
 class App extends Component {
   // componentDidUpdate(prevProps, prevState) {
@@ -64,10 +72,7 @@ class App extends Component {
         {this.props.user && this.props.user.user_name ? (
           <NavBar className="NavBarProtected">
             <NavLink to="/dashboard">
-              <Wrappa>
-                <Sq1 />
-                <Sq2 />
-              </Wrappa>
+              <Logo src={qode} />
             </NavLink>
             <Button data-cy-logout-btn onClick={this.logout}>
               Logout
@@ -76,12 +81,9 @@ class App extends Component {
         ) : (
           <NavBar className="NavBarProtected">
             <NavLink to="/">
-              <Wrappa>
-                <Sq1 />
-                <Sq2 />
-              </Wrappa>
+              <Logo src={qode} />
             </NavLink>
-            <ButtonWrapper>
+            <ButtonWrapper className="ButtonContainer">
               <Button data-cy-login onClick={this.clickLogin} nav>
                 Login
               </Button>

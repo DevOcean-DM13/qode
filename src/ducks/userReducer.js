@@ -20,7 +20,8 @@ export function registerUser(
   password,
   codingBackground,
   purpose,
-  goals
+  goals,
+  pic
 ) {
   return {
     type: REGISTER_USER,
@@ -31,7 +32,8 @@ export function registerUser(
         password,
         codingBackground,
         purpose,
-        goals
+        goals,
+        pic
       })
       .then(user => {
         console.log(user.data);

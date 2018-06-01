@@ -12,7 +12,6 @@ export default styled.div`
     width: 100%;
     backface-visibility: hidden;
     border-bottom: solid 1px lightgrey;
-    position: fixed;
     z-index: 500;
     transition-duration: 0.15s;
     box-sizing: border-box;
@@ -30,7 +29,7 @@ export default styled.div`
       justify-content: space-between;
       align-items: center;
       margin: inherit inherit;
-      width: 24vw;
+      width: 16vw;
       height: auto;
       background: inherit;
     }
