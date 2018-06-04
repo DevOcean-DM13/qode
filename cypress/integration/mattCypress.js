@@ -16,5 +16,5 @@ describe("Purpose button works", () => {
 });
 
 // check background button works
-// check profile generator works
+// check profile pic generator works
 // check quiz answer is wrong
