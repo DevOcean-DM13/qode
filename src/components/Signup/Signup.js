@@ -344,7 +344,7 @@ class Signup extends Component {
             </Question>
             <BackgroundButtons />
           </QodingBackground>
-          <QodingPurpose>
+          <QodingPurpose data-cy-purpose>
             <Question>What are you here to do?</Question>
             <PurposeButtons />
           </QodingPurpose>
