@@ -256,7 +256,7 @@ class Signup extends Component {
       userName: "",
       password: "",
       email: "",
-      profilePic: null,
+      profilePic: "",
       profilePicList: [
         prof1,
         prof2,
@@ -398,13 +398,20 @@ class Signup extends Component {
               <ImageGenBox>
                 <Question className="spaceJam">Pick a Profile Picture</Question>
                 <GenerateButton
-                  className="backButt"
+                  className="backButt picButton"
                   onClick={this.randomizePic}
                 >
                   Generate
                 </GenerateButton>
               </ImageGenBox>
-              <ImageGen src={this.state.profilePic} />
+              <ImageGen
+                className="cypress-prof-img"
+                src={this.state.profilePic}
+                onError={e => {
+                  e.target.src =
+                    "https://discoverthegift.com/wp-content/uploads/2016/03/placeholder.jpg";
+                }}
+              />
             </ProfilePicBox>
           </InputContainer>
 
@@ -430,4 +437,9 @@ const mapStateToProps = state => {
   };
   // return state;
 };
-export default withRouter(connect(mapStateToProps, { registerUser })(Signup));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { registerUser }
+  )(Signup)
+);
