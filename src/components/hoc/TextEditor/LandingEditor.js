@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-// Import Brace and the AceEditor Component
+import { NavLink, withRouter } from "react-router-dom";
+import Button from "../../MP-Components/Button.js";
 import brace from "brace";
 import AceEditor from "react-ace";
 import "brace/mode/html";
 import "brace/theme/ambiance";
 import "brace/theme/monokai";
+import Swal from "sweetalert2";
 
 // IMPORTING IN A FEW STYLED COMPONENTS CAPS LOCK
 import styled from "styled-components";
@@ -28,12 +30,14 @@ const TextEditorContainer = styled.div`
   flex-direction: column;
   height: 88%;
 `;
-
-export default class LandingEditor extends Component {
+class LandingEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userInput: `
+      userInput: this.props.default,
+      showHTML: true,
+      correct: false,
+      correctAnswer: `
 <!-- Pass this small test to proceed to sign up -->
 
 <h1>Hi from an h1 tag!</h1>   
@@ -41,9 +45,7 @@ export default class LandingEditor extends Component {
 
 <!-- What is missing below? -->
 
-<p>What is it?
-  `,
-      showHTML: true
+<p>What is it?</p>`
     };
     this.onChange = this.onChange.bind(this);
     this.createWindow = this.createWindow.bind(this);
@@ -53,7 +55,6 @@ export default class LandingEditor extends Component {
   onChange(newValue) {
     // console.log("change", newValue);
     this.setState({ userInput: newValue });
-    console.log(this.state.userInput);
   }
   createWindow() {
     return { __html: `${this.state.userInput}` };
@@ -61,7 +62,18 @@ export default class LandingEditor extends Component {
   showHTML() {
     this.setState({ showHTML: !this.state.showHTML });
   }
+
+  checkAnswer = () => {
+    Swal({
+      text: "Good Try",
+      type: "success",
+      confirmButtonText: "Sign Up"
+    }).then(() => {
+      this.props.history.push("/signup");
+    });
+  };
   render() {
+    console.log(this.state);
     return (
       <TextEditorContainer>
         <EditorAndDisplay>
@@ -73,6 +85,7 @@ export default class LandingEditor extends Component {
             height="300px"
             width="35vw"
             highlightActiveLine={true}
+            defaultValue={this.props.default}
             editorProps={{
               $blockScrolling: true
             }}
@@ -83,10 +96,19 @@ export default class LandingEditor extends Component {
             }}
           />
         </EditorAndDisplay>
-        {/* <div>
-          <Button onClick={e => this.showHTML(e)}>Run code</Button>
-        </div> */}
+        <SignUpContainer>
+          <Button onClick={this.checkAnswer}>Check Answer</Button>
+        </SignUpContainer>
       </TextEditorContainer>
     );
   }
 }
+
+export default withRouter(LandingEditor);
+const SignUpContainer = styled.div`
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
