@@ -38,10 +38,10 @@ const Qode = styled.div`
 class SignUp extends Component {
   render() {
     return (
-      <div>
+      <div id="SignUpSideBar">
         <Beep style={this.props.styleProps}>
           <Welcome>Welcome to</Welcome>
-          <Qode>Qode</Qode>
+          <Qode id="QODE">Qode</Qode>
           <Intro>
             You are about to start your coding journey with us. Before we get
             started, let us get to know you better.
@@ -305,7 +305,12 @@ const mapStateToProps = state => {
 };
 
 export const LessonBar = createSideBar(
-  withRouter(connect(mapStateToProps, {})(Lesson))
+  withRouter(
+    connect(
+      mapStateToProps,
+      {}
+    )(Lesson)
+  )
 );
 
 const CourseWrapper = styled.div`

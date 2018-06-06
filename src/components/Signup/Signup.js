@@ -376,6 +376,7 @@ class Signup extends Component {
               <InputBox>
                 <Input
                   data-cy-create-user
+                  id="userBox"
                   onChange={e => this.userInput(e)}
                   name="userName"
                   placeholder="Username"

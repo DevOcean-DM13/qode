@@ -70,9 +70,9 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.user && this.props.user.user_name ? (
-          <NavBar className="NavBarProtected">
+          <NavBar className="NavBarProtected indy">
             <NavLink to="/dashboard">
-              <Logo src={qode} />
+              <Logo id="logoMain" src={qode} />
             </NavLink>
             <Button data-cy-logout-btn onClick={this.logout}>
               Logout
@@ -118,4 +118,9 @@ const mapStateToProps = state => {
     user: state.userReducer.user
   };
 };
-export default withRouter(connect(mapStateToProps, { getUser, logout })(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUser, logout }
+  )(App)
+);
