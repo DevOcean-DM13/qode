@@ -256,7 +256,7 @@ class Signup extends Component {
       userName: "",
       password: "",
       email: "",
-      profilePic: null,
+      profilePic: prof1,
       profilePicList: [
         prof1,
         prof2,
