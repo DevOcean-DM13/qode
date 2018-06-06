@@ -110,7 +110,6 @@ const PrevButton = styled.button`
   line-height: 60px;
   text-align: center;
   bottom: 5vh;
-  margin-left: 2vw;
   background: white;
   border-radius: 5px;
   transition: 0.4s;
@@ -248,7 +247,7 @@ class Quiz extends Component {
         /> */}
         {this.props.quiz.length && (
           <QuizComponent className={this.state.blurPage && "blurred"}>
-            <PrevButton onClick={e => this.backClick(e)}>
+            <PrevButton data-cy-back-button onClick={e => this.backClick(e)}>
               back to lesson
             </PrevButton>
 
@@ -290,5 +289,8 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getQuiz, getLast, getUser })(Quiz)
+  connect(
+    mapStateToProps,
+    { getQuiz, getLast, getUser }
+  )(Quiz)
 );
