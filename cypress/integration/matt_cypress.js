@@ -11,7 +11,7 @@ describe("Sign Up Now button works", () => {
 describe("Purpose button works", () => {
   it("Click button", () => {
     cy.visit("http://localhost:3000/signup");
-    cy.get("[data-cy-purpose").click();
+    cy.get("[data-cy-purpose]").click();
   });
 });
 

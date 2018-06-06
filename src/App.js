@@ -118,4 +118,9 @@ const mapStateToProps = state => {
     user: state.userReducer.user
   };
 };
-export default withRouter(connect(mapStateToProps, { getUser, logout })(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUser, logout }
+  )(App)
+);
