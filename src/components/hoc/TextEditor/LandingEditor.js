@@ -97,7 +97,9 @@ class LandingEditor extends Component {
           />
         </EditorAndDisplay>
         <SignUpContainer>
-          <Button onClick={this.checkAnswer}>Check Answer</Button>
+          <Button data-cy-checkanswer onClick={this.checkAnswer}>
+            Check Answer
+          </Button>
         </SignUpContainer>
       </TextEditorContainer>
     );
