@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 //IMPORTED COMPONENTS
 import LessonAccordion from "./Accordion";
@@ -190,13 +191,18 @@ class Landing extends Component {
             <Banner>
               <Solve>Try solving it!</Solve>
               <LandingContainer>
-                <LandingEditor />
+                <LandingEditor
+                  default={`
+<!-- Pass this small test to proceed to sign up -->
+
+<h1>Hi from an h1 tag!</h1>   
+<h2>Hi from an h2 tag!</h2> 
+
+<!-- What is missing below? -->
+
+<p>What is it?`}
+                />
               </LandingContainer>
-              <SignUpContainer>
-                <NavLink to="/signup" data-cy-signup>
-                  <Button>Sign Up Now</Button>
-                </NavLink>
-              </SignUpContainer>
             </Banner>
             <TextContent>
               <IntroCarrier>
@@ -218,7 +224,7 @@ class Landing extends Component {
               <h1>
                 <Comp>Complexity,</Comp> made simple.
               </h1>
-              <LessonAccordion />
+              <LessonAccordion cy-accordion />
             </Curriculum>
             <SlideShow>
               <SimpleSlider />
