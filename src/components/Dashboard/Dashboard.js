@@ -240,7 +240,10 @@ class Dashboard extends Component {
                 {this.state.sidebar ? (
                   <ProfileContainer>
                     <ProfileMain>
-                      <OpenButton onClick={e => this.clickOpen(e)} />
+                      <OpenButton
+                        data-cy-open-button
+                        onClick={e => this.clickOpen(e)}
+                      />
                       <ProfileBox>
                         <ProfileLeft>
                           <ProfileInfoBox>

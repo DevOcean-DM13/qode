@@ -209,7 +209,7 @@ class Landing extends Component {
                 <Introduction>
                   Learn how to code, without the fear of drowning.
                 </Introduction>
-                <Blurb>
+                <Blurb id="BLURB">
                   Don't know where to start on the path of coding? <br />Allow
                   us to be your floatie.
                 </Blurb>
