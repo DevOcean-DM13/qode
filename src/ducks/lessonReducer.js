@@ -1,67 +1,81 @@
-const GET_HTML_LESSONS = "GET_HTML_LESSONS";
-const GRADE_HTML_ACTIVITY_1 = "GRADE_HTML_ACTIVITY_1";
-const GRADE_HTML_ACTIVITY_2 = "GRADE_HTML_ACTIVITY_2";
-const GRADE_HTML_ACTIVITY_3 = "GRADE_HTML_ACTIVITY_3";
+const GRADE_HTML_ACTIVITIES_123 = "GRADE_HTML_ACTIVITIES_123";
+const GRADE_HTML_ACTIVITY_4 = "GRADE_HTML_ACTIVITY_4";
+const GRADE_HTML_ACTIVITY_5 = "GRADE_HTML_ACTIVITY_5";
+const GRADE_HTML_ACTIVITY_6 = "GRADE_HTML_ACTIVITY_6";
+const GRADE_HTML_ACTIVITY_7 = "GRADE_HTML_ACTIVITY_7";
+const GRADE_CSS_ACTIVITIES = "GRADE_CSS_ACTIVITIES";
 
-let initialState = {
-  currentLesson: 1,
-  html: {
-    lessons: {
-      lesson1: `HTML stands for Hyper Text Markup Language. It is the language used to display content on a webpage - like text, images, and links. The basic building block of HTML is an element`,
-
-      lesson2:
-        "Elements are wrapped in tags that tell the browser how to render the element. Examples of tags are headers (<h1>), paragraphs (<p>), images (<img>), and lists (<ul> / <li>). Elements have an opening and closing tag. They look similar, but the closing tag has a forward slash at the beginning. Here's an example of a header element: <h1>Hello World!</h1>",
-
-      lesson3: `Some elements require attributes to work. Attributes are placed in the opening tag of an element, and add additional functionality to elements like <img>. An image takes two attributes: src (source) and alt (alternative text). The source of an image is the URL or local computer file you want to display, and the alternative text is a custom value that will appear when a user hovers their mouse over an image. Here's an example of an image element:
-      
-      <img src="http://smileypic.jpg" alt="This shows up when you hover!"></img>
-      
-      Notice the values for src and alt are wrapped in quotation marks. Anything wrapped in quotes is called a string.`,
-
-      lesson4: `Now that you know how to make a few elements, let's go over on the layout of an HTML document. Every HTML document starts with <!DOCTYPE html>. This line tells a browser to read a document as HTML. Next, you'll need <html> tags below your doctype declaration. Everything else in your document will be contained within these two html tags. The next step is to create an opening and closing <head> tag in HTML. The head portion of your document contains data about your website - like what displays in a browser tab with <title>. Finally, outside of the <head> but still within the <html> tags, we use <body> to contain our website's elements. `
+var initialState = {
+  regex: {
+    1: /\<h1>[a-z,A-Z,0-9,_,\s,\W]+<\/h1>/,
+    2: /\<p>[a-z,A-Z,0-9,_,\s, \W]+<\/p>/,
+    3: /\<ul>(<li>[a-z,A-Z,0-9,_,\s, \W]*<\/li>)+<\/ul>/
+  },
+  strings: {
+    1: "<h1>Hello world!</h1>", //add symbols
+    2: "<p>Joe Anderson the third</p>",
+    3: "<ul><li>Steak</li><li>Eggs</li></ul>"
+  },
+  css: {
+    activity1: {
+      solution: "h1 {color: yellow;}",
+      success:
+        "Nice job! Selectors are an important part of CSS - they are the target of your styling modifications",
+      fail: "Try again. Double check your syntax!"
     },
-    activities: {
-      activity1: {
-        id: 1,
-        open: "<h1>",
-        close: "</h1>",
-        success: "Hello World! You're now officially a coder!",
-        fail: "Try again! Your h1 element should be structured like ours above",
-        flag: false // if student successfully completes the activity, this becomes true
-      },
-
-      activity2: {
-        id: 2,
-        open: "<p>",
-        close: "</p>",
-        success:
-          "Nice work! Now you know how to make haeders and paragraphs for a website.",
-        fail:
-          "Close - try again. This time, the element should look like your h1 element, but with p tags",
-        flag: false
-      },
-
-      activity3: {
-        id: 3,
-        openUL: "<ul>",
-        closeUL: "</ul>",
-        openLI: "<li>",
-        closeLI: "</li>",
-        success:
-          "Nice list! Now you know how to render three HTML elements. Next we'll learn how to render images.",
-        fail:
-          "Almost! Check out my list of favorite foods and see what you missed.",
-        flag: false
-      }
+    activity2: {
+      solution: ".contact-info {font-size: 14px;}",
+      success:
+        'Nice one! Class selectors are also very important to know. You can also give elements an id attribute and reference them with a "#" in CSS',
+      fail:
+        "Try again, be sure to use period notation in your selector to specify the class"
+    },
+    activity3: {
+      solution: 'p {font-size: 16px; color: purple; font-family: "Helvetica";}',
+      success:
+        "Those are some of the basic font styling modifiers you can use, but there are tons more",
+      fail:
+        'This section covers a lot of material - your answer should follow this syntax: p {font-size: 16px; color: purple; font-family: "Helvetica";}'
+    },
+    activity4: {
+      solution: "div {border: solid black 1px; background-color: gold;}",
+      success:
+        "Borders can also have properties like shadowing and relief that makes them appear to be 3D on a page",
+      fail:
+        "Try again! The border properties are ordered by style first, color second, and thickness third. Thickness needs to be in px"
+    },
+    activity5: {
+      solution: ".company-logo {background-image: url(``);}",
+      success:
+        "Background image is good to use in a pinch if you forgot to include a <img> element in your html doc. The syntax is different from <img> though!",
+      fail:
+        "Try again, make sure you are using the right syntax for background-image!"
+    },
+    activity6: {
+      solution:
+        ".parent {background-color: black; height: 100px; width: 100px;} .child {background-color: green; height: 50%; width: 50%;}",
+      success:
+        "Good job setting that up - next we will show how margin and padding affect these properties differently",
+      fail:
+        "Try again. You want to format both elements, like this: .parent {background-color: black; height: 100px; width: 100px;} .child {background-color: green; height: 50%; width: 50%;}"
+    },
+    activity7: {
+      solution:
+        ".parent {background-color: black; height: 100px; width: 100px; margin: 10px;} .child {background-color: green; height: 50%; width: 50%;}",
+      success: "Nice job! What did you see change?",
+      fail:
+        "Try again - just add the margin modifier to the existing parent CSS statement"
+    },
+    activity8: {
+      solution:
+        ".parent {background-color: black; height: 100px; width: 100px; margin: 10px;} .child {background-color: green; height: 50%; width: 50%; padding: 50px;}",
+      success:
+        "Cool so now we see that the padding pushes in from the border of the child element toward the text content, shrinking the size available for the text",
+      fail:
+        "Give it another go. Like the last problem, just add the padding modifier to the child statement after the existing declarations"
     }
   }
 };
-
-// LESSON FUNCTIONS //
-
-export function getHtmlLessons(html) {
-  return { type: GET_HTML_LESSONS };
-}
 
 // HTML ACTIVITY FUNCTIONS //
 
@@ -69,23 +83,9 @@ export function getHtmlLessons(html) {
 // On Fail - Whoops! Try again. Your h1 element should be structured like ours above.
 // On Success - Hello World! You’re now officially a coder!
 
-export function gradeHtmlActivity1(userInput) {
-  return {
-    type: GRADE_HTML_ACTIVITY_1,
-    payload: userInput
-  };
-}
-
 // 2 - Let’s make another element using a paragraph (<p>) tag in the text editor. This time, make the <p> tab display your name.
 // On Fail - Close! Try again. This time, the element should look like your header, but instead of h1 tags, it should have p tags.
 // On Success - Nice work! Now you can make headers and paragraphs for a website.
-
-export function gradeHtmlActivity2(userInput) {
-  return {
-    type: GRADE_HTML_ACTIVITY_2,
-    payload: userInput
-  };
-}
 
 // 3 - For this last exercise, you’ll make a list of your favorite foods using the <ul> and <li> tags. UL stands for unordered (bulleted) list. The <ul> tag wraps around the list item (<li>) tags. Here’s some of my favorite foods in a list:
 
@@ -99,10 +99,70 @@ export function gradeHtmlActivity2(userInput) {
 // On Fail - Almost! Check out my list of favorite foods and see what you missed
 // On Success - Nice list! Now you know how to render three HTML elements. Now let’s learn how to do images.
 
-export function gradeHtmlActivity3(userInput) {
+// function test(regex, str){
+//   return str.search(regex) !== -1 ? true:false
+//  }
+
+export function gradeHtmlActivities123(regex, str) {
+  let result = str.search(regex) !== -1 ? true : false;
   return {
-    type: GRADE_HTML_ACTIVITY_3,
+    type: GRADE_HTML_ACTIVITIES_123,
+    payload: result
+  };
+}
+
+// 4 - Now it’s your turn to render an img element in the text editor. You can use an image from Google.
+// On Fail - Try again! Make sure you’re wrapping the value of the attribute in quotes
+// On Success - Great work! Now you know how to render images in HTML!
+
+export function gradeHtmlActivity4(userInput) {
+  return {
+    type: GRADE_HTML_ACTIVITY_4,
     payload: userInput
+  };
+}
+
+// 5 - Using the text editor, try to make your own link. It can be to Google like mine, or wherever you want
+
+export function gradeHtmlActivity5(userInput) {
+  return {
+    type: GRADE_HTML_ACTIVITY_5,
+    payload: userInput
+  };
+}
+
+// 6 - Class names should be as descriptive as possible without being too verbose. In the text editor, make your own <h1> tag with a class name of 'company-name'.
+
+export function gradeHtmlActivity6(userInput) {
+  return {
+    type: GRADE_HTML_ACTIVITY_6,
+    payload: userInput
+  };
+}
+
+// 7 - This activity will be pretty straightforward. Just type <!DOCTYPE html> in the text editor. Doctype isn't case sensitive.
+
+export function gradeHtmlActivity7(userInput) {
+  return {
+    type: GRADE_HTML_ACTIVITY_5,
+    payload: userInput
+  };
+}
+
+// CSS TESTS //
+
+export function gradeCssActivities(userInput, activityKey) {
+  let result = "";
+  if (userInput === initialState[activityKey].solution) {
+    result = initialState[activityKey].success;
+    return result;
+  } else {
+    result = initialState[activityKey].fail;
+    return result;
+  }
+  return {
+    type: GRADE_CSS_ACTIVITIES,
+    payload: result
   };
 }
 
@@ -110,51 +170,53 @@ export function gradeHtmlActivity3(userInput) {
 
 export default function lessonReducer(state = initialState, action) {
   switch (action.type) {
-    case `${GET_HTML_LESSONS}`:
-      return state.html.lessons;
-    case `${GRADE_HTML_ACTIVITY_1}`:
+    case `${GRADE_HTML_ACTIVITIES_123}`:
+      return action.payload;
+
+    case `${GRADE_HTML_ACTIVITY_4}`:
+      let filtered = action.payload.split(/['\"]/).filter(Boolean);
       if (
-        action.payload.trim().includes(state.html.activity1.open) &&
-        action.payload.trim().includes(state.html.activity1.close)
+        filtered[0] === "<img src=" &&
+        filtered[2] === " alt=" &&
+        filtered[4] === ">"
       ) {
-        state.html.activity1.flag = true;
-        return state.html.activity1.success;
-      } else {
-        return state.html.activity1.fail;
+        return "Great work! Now you know how to render images in HTML!";
+      } else if (filtered[0] === "<img src=" && filtered[2] === " alt=") {
+        return "You forgot to close your element!";
+      } else if (filtered[0] === "<img src=" && filtered[4] === ">") {
+        return "Check your alt attribute!";
+      } else if (filtered[2] === "alt=" && filtered[4] === ">") {
+        return "Check your img tag and src attribute!";
       }
 
-    case `${GRADE_HTML_ACTIVITY_2}`:
-      if (
-        action.payload.trim().includes(state.html.activity2.open) &&
-        action.payload.trim().includes(state.html.activity2.close)
-      ) {
-        state.html.activity2.flag = true;
-        return state.html.activity2.success;
+    case `${GRADE_HTML_ACTIVITY_5}`:
+      let filter = action.payload.split(/['\"]/);
+      if (filtered[0] === "<a href=" && filtered[2] === ">") {
+        return "Nice work! You can set a link's href to any link on the internet.";
       } else {
-        return state.html.activity2.fail;
+        return "Try again - your element should look like this: <a href='{your link}'>";
       }
 
-    case `${GRADE_HTML_ACTIVITY_3}`:
-      let userListItems = action.payload
-        .trim()
-        .slice(4, action.payload.trim().length - 5);
-
+    case `${GRADE_HTML_ACTIVITY_6}`:
       if (
-        action.payload.trim().includes(state.html.activity3.openUL) &&
-        action.payload.trim().includes(state.html.activity3.closeUL)
+        (action.payload.slice(0, 24) === "<h1 class='company-logo'>" ||
+          action.payload.slice(0, 24) === `<h1 class="company-logo">`) &&
+        action.payload.slice(0, -5) === "</h1>"
       ) {
-        if (
-          userListItems.includes(state.html.activity3.openLI) &&
-          action.payload.trim().includes(state.html.activity3.closeLI)
-        ) {
-          state.html.activity3.flag = true;
-          return state.html.activity1.success;
-        } else {
-          return state.html.activity3.fail;
-        }
+        return "Great job! You'll see more of these when we learn CSS.";
       } else {
-        return state.html.activity3.fail;
+        return "Try again.";
       }
+
+    case `${GRADE_HTML_ACTIVITY_7}`:
+      if (action.payload.toLowerCase() === "<!doctype html>") {
+        return "That was easy!";
+      } else {
+        return "Try again!";
+      }
+
+    case `${GRADE_CSS_ACTIVITIES}`:
+      return action.payload;
 
     default:
       return state;
