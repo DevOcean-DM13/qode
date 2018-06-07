@@ -10,7 +10,6 @@ const { verifyUser } = require(`${__dirname}/../controllers/authCtrl`);
 
 //middleware to track time of current request.
 router.use(function timeLog(req, res, next) {
-  console.log(`COlNTENT Time: ${new Date()}`);
   next();
 });
 

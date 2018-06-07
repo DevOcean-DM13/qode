@@ -306,7 +306,6 @@ class Signup extends Component {
           this.state.profilePic
         )
         .then(response => {
-          console.log(response, "here ya go michael");
           response.value
             ? this.props.history.push("/")
             : Swal({
@@ -316,12 +315,6 @@ class Signup extends Component {
               });
         })
         .catch(console.log);
-      console.log(
-        "THIS POST RIGHT HERE",
-        this.state.userName,
-        "FROM THE BACK",
-        this.props.user
-      );
     } else {
       Swal({
         title: "Something went wrong!",

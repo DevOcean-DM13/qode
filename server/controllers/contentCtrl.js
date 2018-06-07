@@ -22,7 +22,7 @@ const lessonCompleted = (req, res, next) => {
 };
 const getLesson = (req, res) => {
   const { lesson_id } = req.params;
-  console.log(lesson_id);
+
   req.app
     .get("db")
     .get_lesson(lesson_id)
@@ -37,7 +37,6 @@ const getQuiz = (req, res) => {
     .get("db")
     .get_quiz(quiz_id)
     .then(response => {
-      console.log(response);
       res.status(200).send(response);
     });
 };

@@ -182,8 +182,6 @@ class Landing extends Component {
   //   console.log(`hit`);
   // }
   render() {
-    console.log(this.props);
-
     return (
       <LandingBody>
         <TopPage>
