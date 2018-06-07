@@ -43,6 +43,7 @@ export function registerUser(
 }
 
 export function login(userName, password) {
+  console.log(userName, password);
   return {
     type: GET_USER,
     payload: axios
@@ -74,7 +75,7 @@ export function getUser() {
       .then(user => {
         return user.data;
       })
-      .catch(err => err)
+      .catch(err => console.log(err))
   };
 }
 
