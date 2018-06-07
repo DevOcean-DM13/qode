@@ -4,17 +4,20 @@ VALIDATES THAT THE SITE EXISTS. USER LOGS IN LOGS OUT SUCCESSFULLY. SUCCESSFULLY
 */
 
 //Asserts title is correct
+//
 describe("Site exists", () => {
-  it(".should() - assert that <title> is correct and location pathname correct", () => {
+  it("Check title tag", () => {
     cy.visit("http://localhost:3000/");
     cy.location().should(location => {
       expect(location.pathname).to.eq("/");
     });
   });
 });
+
 //successfully logs in
 describe("Successfull login and redirect", () => {
   it("Logging in", () => {
+    // cy.visit("http://localhost:3000/");
     cy
       .get("[data-cy-login]")
       .click()
@@ -26,6 +29,7 @@ describe("Successfull login and redirect", () => {
       .click();
   });
 });
+
 //logs out and gets redirected to landing page
 describe("Successful logout", () => {
   it("Logging out", () => {
