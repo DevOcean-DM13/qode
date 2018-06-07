@@ -74,7 +74,10 @@ export function getUser() {
       .then(user => {
         return user.data;
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.trace(err);
+        console.log(err);
+      })
   };
 }
 

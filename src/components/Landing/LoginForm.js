@@ -155,7 +155,7 @@ class LoginForm extends Component {
                 placeholder="Password"
                 value={this.state.password}
                 onChange={e => this.userLogin(e)}
-                // type="password"
+                type="password"
                 required
               />
             </InputContainer>
