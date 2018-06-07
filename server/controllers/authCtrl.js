@@ -103,6 +103,7 @@ function verifyUser(req, res, next) {
     })
     .catch(err => {
       //good practice to ALWAYS log your errors.
+      console.log(err);
     });
 }
 function deleteUser(req, res, next) {
