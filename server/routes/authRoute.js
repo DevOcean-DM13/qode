@@ -41,8 +41,7 @@ const {
 
 //Gets current req.session.user object...no auth required
 router.get("/user", getUser);
-//Creates user, then does 2-factor auth with nodemailer...
-//or it WILL do 2 factor auth... hahah lol. im trying guys...😂
+
 router.post("/signup", createUser);
 //Creates new req.session.user obj
 router.post("/login", verifyUser);
