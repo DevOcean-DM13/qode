@@ -35,7 +35,7 @@ const ProfileMain = styled.div`
   background: white;
   width: auto;
   box-sizing: border-box;
-  padding-top: 7vh;
+  padding-top: 14vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,26 +45,21 @@ const ProfileMain = styled.div`
 // PROFILE BOX
 const ProfileBox = styled.div`
   width: 95%;
-  height: 400px;
-  background: teal;
+  height: 320px;
+  /* background: teal; */
   display: flex;
   margin: 7vh 0 2vh 0;
   border-radius: 14px;
+  box-shadow: 0 2px 50px #e0e0e0;
 `;
 const ProfileLeft = styled.div`
   width: 40%;
   height: 100%;
-  background: pink;
+  background: #202020;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 14px 0 0 14px;
-`;
-const ProfileRight = styled.div`
-  width: 60%;
-  height: 100%;
-  background: skyblue;
-  border-radius: 0 14px 14px 0;
 `;
 const ProfileInfoBox = styled.div`
   width: auto;
@@ -78,7 +73,7 @@ const ProfilePic = styled.img`
   height: 120px;
   width: 120px;
   border-radius: 50%;
-  box-shadow: 1px 1px 12px #54595e;
+  box-shadow: 1px 1px 12px #4f4f4f;
   border: solid 2px #202020;
   background-color: #00a7e1;
   margin-top: 2vh;
@@ -101,7 +96,7 @@ const UserName = styled.p`
   letter-spacing: 0.5px;
   margin-bottom: 0.6vh;
   box-sizing: border-box;
-  /* color: white; */
+  color: white;
 `;
 const Email = styled.p`
   font-size: 0.8em;
@@ -113,6 +108,19 @@ const Email = styled.p`
 
 // PURPOSE/BACKGROUND
 
+const ProfileRight = styled.div`
+  width: 60%;
+  height: 100%;
+  /* background: #fefff9; */
+  border-radius: 0 14px 14px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 7vh 0 7vh 0;
+  border: solid 2px #202020;
+`;
 const ProfileInfo = styled.div`
   height: auto;
   width: auto;
@@ -139,7 +147,7 @@ const PurbackTitle = styled.p`
   /* color: white; */
 `;
 const PurbackContent = styled.div`
-  font-size: 0.9em;
+  font-size: 1.1em;
   height: auto;
   width: auto;
   font-family: "Work Sans", sans-serif;
@@ -157,8 +165,8 @@ const GoalsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4vh 0 7vh 0;
-  border-bottom: solid 2px #a3a3a3;
+  /* padding: 4vh 0 7vh 0; */
+  /* border-bottom: solid 2px #a3a3a3; */
 `;
 const GoalsTitle = styled.div`
   font-size: 0.4em;
@@ -168,7 +176,7 @@ const GoalsTitle = styled.div`
   letter-spacing: 0.5px;
 `;
 const GoalsText = styled.p`
-  font-size: 0.9em;
+  font-size: 1.1em;
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -202,11 +210,18 @@ const CourseCard = styled.div`
   }
 `;
 const OpenButton = styled.button`
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   position: fixed;
   left: 20px;
   top: 9vh;
+  border-radius: 50%;
+  padding-bottom: 3px;
+  padding-left: 2px;
+  color: white;
+  outline: none;
+  background: #202020;
+  border: none;
 `;
 class Dashboard extends Component {
   constructor(props) {
@@ -243,7 +258,9 @@ class Dashboard extends Component {
                       <OpenButton
                         data-cy-open-button
                         onClick={e => this.clickOpen(e)}
-                      />
+                      >
+                        {"<"}
+                      </OpenButton>
                       <ProfileBox>
                         <ProfileLeft>
                           <ProfileInfoBox>
@@ -272,18 +289,23 @@ class Dashboard extends Component {
                         </ProfileRight>
                       </ProfileBox>
 
-                      <CourseContainer className="HTML">
+                      {/* <CourseContainer className="HTML">
                         <CourseCard className="stuff">HTML</CourseCard>
                         <CourseCard>CSS</CourseCard>
                         <CourseCard>SANDBOX</CourseCard>
                         <CourseCard className="stuff">dude</CourseCard>
-                      </CourseContainer>
+                      </CourseContainer> */}
                     </ProfileMain>
                   </ProfileContainer>
                 ) : (
                   <ProfileContainer className="fullScreen">
                     <ProfileMain>
-                      <OpenButton onClick={e => this.clickOpen(e)} />
+                      <OpenButton
+                        data-cy-open-button
+                        onClick={e => this.clickOpen(e)}
+                      >
+                        {">"}
+                      </OpenButton>
                       <ProfileBox>
                         <ProfileLeft>
                           <ProfileInfoBox>
@@ -311,12 +333,12 @@ class Dashboard extends Component {
                           </GoalsContainer>
                         </ProfileRight>
                       </ProfileBox>
-                      <CourseContainer className="HTML">
+                      {/* <CourseContainer className="HTML">
                         <CourseCard className="stuff">HTML</CourseCard>
                         <CourseCard>CSS</CourseCard>
                         <CourseCard>SANDBOX</CourseCard>
                         <CourseCard className="stuff">dude</CourseCard>
-                      </CourseContainer>
+                      </CourseContainer> */}
                     </ProfileMain>
                   </ProfileContainer>
                 )}

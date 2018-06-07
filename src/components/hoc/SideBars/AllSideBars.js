@@ -321,17 +321,24 @@ const CourseWrapper = styled.div`
   overflow: auto;
 `;
 const CourseTitle = styled.p`
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-top: 20px;
   margin-bottom: 20px;
   color: white;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 `;
 const LinkItem = styled.div`
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: white;
   margin-bottom: 10px;
   margin-top: 7px;
   cursor: pointer;
+  padding: 5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 
   &.linkHover:hover {
     background: #202020;
@@ -340,6 +347,7 @@ const LinkItem = styled.div`
 `;
 const LinkOptionBox = styled.div`
   height: auto;
+  padding: 2px;
   width: 6vw;
   display: none;
   &.one {
@@ -381,8 +389,12 @@ const LinkOptionBox = styled.div`
 `;
 const LinkOptions = styled.div`
   width: auto;
-  font-size: 0.5em;
+  font-size: 0.7em;
   color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 2px;
 
   &.optionHover:hover {
     background: #202020;
@@ -599,7 +611,7 @@ class ProfileSide extends Component {
               </Link>
             </LinkOptionBox>
           )}
-          <CourseTitle>Sandbox</CourseTitle>
+          {/* <CourseTitle>Sandbox</CourseTitle> */}
         </CourseWrapper>
       </div>
     );
