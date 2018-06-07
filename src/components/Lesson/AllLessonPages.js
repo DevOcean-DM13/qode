@@ -45,18 +45,6 @@ class LessonPage extends Component {
     }
   }
   render() {
-    console.log(
-      `page`,
-      this.state.page,
-      `all lesson`,
-      this.props.lesson,
-      `params object`,
-      this.props.match.params,
-      `page content`,
-      this.props.lesson[this.state.page]
-    );
-    console.log(this.props);
-
     return (
       <div>
         {this.state.page !== 0 && <LessonBar lesson={this.props.lesson} />}
@@ -117,7 +105,6 @@ class LessonPage extends Component {
 //
 
 const mapStateToProps = state => {
-  console.log("mstp state", state);
   return {
     lesson: state.lessReducer.lesson,
     user: state.userReducer.user
@@ -125,5 +112,8 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getLesson, getUser })(LessonPage)
+  connect(
+    mapStateToProps,
+    { getLesson, getUser }
+  )(LessonPage)
 );

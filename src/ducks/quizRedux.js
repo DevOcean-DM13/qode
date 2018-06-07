@@ -12,7 +12,6 @@ export function getQuiz(quiz_id) {
     type: GET_QUIZ,
     payload: axios.get(`/api/content/get_quiz/${quiz_id}`).then(quiz => {
       return quiz;
-      console.log(quiz);
     })
   };
 }
@@ -20,7 +19,6 @@ export function getQuiz(quiz_id) {
 export default function quizRedux(state = initialState, action) {
   switch (action.type) {
     case `${GET_QUIZ}_FULFILLED`:
-      console.log(action.payload.data);
       return Object.assign({}, state, {
         quiz: action.payload.data,
         loading: false

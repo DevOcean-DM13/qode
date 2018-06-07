@@ -36,7 +36,6 @@ export function registerUser(
         pic
       })
       .then(user => {
-        console.log(user.data);
         return user.data;
       })
       .catch(console.log)
@@ -49,7 +48,6 @@ export function login(userName, password) {
     payload: axios
       .post(`/api/auth/login`, { userName, password })
       .then(user => {
-        console.log(user);
         return user.data;
       })
       .catch(err => console.log(err))
@@ -57,26 +55,23 @@ export function login(userName, password) {
 }
 
 export function logout() {
-  console.log("logging out here");
   return {
     type: LOGOUT_USER,
     payload: axios
       .get(`/api/auth/logout`)
       .then(user => {
-        console.log(user);
+        //i dont know who put this .then here because we are not even using it. lol
       })
       .catch(err => console.log(err))
   };
 }
 
 export function getUser() {
-  console.log("getting user");
   return {
     type: GET_USER_OBJ,
     payload: axios
       .get(`/api/auth/user`)
       .then(user => {
-        console.log(user);
         return user.data;
       })
       .catch(err => err)
@@ -98,13 +93,11 @@ export function updatePurpose(purpose) {
 }
 
 export default function userReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case `${REGISTER_USER}_PENDING`:
       return { ...state, loading: true };
     case `${GET_USER}_FULFILLED`:
     case `${GET_USER_OBJ}_FULFILLED`:
-      console.log(`HEREHEREHERE`, action.payload);
       return { ...state, user: action.payload };
     case `${REGISTER_USER}_FULFILLED`:
       return { ...state, loading: false, user: action.payload };

@@ -73,7 +73,6 @@ class LandingEditor extends Component {
     });
   };
   render() {
-    console.log(this.state);
     return (
       <TextEditorContainer>
         <EditorAndDisplay>

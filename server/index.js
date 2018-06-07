@@ -66,8 +66,6 @@ app.use("/api/content", contentRoute);
 //!!!!!!!!!!!!!DUMBY ENDPOINT....NOT FOR PRODUCTION!!!!!!!!!!!-----------
 
 app.get("/warehouse/tools", (req, res) => {
-  console.log(req.query);
-  console.log("Finding tool...", req.query.toolType);
   res.status(200).send({ message: `Here is your tool: ${req.query.toolType}` });
 });
 

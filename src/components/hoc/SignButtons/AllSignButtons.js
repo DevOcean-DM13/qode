@@ -47,10 +47,8 @@ class Background extends Component {
     this.setState({ buttonChosen: e }, () => {
       this.props.updateBackground(this.state.buttonChosen);
     });
-    console.log("button Chosen: ", e);
   };
   render() {
-    console.log(this.props);
     const backMapped = this.state.backgroundName.map((e, i) => {
       return (
         <Button
@@ -78,7 +76,10 @@ const mapStateToProps = state => {
 };
 
 export const BackgroundButtons = createButton(
-  connect(mapStateToProps, { updateBackground })(Background)
+  connect(
+    mapStateToProps,
+    { updateBackground }
+  )(Background)
 );
 
 class Purpose extends Component {
@@ -93,7 +94,6 @@ class Purpose extends Component {
     this.setState({ buttonChoice: e.e }, () =>
       this.props.updatePurpose(this.state.buttonChoice)
     );
-    console.log(`button Chosen:`, e.e);
   };
   render() {
     const purpMapped = this.state.purposeName.map((e, i) => {
@@ -117,5 +117,8 @@ class Purpose extends Component {
 }
 
 export const PurposeButtons = createButton(
-  connect(mapStateToProps, { updatePurpose })(Purpose)
+  connect(
+    mapStateToProps,
+    { updatePurpose }
+  )(Purpose)
 );
