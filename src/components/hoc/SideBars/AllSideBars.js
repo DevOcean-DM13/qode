@@ -427,7 +427,6 @@ class ProfileSide extends Component {
   }
 
   handleOne() {
-    console.log(this.state.oneOpened);
     this.setState({ oneOpened: !this.state.oneOpened });
   }
   handleTwo() {

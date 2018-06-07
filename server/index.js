@@ -63,6 +63,12 @@ app.use("/api/auth", authRoute);
 
 app.use("/api/content", contentRoute);
 
+//!!!!!!!!!!!!!DUMBY ENDPOINT....NOT FOR PRODUCTION!!!!!!!!!!!-----------
+
+app.get("/warehouse/tools", (req, res) => {
+  res.status(200).send({ message: `Here is your tool: ${req.query.toolType}` });
+});
+
 app.use((req, res, next) => {
   res.status(404).send({ message: "RoUtE NoT FOUnd:(" });
   //defaults to a 404 error if route does not exist

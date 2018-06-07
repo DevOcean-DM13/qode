@@ -222,7 +222,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(`why you no load`, this.props);
     const { sidebar } = this.state;
     const { background, goals, pic, purpose, username, email } = this.props;
     return (

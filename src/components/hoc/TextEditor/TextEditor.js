@@ -57,7 +57,6 @@ export default class TextEditor extends Component {
   onChange(newValue) {
     // console.log("change", newValue);
     this.setState({ userInput: newValue });
-    console.log(this.state.userInput);
   }
   createWindow() {
     return { __html: `${this.state.userInput}` };

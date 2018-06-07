@@ -125,8 +125,6 @@ class LoginForm extends Component {
     this.props.login(this.state.usernameEmail, this.state.password);
   };
   render() {
-    console.log(`HERE`, this.props);
-    console.log(this.state);
     return (
       <LoginContainerBox data-cy-login-box>
         <SignUpTitle>Welcome</SignUpTitle>
@@ -157,7 +155,7 @@ class LoginForm extends Component {
                 placeholder="Password"
                 value={this.state.password}
                 onChange={e => this.userLogin(e)}
-                type="password"
+                // type="password"
                 required
               />
             </InputContainer>
@@ -180,4 +178,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { login })(LoginForm);
+export default connect(
+  mapStateToProps,
+  { login }
+)(LoginForm);

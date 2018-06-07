@@ -149,25 +149,14 @@ class Quiz extends Component {
       nextLesson = parseInt(currentLesson);
       nextPage = 1;
     } else if (currentPage === 0) {
-      console.log(`hereherehereh ${currentLesson - 1}`);
-      console.log(this.state);
       nextLesson = currentLesson - 1;
       nextPage = 1;
-
-      console.log(nextPage);
     }
 
     this.props.history.push(`/lesson/${nextLesson}/${nextPage}`);
   };
 
   evaluateAnswer = () => {
-    console.log(
-      `chosen`,
-      this.state.chosenAnswer,
-      `correct`,
-      this.props.quiz[this.state.questionIndex].correct_answer
-    );
-
     let currentLesson = this.state.currentLesson;
     let currentPage = this.state.currentPage;
     let nextLesson;
@@ -237,8 +226,7 @@ class Quiz extends Component {
     //   `Next Page:`,
     //   nextPage
     // );
-    console.log(this.props);
-    console.log(this.props.lessons);
+
     return (
       <div>
         {/* <LessonBar

@@ -237,7 +237,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { sidebar } = this.state;
     const { background, goals, pic, purpose, username, email } = this.props;
     return (
