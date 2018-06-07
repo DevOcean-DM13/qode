@@ -25,6 +25,7 @@ const Intro = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   letter-spacing: 0.3px;
+  color: white;
 `;
 const Qode = styled.div`
   font-size: 5em;
@@ -32,14 +33,15 @@ const Qode = styled.div`
   font-weight: 700;
   letter-spacing: 0.8px;
   margin-bottom: 8vh;
+  color: white;
 `;
 class SignUp extends Component {
   render() {
     return (
-      <div>
+      <div id="SignUpSideBar">
         <Beep style={this.props.styleProps}>
           <Welcome>Welcome to</Welcome>
-          <Qode>Qode</Qode>
+          <Qode id="QODE">Qode</Qode>
           <Intro>
             You are about to start your coding journey with us. Before we get
             started, let us get to know you better.
@@ -53,51 +55,18 @@ class SignUp extends Component {
 export const SignUpSideBar = createSideBar(SignUp);
 
 // anotha one
-const LessonHeader = styled.div`
-  & h1.Title {
-    color: #00a7e1;
-    font-weight: 700;
-    font-family: "Work Sans", sans-serif;
-    font-size: 2.5rem;
-    background: inherit;
-    letter-spacing: inherit;
-    text-align: start;
-    padding: inherit;
-    margin: inherit;
-    height: auto;
-    width: auto;
-    border: none;
-    opacity: inherit;
-    visibility: visible;
-    display: inherit;
-  }
-  & h2.Subtitle {
-    color: #00a7e1;
-    font-weight: 600;
-    font-family: "Work Sans", sans-serif;
-    font-size: 2rem;
-    background: inherit;
-    letter-spacing: inherit;
-    text-align: start;
-    padding: 0.5vh 0 1.5vh 0;
-    margin: inherit;
-    height: auto;
-    width: auto;
-    border: none;
-    opacity: inherit;
-    visibility: visible;
-    display: inherit;
-  }
-`;
 
 const PrettyBox = styled.div`
-  height: 90%;
-  width: 100%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 25px;
-  padding: 50px 50px 50px 50px;
+  &.pretty {
+    height: 80%;
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    padding: 30px 30px 50px 41px;
+    overflow: scroll;
+  }
 `;
 const LessonContent = styled.div`
   h1 {
@@ -109,26 +78,50 @@ const LessonContent = styled.div`
 `;
 const QuizTitle = styled.h1`
   font-family: "Work Sans", sans-serif;
-  font-size: 30px;
   margin-bottom: 40px;
   padding: 20px;
   border-bottom: 1.5px solid #ff7860;
+  color: #00a7e1;
+  font-weight: 700;
+  font-size: 2.5rem;
+  background: inherit;
+  letter-spacing: inherit;
+  text-align: center;
+  height: auto;
+  width: auto;
+  opacity: inherit;
+  visibility: visible;
+  display: inherit;
 `;
 const QuizSubtitle = styled.h2`
-  font-family: "Work Sans", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 40px;
+  padding-bottom: 20px;
+  color: #00a7e1;
+  font-weight: 600;
+  font-family: "Work Sans", sans-serif;
+  background: inherit;
+  letter-spacing: inherit;
+  text-align: center;
+  padding: 0vh 3vh 3vh 2.3vh;
+  margin: inherit;
+  height: auto;
+  width: auto;
+  border: none;
+  opacity: inherit;
+  visibility: visible;
+  display: inherit;
 `;
 
 const ContentText = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: start;
-  font-family: "Roboto", sans-serif;
+  ${"" /* text-align: center; */} font-family: "Roboto", sans-serif;
   font-size: 2rem;
   &.contentText {
     color: #00a7e1;
     font-size: 1rem;
+    text-align: center;
   }
 `;
 
@@ -274,20 +267,18 @@ class Lesson extends Component {
 
     return (
       <LessonContent style={this.props.styleProps}>
-        <PrettyBox>
-          <LessonHeader>
-            <h1 className="Title">
-              {this.props.page.length &&
-                this.props.page[this.state.currentPage].lesson_title}
-            </h1>
-            <h2 className="Subtitle">
-              {this.props.match.params.lesson_id}.{
-                this.props.match.params.pageoflesson
-              }-
-              {this.props.page.length &&
-                this.props.page[this.state.currentPage].subtitle}
-            </h2>
-          </LessonHeader>
+        <PrettyBox className="pretty">
+          <QuizTitle className="Title">
+            {this.props.page.length &&
+              this.props.page[this.state.currentPage].lesson_title}
+          </QuizTitle>
+          <QuizSubtitle className="Subtitle">
+            {this.props.match.params.lesson_id}.{
+              this.props.match.params.pageoflesson
+            }-
+            {this.props.page.length &&
+              this.props.page[this.state.currentPage].subtitle}
+          </QuizSubtitle>
 
           {content &&
             content.map((e, i) => {
@@ -314,7 +305,12 @@ const mapStateToProps = state => {
 };
 
 export const LessonBar = createSideBar(
-  withRouter(connect(mapStateToProps, {})(Lesson))
+  withRouter(
+    connect(
+      mapStateToProps,
+      {}
+    )(Lesson)
+  )
 );
 
 const CourseWrapper = styled.div`
@@ -328,6 +324,7 @@ const CourseTitle = styled.p`
   font-size: 1.2em;
   margin-top: 20px;
   margin-bottom: 20px;
+  color: white;
 `;
 const LinkItem = styled.div`
   font-size: 0.7em;

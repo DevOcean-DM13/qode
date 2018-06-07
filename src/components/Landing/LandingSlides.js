@@ -28,11 +28,9 @@ export default class SimpleSlider extends Component {
     };
     return (
       <Slider {...settings} className="slides-container">
-        <ActualSlides className="images" src={html} />
-        <ActualSlides className="images" src={css} />
-        <ActualSlides className="images" src={javascript} />
-
-        <h3>hihi</h3>
+        <ActualSlides className="images" src={html} id="html" />
+        <ActualSlides className="images" src={css} id="css" />
+        <ActualSlides className="images" src={javascript} id="javascript" />
       </Slider>
     );
   }

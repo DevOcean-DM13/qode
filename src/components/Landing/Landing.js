@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 //IMPORTED COMPONENTS
 import LessonAccordion from "./Accordion";
@@ -163,7 +164,7 @@ const Comp = styled.div`
   color: #00a7e1;
 `;
 const SlideShow = styled.div`
-  width: 50%;
+  width: 40%;
   height: 100%;
   padding-top: 7.7vh;
 `;
@@ -190,20 +191,25 @@ class Landing extends Component {
             <Banner>
               <Solve>Try solving it!</Solve>
               <LandingContainer>
-                <LandingEditor />
+                <LandingEditor
+                  default={`
+<!-- Pass this small test to proceed to sign up -->
+
+<h1>Hi from an h1 tag!</h1>   
+<h2>Hi from an h2 tag!</h2> 
+
+<!-- What is missing below? -->
+
+<p>What is it?`}
+                />
               </LandingContainer>
-              <SignUpContainer>
-                <NavLink to="/signup">
-                  <Button>Sign Up Now</Button>
-                </NavLink>
-              </SignUpContainer>
             </Banner>
             <TextContent>
               <IntroCarrier>
                 <Introduction>
                   Learn how to code, without the fear of drowning.
                 </Introduction>
-                <Blurb>
+                <Blurb id="BLURB">
                   Don't know where to start on the path of coding? <br />Allow
                   us to be your floatie.
                 </Blurb>
@@ -218,7 +224,7 @@ class Landing extends Component {
               <h1>
                 <Comp>Complexity,</Comp> made simple.
               </h1>
-              <LessonAccordion />
+              <LessonAccordion cy-accordion />
             </Curriculum>
             <SlideShow>
               <SimpleSlider />

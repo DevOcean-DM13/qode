@@ -12,7 +12,6 @@ export default styled.div`
     width: 100%;
     backface-visibility: hidden;
     border-bottom: solid 1px lightgrey;
-    position: fixed;
     z-index: 500;
     transition-duration: 0.15s;
     box-sizing: border-box;
@@ -21,16 +20,18 @@ export default styled.div`
     letter-spacing: inherit;
     margin: 0 0 0 0;
     background: white;
+    position: sticky;
+    top: 0;
 
     & div.ButtonContainer {
       margin: inherit;
       letter-spacing: inherit;
       text-align: inherit;
       padding: 0 0;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       margin: inherit inherit;
-      width: 24vw;
+      width: 20vw;
       height: auto;
       background: inherit;
     }

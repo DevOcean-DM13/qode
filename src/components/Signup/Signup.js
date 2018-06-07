@@ -10,6 +10,26 @@ import { registerUser } from "../../ducks/userReducer";
 import LoginForm from "../Landing/LoginForm";
 import { NavLink, withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
+import prof1 from "../../QodeProfilePics/prof1.png";
+import prof2 from "../../QodeProfilePics/prof2.png";
+import prof3 from "../../QodeProfilePics/prof3.png";
+import prof4 from "../../QodeProfilePics/prof4.png";
+import prof5 from "../../QodeProfilePics/prof5.png";
+import prof6 from "../../QodeProfilePics/prof6.png";
+import prof7 from "../../QodeProfilePics/prof7.png";
+import prof8 from "../../QodeProfilePics/prof8.png";
+import prof9 from "../../QodeProfilePics/prof9.png";
+import prof10 from "../../QodeProfilePics/prof10.png";
+import prof11 from "../../QodeProfilePics/prof11.png";
+import prof12 from "../../QodeProfilePics/prof12.png";
+import prof13 from "../../QodeProfilePics/prof13.png";
+import prof14 from "../../QodeProfilePics/prof14.png";
+import prof15 from "../../QodeProfilePics/prof15.png";
+import prof16 from "../../QodeProfilePics/prof16.png";
+import prof17 from "../../QodeProfilePics/prof17.png";
+import prof18 from "../../QodeProfilePics/prof18.png";
+import prof19 from "../../QodeProfilePics/prof19.png";
+import prof20 from "../../QodeProfilePics/prof20.png";
 
 const SignUpForm = styled.div`
   height: auto;
@@ -44,6 +64,10 @@ const Question = styled.p`
   &.space {
     margin-top: 34px;
     margin-bottom: 40px;
+  }
+  &.spaceJam {
+    margin-top: 34px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -96,13 +120,14 @@ const GoalText = styled.textarea`
 // Inputs
 
 const InputCard = styled.div`
-  width: 27vw;
+  width: 24.5vw;
   height: auto;
   border: solid 1px #a0dcff;
   border-radius: 6px;
   box-sizing: border-box;
   padding-left: 2vw;
   padding-bottom: 2vw;
+  margin-right: 2.1vw;
 `;
 const InputContainer = styled.div`
   height: auto;
@@ -110,7 +135,7 @@ const InputContainer = styled.div`
   padding-left: 9vw;
   padding-right: 50px;
   display: flex;
-  flex-direction: column;
+  margin-right: 2vw;
   box-sizing: border-box;
 `;
 const InputBox = styled.div`
@@ -146,6 +171,50 @@ const InputTitle = styled.p`
   letter-spacing: 0.5px;
 `;
 
+// ProfilePicGenerator
+
+const ProfilePicBox = styled.div`
+  height: auto;
+  width: 19.4vw;
+  border: solid 1px #a0dcff;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 60px 0;
+`;
+const ImageGenBox = styled.div`
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const GenerateButton = styled.button`
+  height: 30px;
+  width: 90px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.75em;
+  border: solid 1px #a0dcff;
+
+  &.backButt:hover {
+    box-shadow: 0.5px 0.5px 3px #dee9f9;
+    transition: 0.5s;
+    cursor: pointer;
+    background: #ff7860;
+    color: white !important;
+    border: none;
+  }
+`;
+const ImageGen = styled.img`
+  border-radius: 50%;
+  border: solid 2px #202020;
+  background-color: #00a7e1;
+  width: 120px;
+  height: 120px;
+`;
 // Register Bar
 
 const Register = styled.div`
@@ -186,12 +255,42 @@ class Signup extends Component {
       goals: "",
       userName: "",
       password: "",
-      email: ""
+      email: "",
+      profilePic: prof1,
+      profilePicList: [
+        prof1,
+        prof2,
+        prof3,
+        prof4,
+        prof5,
+        prof6,
+        prof7,
+        prof8,
+        prof9,
+        prof10,
+        prof11,
+        prof12,
+        prof13,
+        prof14,
+        prof15,
+        prof16,
+        prof17,
+        prof18,
+        prof19,
+        prof20
+      ]
     };
   }
   userInput = e => {
     this.setState({ [e.target.name]: e.target.value });
     // console.log(this.props);
+  };
+
+  randomizePic = () => {
+    const { profilePicList } = this.state;
+    const newProPic =
+      profilePicList[Math.floor(Math.random() * profilePicList.length)];
+    this.setState({ profilePic: newProPic });
   };
 
   register = () => {
@@ -203,7 +302,8 @@ class Signup extends Component {
           this.state.password,
           this.props.coding_background,
           this.props.purpose,
-          this.state.goals
+          this.state.goals,
+          this.state.profilePic
         )
         .then(response => {
           console.log(response, "here ya go michael");
@@ -244,7 +344,7 @@ class Signup extends Component {
             </Question>
             <BackgroundButtons />
           </QodingBackground>
-          <QodingPurpose>
+          <QodingPurpose data-cy-purpose>
             <Question>What are you here to do?</Question>
             <PurposeButtons />
           </QodingPurpose>
@@ -276,6 +376,7 @@ class Signup extends Component {
               <InputBox>
                 <Input
                   data-cy-create-user
+                  id="userBox"
                   onChange={e => this.userInput(e)}
                   name="userName"
                   placeholder="Username"
@@ -294,6 +395,25 @@ class Signup extends Component {
                 />
               </InputBox>
             </InputCard>
+            <ProfilePicBox>
+              <ImageGenBox>
+                <Question className="spaceJam">Pick a Profile Picture</Question>
+                <GenerateButton
+                  className="backButt picButton"
+                  onClick={this.randomizePic}
+                >
+                  Generate
+                </GenerateButton>
+              </ImageGenBox>
+              <ImageGen
+                className="cypress-prof-img"
+                src={this.state.profilePic}
+                onError={e => {
+                  e.target.src =
+                    "https://discoverthegift.com/wp-content/uploads/2016/03/placeholder.jpg";
+                }}
+              />
+            </ProfilePicBox>
           </InputContainer>
 
           <Register>
@@ -318,4 +438,9 @@ const mapStateToProps = state => {
   };
   // return state;
 };
-export default withRouter(connect(mapStateToProps, { registerUser })(Signup));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { registerUser }
+  )(Signup)
+);
